@@ -11,6 +11,9 @@
       background: linear-gradient(135deg, #1a1a1a, #333);
       color: #fff;
       text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     nav {
       background-color: #000;
@@ -18,23 +21,25 @@
       display: flex;
       justify-content: center;
       gap: 3rem;
+      font-weight: 600;
+      font-size: 1.1rem;
     }
     nav a {
       color: #fff;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
       transition: color 0.3s ease;
     }
     nav a:hover {
       color: #1ed760;
     }
     .hero {
+      flex-grow: 1;
       padding: 15vh 10vw 30vh;
     }
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
+      font-weight: 700;
     }
     .hero p {
       font-size: 1.3rem;
@@ -42,6 +47,13 @@
       margin: 0 auto 2rem;
       line-height: 1.5;
       color: #ddd;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+      color: #aaa;
+      background: #111;
     }
   </style>
 </head>
@@ -58,6 +70,10 @@
     <h1>Meaning is not given. It is awakened.</h1>
     <p>Welcome to the official site of the Will Circuit Activation Theory (WCAT). Here we explore the interdisciplinary foundation and future of human-intelligence co-evolution.</p>
   </section>
+
+  <footer>
+    © 2025 WCAT Official Site. All rights reserved.
+  </footer>
 
 </body>
 </html>
