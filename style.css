@@ -1,4 +1,43 @@
-/* Main content area */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #333;
+  background: #fff;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+nav {
+  background: #000;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #3f82ff;
+  outline: none;
+}
+
 main {
   flex-grow: 1;
   max-width: 720px;
@@ -7,10 +46,8 @@ main {
   background: #fff;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
-  /* 不设置 text-align，保持继承 */
 }
 
-/* 标题居中 */
 main h1 {
   font-size: 2.8rem;
   font-weight: 700;
@@ -19,7 +56,6 @@ main h1 {
   text-align: center;
 }
 
-/* 正文段落左对齐 */
 main p {
   font-size: 1.2rem;
   color: #555;
@@ -27,17 +63,95 @@ main p {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  text-align: left;  /* ✅ 从原先默认或居中 → 改为左对齐 */
+  text-align: left;
 }
 
-/* 列表左对齐 */
 main ul {
   list-style: disc;
   padding-left: 1.5rem;
   line-height: 1.8;
-  text-align: left; /* ✅ 新增确保左对齐 */
+  text-align: left;
 }
 
-main li {
-  text-align: left; /* 可选：确保列表项内部文字也左对齐 */
+.logo-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2.2rem;
+}
+
+.logo {
+  max-width: 160px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 2;
+}
+
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(77,166,255,0.35) 0%, rgba(77,166,255,0) 75%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 1;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.9;
+  }
+}
+
+footer {
+  background: #f3f3f3;
+  color: #666;
+  font-size: 0.9rem;
+  padding: 1rem 0;
+  text-align: center;
+  user-select: none;
+}
+
+.btn-download {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #3478f6;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: background 0.25s;
+}
+
+.btn-download:hover {
+  background: #3f82ff;
+}
+
+@media (max-width: 480px) {
+  main {
+    margin: 3rem 1rem 4rem;
+    padding: 1.5rem 1rem;
+  }
+
+  main h1 {
+    font-size: 2rem;
+  }
+
+  nav {
+    font-size: 1rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
 }
