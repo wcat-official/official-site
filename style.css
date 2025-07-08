@@ -88,7 +88,7 @@ footer {
 .btn-download {
   display: inline-block;
   padding: 0.6rem 1.2rem;
-  background: #1ed760;
+  background: #3478f6;
   color: #fff;
   font-weight: bold;
   border-radius: 8px;
@@ -98,7 +98,7 @@ footer {
 }
 
 .btn-download:hover {
-  background: #159f4a;
+  background: #2244aa;
 }
 
 /* Responsive */
