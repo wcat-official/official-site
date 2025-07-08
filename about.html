@@ -3,29 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About · WCAT</title>
-  <link rel="stylesheet" href="/style.css" />
+  <title>About - WCAT Official Site</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      color: #333;
+      background: #fff;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    nav {
+      background: #000;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      user-select: none;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+      color: #3f82ff;
+      outline: none;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 720px;
+      margin: 2.5rem auto 3.5rem;
+      padding: 2rem 1.5rem;
+      background: #fff;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      text-align: left;
+    }
+    main h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #222;
+      text-align: center;
+    }
+    main p {
+      font-size: 1.15rem;
+      color: #444;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+    footer {
+      background: #f3f3f3;
+      color: #666;
+      font-size: 0.9rem;
+      padding: 1rem 0;
+      text-align: center;
+      user-select: none;
+    }
+    @media (max-width: 480px) {
+      main {
+        margin: 3rem 1rem 4rem;
+        padding: 1.5rem 1rem;
+      }
+      main h1 {
+        font-size: 2rem;
+      }
+      nav {
+        font-size: 1rem;
+        gap: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <nav>
     <a href="/">Home</a>
     <a href="/whitepaper/whitepaper.html">Whitepaper</a>
     <a href="/join.html">Join us</a>
-    <a href="/about.html">About</a>
+    <a href="/about.html" aria-current="page">About</a>
     <a href="/log.html">Log</a>
   </nav>
 
   <main>
     <h1>About WCAT</h1>
-    <p>The Will Circuit Activation Theory (WCAT) is an interdisciplinary framework integrating metacognition, neuroscience, philosophy of free will, and developmental psychology. It seeks to understand how human agency can be reawakened under memetic and genetic constraints, and how we may co-evolve with artificial intelligence toward collective cognitive freedom.</p>
-
-    <p>This initiative is independently developed by <strong>Jiawei</strong>, supported by emerging thinkers and potential non-profit collaborations (e.g., Kara Foundation).</p>
-
-    <p>For academic or organizational inquiries: <a href="mailto:contact@wcat.world">contact@wcat.world</a></p>
+    <p>
+      The Will Circuit Activation Theory (WCAT) is an interdisciplinary framework developed to explore the interplay between human cognition, neuroscience, philosophy, and AI co-evolution. Rooted in cutting-edge research across these fields, WCAT aims to unlock the potential of conscious will and meaning-making in the modern era.
+    </p>
+    <p>
+      Our mission is to bridge the gap between science and philosophy, enabling individuals and communities to awaken deeper intentionality and collaborative intelligence. Through research, education, and technological integration, WCAT seeks to contribute to a new stage of human cognitive and societal evolution.
+    </p>
+    <p>
+      This site serves as the official hub for WCAT materials, including whitepapers, project updates, collaboration opportunities, and community logs documenting our ongoing journey.
+    </p>
+    <p>
+      We welcome scholars, practitioners, and supporters to join us in this transformative endeavor.
+    </p>
   </main>
 
   <footer>
-    © 2025 WCAT Official Site · All rights reserved.
+    © 2025 WCAT Official Site. All rights reserved.
   </footer>
 </body>
 </html>
