@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WCAT Official Site</title>
-  <style>
-    /* Reset & base */
+/* Reset & base */
 * {
   box-sizing: border-box;
 }
@@ -22,6 +15,7 @@ body {
   min-height: 100vh;
 }
 
+/* Navigation bar */
 nav {
   background: #000;
   color: #fff;
@@ -46,6 +40,7 @@ nav a:focus {
   outline: none;
 }
 
+/* Main content */
 main {
   flex-grow: 1;
   max-width: 720px;
@@ -78,7 +73,13 @@ main ul {
   list-style: disc;
   padding-left: 1.5rem;
   line-height: 1.8;
-  text-align: left;
+}
+
+/* Logo with glow */
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo-wrapper {
@@ -122,6 +123,24 @@ main ul {
   }
 }
 
+/* Button styles */
+.btn-download {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #3478f6;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 1.8rem;
+  transition: background 0.25s;
+}
+
+.btn-download:hover {
+  background: #3f82ff;
+}
+
+/* Footer */
 footer {
   background: #f3f3f3;
   color: #666;
@@ -131,22 +150,7 @@ footer {
   user-select: none;
 }
 
-.btn-download {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background: #3478f6;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 8px;
-  text-decoration: none;
-  margin-top: 1rem;
-  transition: background 0.25s;
-}
-
-.btn-download:hover {
-  background: #3f82ff;
-}
-
+/* Responsive */
 @media (max-width: 480px) {
   main {
     margin: 3rem 1rem 4rem;
