@@ -3,8 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Log · WCAT</title>
+  <title>Project Log – WCAT Official Site</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .log-container {
+      max-width: 720px;
+      margin: 2.5rem auto 3rem;
+      padding: 1rem;
+      background: #fff;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+    }
+
+    .log-container h1 {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+
+    .log-intro {
+      font-size: 1.1rem;
+      color: #666;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .log-entry {
+      margin-bottom: 2.5rem;
+      border-left: 4px solid #1ed760;
+      padding-left: 1rem;
+    }
+
+    .log-entry h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+      color: #111;
+    }
+
+    .log-entry .log-date {
+      font-size: 0.95rem;
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+
+    .log-entry ul {
+      list-style-type: disc;
+      padding-left: 1.2rem;
+    }
+
+    .log-entry ul li {
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .log-entry.future {
+      opacity: 0.7;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -15,21 +72,46 @@
     <a href="/log.html">Log</a>
   </nav>
 
-  <main>
-    <h1>Development Log</h1>
-    <p>This page documents the milestones and progress of WCAT development.</p>
+  <main class="log-container">
+    <h1>Project Log</h1>
+    <p class="log-intro">
+      This timeline records the ongoing development of the WCAT project. Each entry reflects an update to our theory, platform, or outreach.
+    </p>
 
-    <ul style="text-align: left; max-width: 600px; margin: 2rem auto;">
-      <li><strong>[2025-07-07]</strong> · Domain connected: <code>wcat.world</code> now live</li>
-      <li><strong>[2025-07-06]</strong> · Whitepaper v2.0 (English) uploaded</li>
-      <li><strong>[2025-07-05]</strong> · GitHub Pages structure deployed</li>
-    </ul>
+    <section class="log-entry">
+      <h2>v2.0 – Whitepaper Release & Website Launch</h2>
+      <p class="log-date">July 7, 2025</p>
+      <ul>
+        <li>English version of the WCAT whitepaper (v2.0) published</li>
+        <li>Official website launched at <a href="https://wcat.world">wcat.world</a></li>
+        <li>Initial modules: Home, About, Whitepaper, Support, Log</li>
+        <li>GitHub Pages and domain binding completed</li>
+      </ul>
+    </section>
 
-    <p>More updates will be added monthly.</p>
+    <section class="log-entry">
+      <h2>v1.0 – Theoretical Framework Consolidation</h2>
+      <p class="log-date">June 20–30, 2025</p>
+      <ul>
+        <li>Finalization of the WCAT theoretical model (4-system structure, 3.5-step cognitive shift)</li>
+        <li>Time-stamped documentation initiated for proof-of-origin</li>
+        <li>Core visual identity & narrative tone established</li>
+      </ul>
+    </section>
+
+    <section class="log-entry future">
+      <h2>v2.1 – Multi-language Support & Initial Outreach</h2>
+      <p class="log-date">Planned: July 12–18, 2025</p>
+      <ul>
+        <li>Traditional Chinese version of homepage & whitepaper</li>
+        <li>Outreach to aligned researchers & institutions</li>
+        <li>Email channel launch (contact@wcat.world)</li>
+      </ul>
+    </section>
   </main>
 
   <footer>
-    © 2025 WCAT Official Site · All rights reserved.
+    © 2025 WCAT Official Site. All rights reserved.
   </footer>
 </body>
 </html>
