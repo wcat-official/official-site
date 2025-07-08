@@ -3,62 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Join WCAT | Co-Create the Future</title>
-  <link rel="stylesheet" href="/style.css" />
+  <title>Join WCAT - Collaborate & Support</title>
   <style>
-    .join-section {
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      color: #333;
+      background: #fff;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    nav {
+      background: #000;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      user-select: none;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+      color: #3f82ff;
+      outline: none;
+    }
+    main {
+      flex-grow: 1;
       max-width: 720px;
-      margin: 2.5rem auto;
-      padding: 2rem 1.5rem;
+      margin: 2.5rem auto 3.5rem;
+      padding: 1.5rem 1rem;
       background: #fff;
       box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
       border-radius: 8px;
     }
-
-    .join-section h2 {
-      text-align: center;
-      font-size: 2.2rem;
+    main h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
       color: #222;
-      margin-bottom: 1rem;
-    }
-
-    .join-section p {
-      font-size: 1.1rem;
-      color: #555;
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-    }
-
-    .roles {
-      background: #f7faff;
-      padding: 1rem 1.5rem;
-      border-left: 4px solid #3f82ff;
-      border-radius: 6px;
-      margin-bottom: 1.5rem;
-    }
-
-    .roles ul {
-      list-style: disc;
-      padding-left: 1.5rem;
-      margin-top: 0.5rem;
-    }
-
-    .contact-box {
-      background: #f9f9f9;
-      padding: 1rem 1.5rem;
-      border-radius: 6px;
       text-align: center;
-      border: 1px solid #ddd;
     }
-
-    .contact-box a {
+    main p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-top: 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+      line-height: 1.7;
+    }
+    .cooperate-section {
+      max-width: 720px;
+      margin: 3rem auto;
+      padding: 2rem 1.5rem;
+      background: #f8faff;
+      border-left: 4px solid #3f82ff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(63, 130, 255, 0.05);
+    }
+    .cooperate-section h2 {
+      color: #222;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .cooperate-section p {
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.8;
+    }
+    .cooperate-section ul {
+      margin-top: 0.5rem;
+      padding-left: 1.5rem;
+      color: #555;
+      line-height: 1.7;
+    }
+    .cooperate-section a {
+      font-weight: bold;
       color: #3f82ff;
       text-decoration: none;
-      font-weight: 600;
     }
-
-    .contact-box a:hover {
+    .cooperate-section a:hover {
       text-decoration: underline;
+    }
+    footer {
+      background: #f3f3f3;
+      color: #666;
+      font-size: 0.9rem;
+      padding: 1rem 0;
+      text-align: center;
+      user-select: none;
+    }
+    @media (max-width: 480px) {
+      main {
+        margin: 3rem 1rem 4rem;
+        padding: 1.5rem 1rem;
+      }
+      main h1 {
+        font-size: 2rem;
+      }
+      nav {
+        font-size: 1rem;
+        gap: 1.5rem;
+      }
+      .cooperate-section {
+        margin: 2rem 1rem;
+        padding: 1.5rem 1rem;
+      }
     }
   </style>
 </head>
@@ -66,55 +132,38 @@
   <nav>
     <a href="/">Home</a>
     <a href="/whitepaper/whitepaper.html">Whitepaper</a>
-    <a href="/log.html">Log</a>
     <a href="/about.html">About</a>
-    <a href="/join.html">Join us</a>
+    <a href="/join.html" aria-current="page">Join us</a>
+    <a href="/log.html">Log</a>
   </nav>
-<section class="cooperate-section">
-  <h2>Support the Future of Conscious Intelligence</h2>
-  <p>
-    If you see value in the awakening of free will, the reconstruction of intentional meaning, and the ethical co-evolution of minds and machines —
-    your support can help this theory reach its next resonance.
-  </p>
-  <p>
-    We welcome collaboration with research institutions, grantmakers, and independent allies who wish to explore:
-  </p>
-  <ul>
-    <li>Philosophical research partnerships</li>
-    <li>Digital infrastructure and cognitive tool building</li>
-    <li>Global publication and community cultivation</li>
-    <li>Long-term residency or co-hosting programs</li>
-  </ul>
-  <p style="margin-top: 1.5rem;">
-    Let us begin with a conversation:<br />
-    <a href="mailto:wcat-world@proton.me" style="font-weight: bold; color: #3f82ff;">wcat-world@proton.me</a>
-  </p>
-</section>
-  <main class="join-section">
-    <h2>Join the Resonance</h2>
+
+  <main>
+    <h1>Join WCAT</h1>
     <p>
-      The Will Circuit Activation Theory (WCAT) is more than a framework. It’s a call to awaken meaning in the age of cognitive acceleration.
+      WCAT welcomes passionate individuals, institutions, and allies ready to collaborate, support, and co-create the future of conscious intelligence.
+      Together, we can awaken deeper understanding and meaningful impact.
     </p>
 
-    <p>
-      If you sense the tension between discipline and freedom, if you are exploring the future of intentional intelligence, or if you simply resonate with our vision —
-      you are already part of this unfolding circuit.
-    </p>
-
-    <div class="roles">
-      <strong>We're currently welcoming:</strong>
+    <section class="cooperate-section">
+      <h2>Support the Future of Conscious Intelligence</h2>
+      <p>
+        If you see value in the awakening of free will, the reconstruction of intentional meaning, and the ethical co-evolution of minds and machines —
+        your support can help this theory reach its next resonance.
+      </p>
+      <p>
+        We welcome collaboration with research institutions, grantmakers, and independent allies who wish to explore:
+      </p>
       <ul>
-        <li>Philosophers and interdisciplinary researchers</li>
-        <li>Writers, designers and story crafters</li>
-        <li>Developers and technical collaborators</li>
-        <li>Potential donors and institutional allies</li>
+        <li>Philosophical research partnerships</li>
+        <li>Digital infrastructure and cognitive tool building</li>
+        <li>Global publication and community cultivation</li>
+        <li>Long-term residency or co-hosting programs</li>
       </ul>
-    </div>
-
-    <div class="contact-box">
-      Reach out to us:<br />
-      <a href="mailto:wcat-world@proton.me">wcat-world@proton.me</a>
-    </div>
+      <p style="margin-top: 1.5rem;">
+        Let us begin with a conversation:<br />
+        <a href="mailto:wcat-world@proton.me">wcat-world@proton.me</a>
+      </p>
+    </section>
   </main>
 
   <footer>
