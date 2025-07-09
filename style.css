@@ -40,6 +40,18 @@ nav a:focus {
   outline: none;
 }
 
+.nav-logo-link {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-right: 1.5rem;
+}
+
+.nav-logo {
+  height: 32px;
+  display: block;
+}
+
 /* Main content */
 main {
   flex-grow: 1;
