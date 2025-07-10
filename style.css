@@ -22,11 +22,12 @@ nav {
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 2rem;
+  justify-content: center;
+  gap: 2.5rem;
   font-weight: 600;
   font-size: 1.1rem;
   user-select: none;
+  flex-wrap: wrap;
 }
 
 nav a {
@@ -41,12 +42,12 @@ nav a:focus {
   outline: none;
 }
 
-/* Logo in nav bar */
+/* Logo in nav */
 .nav-logo-link {
   display: flex;
   align-items: center;
   padding: 0;
-  margin-right: 2rem;
+  margin-right: 1.5rem;
 }
 
 .nav-logo {
@@ -54,7 +55,7 @@ nav a:focus {
   display: block;
 }
 
-/* Main content */
+/* Main content box */
 main {
   flex-grow: 1;
   max-width: 720px;
@@ -77,10 +78,12 @@ main p {
   font-size: 1.2rem;
   color: #555;
   margin-top: 0;
+  margin-bottom: 1rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   text-align: left;
+  line-height: 1.7;
 }
 
 main ul {
@@ -137,7 +140,7 @@ main ul {
   }
 }
 
-/* Button styles */
+/* Download button */
 .btn-download {
   display: inline-block;
   padding: 0.6rem 1.2rem;
@@ -154,6 +157,104 @@ main ul {
   background: #3f82ff;
 }
 
+/* Support / Join block */
+.cooperate-section {
+  max-width: 720px;
+  margin: 3rem auto;
+  padding: 2rem 1.5rem;
+  background: #f8faff;
+  border-left: 4px solid #3f82ff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(63, 130, 255, 0.05);
+}
+
+.cooperate-section h2 {
+  color: #222;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.cooperate-section p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.8;
+}
+
+.cooperate-section ul {
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+.cooperate-section a {
+  font-weight: bold;
+  color: #3f82ff;
+  text-decoration: none;
+}
+
+.cooperate-section a:hover {
+  text-decoration: underline;
+}
+
+/* Log page */
+.log-container {
+  max-width: 720px;
+  margin: 2.5rem auto 3rem;
+  padding: 1rem;
+  background: #fff;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.log-container h1 {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.log-intro {
+  font-size: 1.1rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.log-entry {
+  margin-bottom: 2.5rem;
+  border-left: 4px solid #3f82ff;
+  padding-left: 1rem;
+}
+
+.log-entry h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.2rem;
+  color: #111;
+}
+
+.log-entry .log-date {
+  font-size: 0.95rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.log-entry ul {
+  list-style-type: disc;
+  padding-left: 1.2rem;
+}
+
+.log-entry ul li {
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+  color: #444;
+}
+
+.log-entry.future {
+  opacity: 0.7;
+}
+
 /* Footer */
 footer {
   background: #f3f3f3;
@@ -164,7 +265,7 @@ footer {
   user-select: none;
 }
 
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 480px) {
   main {
     margin: 3rem 1rem 4rem;
@@ -177,8 +278,7 @@ footer {
 
   nav {
     font-size: 1rem;
-    gap: 1.2rem;
-    flex-wrap: wrap;
+    gap: 1.5rem;
     justify-content: center;
   }
 
@@ -187,7 +287,11 @@ footer {
   }
 
   .nav-logo-link {
-    margin-bottom: 0.5rem;
     margin-right: 1rem;
+  }
+
+  .cooperate-section {
+    margin: 2rem 1rem;
+    padding: 1.5rem 1rem;
   }
 }
