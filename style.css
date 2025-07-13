@@ -189,6 +189,20 @@ main ul {
   background: #f0f7ff;
 }
 
+.lang-switch {
+  margin-left: auto;
+  color: #3f82ff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+}
+
+.lang-switch:hover {
+  background: #e8f0ff;
+}
+
 /* About page */
 main.about {
   padding: 2rem 1.5rem;
@@ -286,46 +300,54 @@ main.about {
 }
 
 /* Log page entries */
-.log-entry {
-  margin-bottom: 2rem;
+.log-container {
   background: #f8faff;
   border-left: 5px solid #3f82ff;
-  padding: 1.2rem 1.2rem 1.2rem 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 1px 6px rgba(63, 130, 255, 0.06);
-  transition: box-shadow 0.3s ease;
+  box-shadow: 0 0 12px rgba(63, 130, 255, 0.06);
 }
 
-.log-entry:hover {
-  box-shadow: 0 4px 12px rgba(63, 130, 255, 0.1);
+.log-title {
+  text-align: left;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #222;
+}
+
+.log-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.log-entry {
+  margin-bottom: 2.5rem;
+  padding-left: 1rem;
+  border-left: 3px solid #9dc5ff;
 }
 
 .log-entry h2 {
   font-size: 1.4rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
   color: #111;
 }
 
-.log-entry .log-date {
+.log-date {
   font-size: 0.95rem;
   color: #888;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .log-entry ul {
-  list-style-type: disc;
-  padding-left: 1.2rem;
-  margin-top: 0.5rem;
-}
-
-.log-entry ul li {
-  margin-bottom: 0.4rem;
-  font-size: 1rem;
+  padding-left: 1.5rem;
   color: #444;
 }
 
-.log-entry.future {
-  opacity: 0.7;
+.log-entry li {
+  margin-bottom: 0.4rem;
+  line-height: 1.6;
 }
 
 /* Footer */
