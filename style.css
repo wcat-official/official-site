@@ -193,6 +193,56 @@ main ul {
 main.about {
   padding: 2rem 1.5rem;
 }
+.founder-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 3.5rem;
+}
+
+.founder-card {
+  flex: 1 1 280px;
+  background: #f9fbff;
+  border: 1.5px solid #e0ecff;
+  border-radius: 10px;
+  padding: 1.5rem 1.2rem;
+  box-shadow: 0 4px 10px rgba(63, 130, 255, 0.05);
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  min-height: 240px;
+}
+
+.founder-card img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.founder-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.founder-info h2 {
+  font-size: 1.5rem;
+  margin: 0 0 0.3rem;
+  color: #222;
+}
+
+.founder-info .role {
+  color: #3f82ff;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.founder-info .bio {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
 
 /* Join page cooperation section */
 .cooperate-section {
