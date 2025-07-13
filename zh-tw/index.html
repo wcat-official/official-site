@@ -5,9 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>意志回路激活理論 WCAT</title>
   <link rel="stylesheet" href="/style.css" />
+  <style>
+    .logo-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+    .logo {
+      max-width: 160px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 16px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+      position: relative;
+      z-index: 2;
+    }
+    .glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(77,166,255,0.35) 0%, rgba(77,166,255,0) 75%);
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      z-index: 1;
+      animation: pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: 0.9;
+      }
+    }
+    .text-left-intro {
+      font-size: 1.2rem;
+      color: #444;
+      text-align: left;
+      margin-top: 1rem;
+      line-height: 1.8;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .lang-switcher {
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      font-size: 0.95rem;
+    }
+    .lang-switcher a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+    .lang-switcher a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <nav>
+  <nav style="position: relative;">
     <a href="/zh-tw/index.html">
       <img src="/logo-nav.jpg" alt="WCAT 標誌" class="nav-logo" />
     </a>
@@ -16,18 +79,35 @@
     <a href="/zh-tw/join.html">加入我們</a>
     <a href="/zh-tw/about.html">關於我們</a>
     <a href="/zh-tw/log.html">發展記錄</a>
+    <div class="lang-switcher">
+      <a href="/index.html">EN</a>｜<strong>繁體</strong>
+    </div>
   </nav>
 
   <main>
-    <h1>穿越模因與神經的規訓，<br />
-      我們正在重構自由意志。</h1>
-    <p style="font-size:1.2rem; text-align: center; margin-top: 1rem;">
-      <strong>意志回路激活理論</strong>（Will Circuit Activation Theory, WCAT）是一套融合元認知心理學、神經科學、發展心理學與 AI 倫理的跨領域架構，旨在探索人類如何在深度規訓中重新激活意志回路、走向自覺智能與文明共生。
-    </p>
+    <div class="centered">
+      <div class="logo-wrapper">
+        <img src="/logo-wcat.jpg" alt="WCAT 發光標誌" class="logo" />
+        <div class="glow"></div>
+      </div>
+    </div>
+
+    <h1 style="text-align: center;">
+      穿越模因與神經的規訓，<br />我們正在重構自由意志。
+    </h1>
+
+    <div class="text-left-intro">
+      <p>
+        <strong>意志回路激活理論（Will Circuit Activation Theory, WCAT）</strong> 是一項由嘉炜（Jiawei）提出的跨領域原創理論，結合元認知心理學、神經科學、發展心理學與 AI 倫理，旨在重新理解人類在高度文化與基因規訓下，如何經由意志力的激活與回路重組，邁向自由意向與精神共生。
+      </p>
+      <p>
+        本網站為 WCAT 的官方平臺，將陸續發佈理論核心內容、全球共鳴計畫、駐地研究與實驗性出版計畫。歡迎研究者、機構、讀者與協作者加入這場意識覺醒的旅程。
+      </p>
+    </div>
 
     <div style="text-align: center; margin-top: 2.5rem;">
-      <a href="/zh-tw/whitepaper.html" style="margin-right: 1.5rem;" class="btn-primary">下載白皮書</a>
-      <a href="/zh-tw/join.html" class="btn-outline">共鳴與協作</a>
+      <a href="/zh-tw/whitepaper.html" class="btn-primary" style="margin-right: 1.2rem;">📘 讀白皮書</a>
+      <a href="/zh-tw/join.html" class="btn-outline">🤝 參與共構</a>
     </div>
   </main>
 
