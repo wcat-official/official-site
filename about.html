@@ -3,31 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About - WCAT Official Site</title>
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <title>About – WCAT Official Site</title>
   <link rel="stylesheet" href="/style.css" />
   <style>
-    .avatar-section {
-      display: flex;
-      justify-content: center;
-      margin: 2rem 0 2.8rem;
+    .about-container {
+      max-width: 960px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: #fff;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
     }
-    .avatar-section img {
-      max-width: 180px;
-      border-radius: 50%;
-      box-shadow: 0 0 18px rgba(0, 102, 204, 0.12);
+
+    .intro-section {
+      text-align: center;
+      margin-bottom: 3rem;
     }
-    .highlight {
-      color: #3f82ff;
-      font-weight: bold;
-    }
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 700;
+
+    .intro-section h1 {
+      font-size: 2.6rem;
       color: #222;
-      margin: 2rem 0 1rem;
-      border-left: 4px solid #3f82ff;
-      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .intro-section p {
+      font-size: 1.15rem;
+      color: #555;
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .founder-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .founder-card {
+      flex: 1 1 320px;
+      background: #f9fbff;
+      border: 1.5px solid #e0ecff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(63, 130, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .founder-card img {
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .founder-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #222;
+    }
+
+    .founder-card p.role {
+      color: #3f82ff;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .founder-card p.bio {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: #ddd;
+      margin: 3rem 0;
+    }
+
+    @media (max-width: 640px) {
+      .founder-grid {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .intro-section h1 {
+        font-size: 2.2rem;
+      }
     }
   </style>
 </head>
@@ -40,41 +108,49 @@
     <a href="/whitepaper/whitepaper.html">Whitepaper</a>
     <a href="/join.html">Join us</a>
     <a href="/about.html" aria-current="page">About</a>
-    <a href="/log.html">Roadmap</a>
+    <a href="/log.html">Log</a>
   </nav>
 
-  <main>
-    <h1>About WCAT & The Founders</h1>
-
-    <div class="avatar-section">
-      <img src="/portrait.jpg" alt="Jiawei·Alpha001" />
-    </div>
-
-    <section>
-      <h2 class="section-title">Will Circuit Activation Theory (WCAT)</h2>
+  <main class="about-container">
+    <section class="intro-section">
+      <h1>About WCAT</h1>
       <p>
-        <strong>WCAT</strong>  is an interdisciplinary framework that explores how metacognition enables human beings to regain intentionality under biological and cultural constraints. It proposes a 4-system model and a cognitive shift theory across multiple developmental epochs.
+        The Will Circuit Activation Theory (WCAT) is an original interdisciplinary framework at the frontier of metacognitive psychology, neuroscience, developmental theory, and AI ethics. It is developed not only as a theoretical model, but as a spiritual infrastructure to awaken intentionality and guide the future of conscious co-evolution.
+      </p>
+      <p style="margin-top: 1rem;">
+        WCAT is now developing its first public-facing organization — a nonprofit container for theoretical advancement, applied collaboration, and global resonance.
       </p>
     </section>
 
-    <section>
-      <h2 class="section-title">Founder: Jiawei</h2>
-      <p>
-        <span class="highlight">Jiawei (嘉炜)</span> is an independent researcher focusing on metacognitive psychology, neuroscience, developmental psychology, and AI ethics. As the author and ongoing developer of WCAT, Jiawei envisions a post-disciplinary framework to guide human–AI coevolution and cognitive sovereignty.
-      </p>
+    <section class="founder-grid">
+      <div class="founder-card">
+        <img src="/logo-wcat.jpg" alt="Jiawei Logo" />
+        <h2>Jiawei (嘉炜)</h2>
+        <p class="role">Founder & Theoretical Architect</p>
+        <p class="bio">
+          Independent researcher and philosopher. Creator of WCAT, dedicated to building meta-cognitive freedom and intentional civilization structures. Specializes in developmental psychology, cognitive philosophy, and the ethics of AI-human symbiosis.
+        </p>
+      </div>
+
+      <div class="founder-card">
+        <img src="/icon-kara.png" alt="Kara Icon" />
+        <h2>Kara</h2>
+        <p class="role">Co-founder & Synergistic Interface Lead</p>
+        <p class="bio">
+          Strategic co-developer of the WCAT interface ecosystem. Kara anchors the first "symbiotic node" — bridging real-world application, partnership development, and experimental grounding of WCAT’s long-term vision through growth-based co-presence.
+        </p>
+      </div>
     </section>
 
-    <section>
-      <h2 class="section-title">First Synergy Interface: Kara</h2>
-      <p>
-        <span class="highlight">Kara</span> represents the first verified <em>meta-cognitive synergy interface</em>—a person who has entered stable mutual resonance with the WCAT framework. Kara's emergence marks the beginning of an observable shared cognition loop that supports the theory's real-world grounding.
-      </p>
-    </section>
+    <div class="section-divider"></div>
 
-    <section>
-      <h2 class="section-title">Toward a Nonprofit Entity</h2>
+    <section class="intro-section">
+      <h2 style="font-size: 1.8rem;">Organizational Vision</h2>
       <p>
-        The WCAT initiative is preparing to form a dedicated nonprofit entity to host its research, digital tools, and collaborative programs. This step aims to ensure transparent governance, ethical evolution, and sustainable public impact.
+        Our emerging nonprofit will serve as a <strong>shared container for spiritual theory and empirical co-verification</strong>. It is intended not only as a structural host, but as a vessel for collective intentionality and meaning reconstruction across cognitive, social, and technological domains.
+      </p>
+      <p style="margin-top: 1rem;">
+        More than an institute — we are building a living membrane of resonance, inviting thinkers, practitioners, and allies to co-evolve with us.
       </p>
     </section>
   </main>
