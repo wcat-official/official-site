@@ -299,6 +299,30 @@ main.about {
   text-decoration: underline;
 }
 
+/* Privacy Box for Join Page */
+.privacy-box {
+  background: #eef5ff;
+  border-left: 4px solid #3f82ff;
+  padding: 1.2rem 1.4rem;
+  margin-top: 1.8rem;
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.8;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(63, 130, 255, 0.08);
+  word-break: break-word;
+}
+
+.privacy-box a {
+  color: #2a6be5;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.privacy-box a:hover {
+  text-decoration: underline;
+}
+
 /* Log page entries */
 .log-container {
   background: #f8faff;
