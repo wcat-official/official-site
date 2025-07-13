@@ -155,6 +155,39 @@ main ul {
 .btn-download:hover {
   background: #3f82ff;
 }
+.btn-primary {
+  display: inline-block;
+  padding: 0.65rem 1.4rem;
+  background: #3478f6;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.25s;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #3f82ff;
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.65rem 1.4rem;
+  border: 2px solid #3478f6;
+  color: #3478f6;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: #f0f7ff;
+}
 
 /* About page */
 main.about {
