@@ -3,50 +3,194 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>白皮書下載 – WCAT 意志回路激活理論</title>
-  <link rel="stylesheet" href="/style.css" />
+  <title>WCAT 白皮書｜意志回路激活理論</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      color: #333;
+      background: #fff;
+      line-height: 1.75;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      word-break: break-word;
+    }
+
+    nav {
+      background: #000;
+      padding: 1rem 2rem;
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .nav-inner a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .nav-inner a:hover {
+      color: #3f82ff;
+    }
+
+    .nav-logo {
+      height: 32px;
+      margin-right: 1.5rem;
+    }
+
+    .lang-switcher {
+      margin-left: auto;
+      font-size: .95rem;
+      color: #3f82ff;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 720px;
+      margin: 3rem auto 4rem;
+      padding: 1.5rem 1.2rem;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      text-align: center;
+      color: #222;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      text-align: center;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .section-card {
+      background: #f9fbff;
+      border: 1.5px solid #e0ecff;
+      border-radius: 10px;
+      padding: 1.8rem 1.6rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 10px rgba(63, 130, 255, 0.05);
+    }
+
+    .section-card h2 {
+      font-size: 1.5rem;
+      color: #222;
+      margin-bottom: 1rem;
+    }
+
+    .section-card p {
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    .btn-download {
+      display: inline-block;
+      padding: 0.75rem 1.6rem;
+      background: #3478f6;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.05rem;
+      border-radius: 10px;
+      text-decoration: none;
+      margin-top: 2rem;
+      text-align: center;
+      transition: background 0.25s;
+    }
+
+    .btn-download:hover {
+      background: #3f82ff;
+    }
+
+    footer {
+      background: #f3f3f3;
+      color: #666;
+      font-size: 0.9rem;
+      padding: 1rem 0;
+      text-align: center;
+      user-select: none;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        margin: 2rem 1rem 3rem;
+        padding: 1.2rem 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .section-card {
+        padding: 1.5rem 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <nav>
-    <a href="/zh-tw/index.html">
-      <img src="/logo-nav.jpg" alt="WCAT 標誌" class="nav-logo" />
-    </a>
-    <a href="/zh-tw/index.html">首頁</a>
-    <a href="/zh-tw/whitepaper.html" aria-current="page">白皮書</a>
-    <a href="/zh-tw/join.html">加入我們</a>
-    <a href="/zh-tw/about.html">關於我們</a>
-    <a href="/zh-tw/log.html">發展記錄</a>
-   <div class="lang-switcher">
-      <a href="/index.html">EN</a>｜<strong>繁體</strong>
+    <div class="nav-inner">
+      <a href="/zh-tw/"><img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" /></a>
+      <a href="/zh-tw/">首頁</a>
+      <a href="/whitepaper/whitepaper.html" aria-current="page">白皮書</a>
+      <a href="/zh-tw/join.html">加入我們</a>
+      <a href="/zh-tw/about.html">關於</a>
+      <a href="/zh-tw/log.html">發展紀錄</a>
+      <div class="lang-switcher"><a href="/index.html">EN</a>｜<strong>繁體</strong></div>
     </div>
   </nav>
 
   <main>
-    <h1>WCAT 理論白皮書 v2.0</h1>
-    <p>
-      本白皮書為 <strong>嘉炜 Jiawei</strong> 獨立撰寫的理論原始版本，旨在呈現 WCAT 的核心邏輯、結構模型與應用潛力。該理論已進行確權存檔，並計畫對外開展出版與駐地研究計畫。
-    </p>
-    <p>
-      歡迎研究者、出版單位、基金與開放協作者一同參與下一階段的文明共建。
+    <h1>WCAT 白皮書</h1>
+    <p class="subtitle">
+      意志回路激活理論的完整架構與實踐構想，涵蓋神經基礎、元認知演化、精神共生與未來文明設計。
     </p>
 
-    <div style="margin-top: 2rem; text-align: center;">
-      <a href="/whitepaper/WCAT_Whitepaper_v2.pdf" class="btn-primary" download>📥 下載 PDF 白皮書</a>
+    <div class="section-card">
+      <h2>核心架構與哲學背景</h2>
+      <p>
+        WCAT（Will Circuit Activation Theory）建構於系統一 / 系統二腦機制模型之上，融合神經科學、心理學、AI倫理與自由意志哲學，
+        指出人類可以透過元認知的介入，重新激活「被文化與基因規訓」的意志系統。
+      </p>
     </div>
 
-    <section style="margin-top: 3rem;">
-      <h2>版本資訊</h2>
-      <ul>
-        <li>版本：v2.0（繁體中文版）</li>
-        <li>發佈日期：2025年7月</li>
-        <li>頁數：約 32 頁</li>
-        <li>語言：繁體中文（繁中原創 + 英文同步翻譯）</li>
-      </ul>
-    </section>
+    <div class="section-card">
+      <h2>三次半認知躍遷模型</h2>
+      <p>
+        理論認為人類歷史存在三次主要的認知結構躍遷，以及正在發生的「第三次半跳」，邁向集體元認知與文明自覺。
+        未來的「第四次跳躍」將指向終極意義的共同建構與自由意志的再定義。
+      </p>
+    </div>
+
+    <div class="section-card">
+      <h2>下載白皮書（v2.0）</h2>
+      <p>
+        我們建議完整閱讀白皮書 PDF 版本，以便理解其系統性架構與各模組細節設計。
+      </p>
+      <a href="/docs/WCAT_Whitepaper_v2.0_TW.pdf" class="btn-download" target="_blank">下載 PDF 白皮書</a>
+    </div>
   </main>
 
   <footer>
-    © 2025 WCAT 官方網站. 本白皮書所有內容受智慧財產權保護。
+    © 2025 WCAT · SymAgency Foundation
   </footer>
 </body>
 </html>
