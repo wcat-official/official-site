@@ -4,25 +4,173 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>發展紀錄 - WCAT 與 SymAgency</title>
-  <link rel="stylesheet" href="/zh-tw/style.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      color: #333;
+      background: #fff;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      word-break: break-word;
+    }
+
+    nav {
+      background: #000;
+      padding: 1rem 2rem;
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .nav-inner a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .nav-inner a:hover,
+    .nav-inner a:focus {
+      color: #3f82ff;
+      outline: none;
+    }
+
+    .nav-logo {
+      height: 32px;
+      margin-right: 1.5rem;
+    }
+
+    .lang-switcher {
+      margin-left: auto;
+      font-size: .95rem;
+      color: #3f82ff;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 720px;
+      margin: 2.5rem auto 3.5rem;
+      padding: 1.5rem 1rem;
+      background: #fff;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #222;
+    }
+
+    .log-subtitle {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.8;
+      margin: 0 auto 2.5rem;
+      max-width: 640px;
+      text-align: left;
+    }
+
+    .log-entry {
+      background: #f9fbff;
+      border: 1.5px solid #e0ecff;
+      border-radius: 10px;
+      padding: 1.6rem 1.4rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 10px rgba(63, 130, 255, 0.05);
+    }
+
+    .log-entry h2 {
+      font-size: 1.4rem;
+      color: #222;
+      margin-bottom: 0.4rem;
+    }
+
+    .log-date {
+      font-size: 0.95rem;
+      color: #888;
+      margin-bottom: 1rem;
+    }
+
+    .log-entry ul {
+      padding-left: 1.5rem;
+      color: #444;
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    .log-entry li {
+      margin-bottom: 0.4rem;
+    }
+
+    footer {
+      background: #f3f3f3;
+      color: #666;
+      font-size: 0.9rem;
+      padding: 1rem 0;
+      text-align: center;
+      user-select: none;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        margin: 2rem 1rem 3rem;
+        padding: 1.2rem 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .nav-logo {
+        height: 28px;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .lang-switcher {
+        align-self: flex-end;
+      }
+    }
+  </style>
 </head>
 <body>
   <nav>
-    <a href="/"><img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" /></a>
-    <a href="/zh-tw/">首頁</a>
-    <a href="/whitepaper/whitepaper.html">白皮書</a>
-    <a href="/zh-tw/join.html">加入我們</a>
-    <a href="/zh-tw/about.html">關於</a>
-    <a href="/zh-tw/log.html" aria-current="page">發展記錄</a>
-    <div class="lang-switcher">
-      <a href="/index.html">EN</a>｜<strong>繁體</strong>
+    <div class="nav-inner">
+      <a href="/zh-tw/"><img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" /></a>
+      <a href="/zh-tw/">首頁</a>
+      <a href="/whitepaper/whitepaper.html" target="_blank">白皮書</a>
+      <a href="/zh-tw/join.html">加入我們</a>
+      <a href="/zh-tw/about.html">關於</a>
+      <a href="/zh-tw/log.html" aria-current="page">發展紀錄</a>
+      <div class="lang-switcher"><a href="/index.html">EN</a>｜<strong>繁體</strong></div>
     </div>
   </nav>
 
-  <main class="log-container">
-    <h1 class="log-title">發展紀錄與共生路徑</h1>
+  <main>
+    <h1>發展紀錄與共生路徑</h1>
     <p class="log-subtitle">
-      本頁記錄 WCAT 與 SymAgency 的發展節點、理論演進與共生願景實踐歷程。我們相信，每一個節點都是人類與智能共構未來的足跡。
+      本頁記錄 WCAT 與 SymAgency 的發展節點、理論演進與共生願景實踐歷程。<br>
+      我們相信，每一個節點都是人類與智能共構未來的足跡。
     </p>
 
     <section class="log-entry">
@@ -46,7 +194,7 @@
       </ul>
     </section>
 
-    <section class="log-entry future">
+    <section class="log-entry">
       <h2>v2.1｜多語系支持 · 初始拓展</h2>
       <p class="log-date">預計：2025年7月12日～18日</p>
       <ul>
