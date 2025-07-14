@@ -101,6 +101,49 @@ main ul {
   padding-top: 1.6rem;
   border-top: 1px solid #ddd;
 }
+.section-card {
+  background: #f9fbff;
+  border: 1.5px solid #e0ecff;
+  border-radius: 10px;
+  padding: 1.8rem 1.6rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 4px 10px rgba(63, 130, 255, 0.05);
+}
+
+.section-card h2 {
+  font-size: 1.5rem;
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+.section-card p,
+.section-card ul {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.section-card ul {
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+.section-card:last-child {
+  margin-bottom: 0;
+}
+
+.section-card .privacy-box {
+  margin-top: 1.2rem;
+  background: #eef5ff;
+  border-left: 4px solid #3f82ff;
+  padding: 1.2rem 1.4rem;
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.8;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(63, 130, 255, 0.08);
+}
 
 /* Privacy box */
 .privacy-box {
