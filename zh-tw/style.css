@@ -209,3 +209,59 @@ footer {
     padding-top: 1.2rem;
   }
 }
+/* Log page container - narrower and more centered */
+.log-container {
+  background: #f8faff;
+  border-left: 5px solid #3f82ff;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(63, 130, 255, 0.06);
+  max-width: 640px;          /* 原本無限制，新增這行縮窄寬度 */
+  margin: 2rem auto 3rem;    /* 增加上下空白，保持中置 */
+  padding: 2rem 1.5rem;      /* 內距更舒服 */
+}
+
+/* Log page title and subtitle */
+.log-title {
+  text-align: left;
+  font-size: 2rem;           /* 稍微縮小字級 */
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: #222;
+}
+
+.log-subtitle {
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1.8rem;
+}
+
+/* Log entry */
+.log-entry {
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  border-left: 3px solid #9dc5ff;
+}
+
+.log-entry h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+  color: #111;
+}
+
+.log-date {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 0.6rem;
+}
+
+.log-entry ul {
+  padding-left: 1.5rem;
+  color: #444;
+}
+
+.log-entry li {
+  margin-bottom: 0.4rem;
+  line-height: 1.6;
+  font-size: 1rem;
+}
