@@ -148,3 +148,9 @@ footer {
     padding: 1.2rem 1rem;
   }
 }
+/* 專用於加入我們頁的調整 */
+.join-page .log-subtitle {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+}
