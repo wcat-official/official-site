@@ -8,7 +8,59 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="/style.css" />
   <style>
-    body {
+    :root {
+  --font-main: 'Noto Sans TC', sans-serif;
+  --color-bg: #f5f5f5;
+  --color-text: #222;
+  --color-primary: #123456; /* 可替換主色 */
+  --max-width: 900px;
+}
+
+body {
+  font-family: var(--font-main);
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.section {
+  margin-bottom: 4rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem 0;
+}
+
+ul {
+  padding-left: 1.5rem;
+}
+body {
       margin: 0;
       font-family: 'Helvetica Neue', sans-serif;
       background-color: #000;
