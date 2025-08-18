@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WCAT | Three Interfaces · Three Worlds</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+      background: #000;
+      color: #f0f0f0;
+      line-height: 1.7;
+    }
+    nav {
+      background: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7em 1.5em;
+      border-bottom: 1px solid #222;
+      position: sticky; top: 0; left: 0; right: 0; z-index: 99;
+    }
+    .nav-logo { height: 38px;}
+    .nav-links { display: flex; gap: 1.1em; align-items: center; font-size: 1.04em; flex-wrap: wrap;}
+    .nav-links a { color: #f0f0f0; text-decoration: none; padding: 0.18em 0.7em; border-radius: 5px; transition: background 0.18s, color 0.15s;}
+    .nav-links a[aria-current="page"], .nav-links a:hover { background: #111; color: #00ffe7;}
+    .lang-switcher { margin-left: 1em; font-size: 0.97em; opacity: 0.82;}
+    .nav-toggle { display: none; }
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0; right: 0;
+        background: #000;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid #222;
+        box-shadow: 0 2px 18px #00ffe729;
+        padding-bottom: 1em;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #00ffe7;
+        font-size: 1.7em;
+        cursor: pointer;
+        margin-left: 1em;
+      }
+      nav { padding: 0.7em 1em;}
+      .nav-logo { height: 34px;}
+    }
+
+    .page-title {
+      text-align: center;
+      color: #00ffe7;
+      font-size: 2em;
+      font-weight: bold;
+      margin: 2.2em auto 1.1em auto;
+      letter-spacing: 0.04em;
+    }
+    .page-lead {
+      text-align: center;
+      color: #7a94ff;
+      font-size: 1.15em;
+      font-weight: 500;
+      margin-bottom: 2.1em;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .interface-section {
+      max-width: 980px;
+      margin: 2.2em auto 2.7em auto;
+      background: #10181c;
+      border-radius: 16px;
+      box-shadow: 0 2px 18px #00ffe71a;
+      padding: 2.4em 2em 2em 2em;
+    }
+    .interface-title {
+      font-size: 1.35em;
+      color: #00ffe7;
+      font-weight: bold;
+      margin-bottom: 0.3em;
+      text-align: left;
+      letter-spacing: 0.04em;
+    }
+    .interface-subtitle {
+      font-size: 1.09em;
+      color: #7a94ff;
+      font-weight: 600;
+      margin-bottom: 0.9em;
+      text-align: left;
+    }
+    .interface-desc {
+      color: #ccc;
+      font-size: 1.05em;
+      margin-bottom: 1.8em;
+      line-height: 1.7;
+      text-align: left;
+      max-width: 700px;
+    }
+    .interface-core-title {
+      font-size: 1.08em;
+      color: #00ffe7;
+      font-weight: bold;
+      margin: 2em 0 0.7em 0;
+      text-align: left;
+    }
+    .interface-list {
+      margin: 0.6em 0 1.1em 1.3em;
+      color: #7a94ff;
+      font-size: 1.04em;
+      list-style: disc inside;
+      max-width: 700px;
+    }
+    .interface-link {
+      display: inline-block;
+      background: linear-gradient(90deg,#00ffe7 0%,#7a94ff 100%);
+      color: #000;
+      font-size: 1.02em;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 0.5em 1.1em;
+      text-decoration: none;
+      box-shadow: 0 2px 10px #00ffe733;
+      transition: background 0.2s;
+      margin: 0.7em 0.5em 0.7em 0;
+    }
+    .interface-link:hover {
+      background: linear-gradient(90deg,#00e0d0 0%,#7a94ff 100%);
+      color: #fff;
+    }
+    .interface-inline-link {
+      color: #7a94ff;
+      text-decoration: underline;
+      font-size: 1em;
+      margin-left: 0.3em;
+      margin-right: 0.3em;
+    }
+    @media (max-width: 980px) {
+      .interface-section { padding: 1.5em 0.7em 1.2em 0.7em;}
+    }
+    footer { padding: 2em; text-align: center; font-size: 0.9em; color: #555; background: #000; border-top: 1px solid #111; margin-top: 2.2em;}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">
+      <img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" />
+    </a>
+    <button class="nav-toggle" aria-label="Expand menu" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/theory-cosmos.html">Theory Cosmos</a>
+      <a href="/tools.html">Transition Tools</a>
+      <a href="/interfaces.html" aria-current="page">Three Interfaces</a>
+      <a href="/about.html">Creator</a>
+      <a href="/co-create.html">Co-Creation & Contact</a>
+      <span class="lang-switcher">
+        <a href="/zh-tw/interfaces.html">繁體</a>｜<strong>EN</strong>
+      </span>
+    </div>
+  </nav>
+  <main>
+    <div class="page-title">Three Interfaces · Three Worlds</div>
+    <div class="page-lead">
+      Explore how WCAT and CMC transform abstract theory into real-world impact—across academia, business, and the public sphere.
+    </div>
+    <!-- Academic Interface -->
+    <section class="interface-section">
+      <div class="interface-title">Academic Interface: Virtual Consciousness Institute</div>
+      <div class="interface-subtitle">Building the Next Frontier of Human Consciousness in the Mirror of AI.</div>
+      <div class="interface-desc">
+        The WCAT and CMC theories were born to address the contemporary dilemmas of cognition, language, and civilization.<br>
+        We provide an open academic platform, sincerely inviting researchers from fields such as neuroscience, cognitive psychology, philosophy, AI ethics, and sociology to jointly explore the unknown frontiers of human consciousness.
+      </div>
+      <div class="interface-core-title">Theory Publication and Research Center</div>
+      <a href="/theory-cosmos.html#academic-portal" class="interface-link">Enter WCAT Whitepaper Section &gt;&gt;</a>
+      <a href="/theory-cosmos.html#academic-portal" class="interface-link">Enter CMC Whitepaper Section &gt;&gt;</a>
+      <span style="font-size:0.95em; color:#888;">(Links to the academic portal)</span>
+      <div class="interface-core-title">Core Works: From Theory to Text</div>
+      <ul class="interface-list">
+        <li>
+          <b>Academic Works:</b> "Will Circuit Activation Theory," "Consciousness Mapping Cosmology"
+        </li>
+        <li>
+          <b>Popular Science Works:</b> "A Brief History of Volition," "A Brief History of Consciousness"
+        </li>
+        <li>
+          <b>Science Fiction Works:</b> "2080," "Brave and Eternal"
+        </li>
+      </ul>
+      <a href="/theory-cosmos.html#general-portal" class="interface-link">View All Works &gt;&gt;</a>
+      <div class="interface-core-title">Co-creation Portal</div>
+      <ul class="interface-list">
+        <li>Become a Co-creator: Submit your papers, research proposals, or questions to jointly expand the boundaries of the theory.</li>
+        <li>Researcher Application: If you resonate with our vision and have a relevant academic background, apply to become one of our core researchers.</li>
+      </ul>
+      <a href="/co-create.html" class="interface-link">Submit Your Research &gt;&gt;</a>
+      <a href="/co-create.html" class="interface-link">Apply to be a Researcher &gt;&gt;</a>
+    </section>
+    <!-- Business Interface -->
+    <section class="interface-section">
+      <div class="interface-title">Business Interface: The Symbiont Coach System</div>
+      <div class="interface-subtitle">Empowering Individual and Organizational Volition in the Age of Semantic Failure.</div>
+      <div class="interface-desc">
+        We have transformed the WCAT theory into a set of actionable business solutions. Through professional assessment and training, we aim to help individuals and organizations activate their volitional circuits and enhance their decision-making quality and innovation capabilities in a highly competitive and volatile environment.
+      </div>
+      <div class="interface-core-title">Core Products and Services</div>
+      <ul class="interface-list">
+        <li>
+          <b>Volition Quality Assessment:</b> Professional assessment service based on WCAT to accurately diagnose individuals and teams.
+          <a href="/tools.html" class="interface-inline-link">Learn About Assessment Services &gt;&gt;</a>
+        </li>
+        <li>
+          <b>Certification and Licensing:</b> Licensing for enterprises and organizations to use WCAT/CMC theory and consulting services for organizational culture, leadership, and strategy.
+          <a href="/co-create.html" class="interface-inline-link">Apply for Licensing and Collaboration &gt;&gt;</a>
+        </li>
+        <li>
+          <b>Symbiont Coach Training:</b> Professional certification system to train coaches in volitional transition.
+          <a href="/co-create.html" class="interface-inline-link">Learn About the Coach Training Program &gt;&gt;</a>
+        </li>
+      </ul>
+    </section>
+    <!-- Public Interface -->
+    <section class="interface-section">
+      <div class="interface-title">Public Interface: Civilization Governance Lab</div>
+      <div class="interface-subtitle">Using Theory as a Compass to Navigate Towards a More Meaningful Future.</div>
+      <div class="interface-desc">
+        In the age of AI, we face not only technological challenges but also fundamental ethical and governance dilemmas.<br>
+        We believe solutions must start from the underlying structure of consciousness. This lab applies WCAT and CMC to the public domain, providing a new path for the next stage of human civilization's evolution.
+      </div>
+      <div class="interface-core-title">Core Projects and Vision</div>
+      <ul class="interface-list">
+        <li>
+          <b>Global Education Upgrade Pilot:</b> Collaborating with institutions from K-12 to higher education to integrate WCAT/CMC into curricula, helping the next generation build a more structured framework for will and consciousness.
+        </li>
+        <li>
+          <b>Meaning Coin and Symbiotic Governance:</b> Exploring a "Meaning Coin" model to reward public meaning creation and promote social synergy, offering a new experimental solution for future urban governance.
+        </li>
+        <li>
+          <b>Ethical Protocol Consulting:</b> Applying WCAT/CMC to provide AI ethics consulting to the United Nations and regional organizations, co-creating ethical protocols to guide human consciousness toward higher development.
+        </li>
+      </ul>
+      <a href="/co-create.html" class="interface-link">Learn More and Participate in Public Projects &gt;&gt;</a>
+    </section>
+  </main>
+  <footer>
+    © 2025 WCAT Official Site. All rights reserved.
+  </footer>
+  <script>
+    // Mobile: click outside to collapse menu
+    document.addEventListener("click", function(e){
+      const navLinks = document.querySelector('.nav-links');
+      const navToggle = document.querySelector('.nav-toggle');
+      if(navLinks && navToggle && navLinks.classList.contains('show')) {
+        if(!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          navLinks.classList.remove('show');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
