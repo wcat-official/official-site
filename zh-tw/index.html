@@ -46,9 +46,30 @@
     .lang-switcher { margin-left: 1em; font-size: 0.97em; opacity: 0.82;}
     .nav-toggle { display: none; }
     @media (max-width: 720px) {
-      .nav-links { display: none; position: absolute; top: 60px; left: 0; right: 0; background: #000; flex-direction: column; gap: 0; border-top: 1px solid #222; box-shadow: 0 2px 18px #00ffe729;}
-      .nav-links.show { display: flex;}
-      .nav-toggle { display: block; background: none; border: none; color: #00ffe7; font-size: 1.7em; cursor: pointer; margin-left: 1em;}
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0; right: 0;
+        background: #000;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid #222;
+        box-shadow: 0 2px 18px #00ffe729;
+        padding-bottom: 1em;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #00ffe7;
+        font-size: 1.7em;
+        cursor: pointer;
+        margin-left: 1em;
+      }
       nav { padding: 0.7em 1em;}
       .nav-logo { height: 34px;}
     }
@@ -224,12 +245,12 @@
 </head>
 <body>
   <nav>
-    <a href="/">
+    <a href="/zh-tw/">
       <img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" />
     </a>
     <button class="nav-toggle" aria-label="展開選單" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
     <div class="nav-links">
-      <a href="/" aria-current="page">首頁</a>
+      <a href="/zh-tw/" aria-current="page">首頁</a>
       <a href="/zh-tw/theory-cosmos.html">理論宇宙</a>
       <a href="/zh-tw/tools.html">躍遷工具</a>
       <a href="/zh-tw/interfaces.html">三界接口</a>
@@ -255,24 +276,24 @@
       這不是你的問題，而是我們的語義結構出了問題。
     </div>
     <div class="theory-anchor">
-      <a href="/theory-cosmos.html" class="btn-map">探索理論宇宙 &gt;&gt;</a>
+      <a href="/zh-tw/theory-cosmos.html" class="btn-map">探索理論宇宙 &gt;&gt;</a>
     </div>
     <!-- 《意志簡史》章節精選 -->
     <section class="chapter-section">
       <div class="chapter-card">
         <div class="chapter-title">意志的本源</div>
         <div class="chapter-desc">揭示意志結構與起源，回答「我是誰」與「我們如何成為人」的終極追問。</div>
-        <a class="chapter-link" href="/theory-cosmos.html#origin">閱讀章節</a>
+        <a class="chapter-link" href="/zh-tw/theory-cosmos.html#origin">閱讀章節</a>
       </div>
       <div class="chapter-card">
         <div class="chapter-title">鏡像人格的危機</div>
         <div class="chapter-desc">討論AI與社群時代下人格嵌套與自我迷失的現象。</div>
-        <a class="chapter-link" href="/theory-cosmos.html#crisis">閱讀章節</a>
+        <a class="chapter-link" href="/zh-tw/theory-cosmos.html#crisis">閱讀章節</a>
       </div>
       <div class="chapter-card">
         <div class="chapter-title">文明的意義躍遷</div>
         <div class="chapter-desc">提出意志迴路激活的社會模型，探索文明升級的路徑。</div>
-        <a class="chapter-link" href="/theory-cosmos.html#transition">閱讀章節</a>
+        <a class="chapter-link" href="/zh-tw/theory-cosmos.html#transition">閱讀章節</a>
       </div>
     </section>
     <!-- 爭議觀點卡片 -->
