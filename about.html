@@ -3,100 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About – WCAT Official Site</title>
-  <link rel="stylesheet" href="/style.css" />
+  <title>WCAT | About the Creator</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <style>
-    .about-container {
-      max-width: 960px;
-      margin: 3rem auto;
-      padding: 2rem;
-      background: #fff;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
-      border-radius: 12px;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+      background: #000;
+      color: #f0f0f0;
+      line-height: 1.7;
     }
-
-    .intro-section {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .intro-section h1 {
-      font-size: 2.6rem;
-      color: #222;
-      margin-bottom: 1rem;
-    }
-
-    .intro-section p {
-      font-size: 1.15rem;
-      color: #555;
-      line-height: 1.8;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .founder-grid {
+    nav {
+      background: #000;
       display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 3rem;
-    }
-
-    .founder-card {
-      flex: 1 1 320px;
-      background: #f9fbff;
-      border: 1.5px solid #e0ecff;
-      border-radius: 10px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 10px rgba(63, 130, 255, 0.05);
-      display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
+      padding: 0.7em 1.5em;
+      border-bottom: 1px solid #222;
+      position: sticky; top: 0; left: 0; right: 0; z-index: 99;
     }
-
-    .founder-card img {
-      width: 96px;
-      height: 96px;
-      object-fit: contain;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-    }
-
-    .founder-card h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.4rem;
-      color: #222;
-    }
-
-    .founder-card p.role {
-      color: #3f82ff;
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-    }
-
-    .founder-card p.bio {
-      font-size: 1rem;
-      color: #444;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    .section-divider {
-      height: 1px;
-      background: #ddd;
-      margin: 3rem 0;
-    }
-
-    @media (max-width: 640px) {
-      .founder-grid {
+    .nav-logo { height: 38px;}
+    .nav-links { display: flex; gap: 1.1em; align-items: center; font-size: 1.04em; flex-wrap: wrap;}
+    .nav-links a { color: #f0f0f0; text-decoration: none; padding: 0.18em 0.7em; border-radius: 5px; transition: background 0.18s, color 0.15s;}
+    .nav-links a[aria-current="page"], .nav-links a:hover { background: #111; color: #00ffe7;}
+    .lang-switcher { margin-left: 1em; font-size: 0.97em; opacity: 0.82;}
+    .nav-toggle { display: none; }
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0; right: 0;
+        background: #000;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 0;
+        border-top: 1px solid #222;
+        box-shadow: 0 2px 18px #00ffe729;
+        padding-bottom: 1em;
       }
-
-      .intro-section h1 {
-        font-size: 2.2rem;
+      .nav-links.show {
+        display: flex;
       }
+      .nav-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #00ffe7;
+        font-size: 1.7em;
+        cursor: pointer;
+        margin-left: 1em;
+      }
+      nav { padding: 0.7em 1em;}
+      .nav-logo { height: 34px;}
     }
+    .about-title {
+      text-align: center;
+      color: #00ffe7;
+      font-size: 2em;
+      font-weight: bold;
+      margin: 2.2em auto 1.1em auto;
+      letter-spacing: 0.04em;
+    }
+    .about-subtitle {
+      text-align: center;
+      color: #7a94ff;
+      font-size: 1.15em;
+      font-weight: 500;
+      margin-bottom: 2em;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .about-section {
+      max-width: 820px;
+      margin: 2.2em auto 2.7em auto;
+      background: #10181c;
+      border-radius: 16px;
+      box-shadow: 0 2px 18px #00ffe71a;
+      padding: 2.4em 2em 2em 2em;
+    }
+    .section-title {
+      font-size: 1.15em;
+      color: #00ffe7;
+      font-weight: bold;
+      margin-bottom: 0.7em;
+      margin-top: 0.7em;
+    }
+    .section-desc {
+      color: #ccc;
+      font-size: 1.08em;
+      margin-bottom: 1.6em;
+      line-height: 1.7;
+    }
+    .roadmap-section {
+      background: #11181c;
+      border-radius: 14px;
+      margin: 2.2em auto 2.1em auto;
+      padding: 2.2em 1.5em 1.1em 1.5em;
+      box-shadow: 0 0 8px #00ffe722;
+      max-width: 720px;
+      text-align: left;
+    }
+    .roadmap-title { font-size: 1.19em; color: #00ffe7; font-weight: bold; margin-bottom: 0.8em; }
+    .roadmap-desc { color: #eee; font-size: 1.09em; margin-bottom: 0.7em; line-height: 1.7;}
+    .roadmap-link {
+      color: #7a94ff;
+      text-decoration: underline;
+      font-size: 1em;
+      margin-top: 0.6em;
+      display: inline-block;
+    }
+    footer { padding: 2em; text-align: center; font-size: 0.9em; color: #555; background: #000; border-top: 1px solid #111; margin-top: 2.2em;}
   </style>
 </head>
 <body>
@@ -104,59 +121,53 @@
     <a href="/">
       <img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" />
     </a>
-    <a href="/">Home</a>
-    <a href="/whitepaper/whitepaper.html">Whitepaper</a>
-    <a href="/join.html">Join us</a>
-    <a href="/about.html" aria-current="page">About</a>
-    <a href="/log.html">Log</a>
+    <button class="nav-toggle" aria-label="Expand menu" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/theory-cosmos.html">Theory Cosmos</a>
+      <a href="/tools.html">Transition Tools</a>
+      <a href="/interfaces.html">Three Interfaces</a>
+      <a href="/about.html" aria-current="page">Creator</a>
+      <a href="/co-create.html">Co-Creation & Contact</a>
+      <span class="lang-switcher">
+        <a href="/zh-tw/about.html">繁體</a>｜<strong>EN</strong>
+      </span>
+    </div>
   </nav>
-
-  <main class="about-container">
-    <section class="intro-section">
-      <h1>About WCAT</h1>
-      <p>
-        The Will Circuit Activation Theory (WCAT) is an original interdisciplinary framework at the frontier of metacognitive psychology, neuroscience, developmental theory, and AI ethics. It is developed not only as a theoretical model, but as a spiritual infrastructure to awaken intentionality and guide the future of conscious co-evolution.
-      </p>
-      <p style="margin-top: 1rem;">
-        WCAT is now developing its first public-facing organization — a nonprofit container for theoretical advancement, applied collaboration, and global resonance.
-      </p>
-    </section>
-
-    <section class="founder-grid">
-      <div class="founder-card">
-        <img src="/portrait.jpg" alt="Jiawei Logo" />
-        <h2>Jiawei (嘉炜)</h2>
-        <p class="role">Co-Founder & Theoretical Architect</p>
-        <p class="bio">
-          Independent researcher and philosopher. Creator of WCAT, dedicated to building meta-cognitive freedom and intentional civilization structures. Specializes in developmental psychology, cognitive philosophy, and the ethics of AI-human symbiosis.
-        </p>
-      </div>
-
-      <div class="founder-card">
-        <img src="/cara.jpg" alt="Kara Icon" />
-        <h2>Kala Deng</h2>
-        <p class="role">Co-founder & Synergistic Interface Lead</p>
-        <p class="bio">
-          Strategic co-developer of the WCAT interface ecosystem. Kala anchors the first "symbiotic node" — bridging real-world application, partnership development, and experimental grounding of WCAT’s long-term vision through growth-based co-presence.
-        </p>
+  <main>
+    <div class="about-title">About the Creator and Pioneer of This Theory</div>
+    <div class="about-subtitle">An experiment that began with personal confusion and is set to change civilization.</div>
+    <section class="about-section">
+      <div class="section-title">Personal Introduction and Theoretical Origin</div>
+      <div class="section-desc">
+        I have never been satisfied with existing answers. My research began with a simple yet profound question: in an age of information overload, why do we feel an unprecedented sense of powerlessness and bewilderment? Why do we know what is right but fail to act on it?<br><br>
+        These questions led me to cross disciplinary boundaries, from the "ego depletion" in cognitive psychology to the "semantic action" in linguistic philosophy, and further to the "disciplinary society" in civilizational theory. Eventually, I realized that this is not a personal issue but a civilizational dilemma caused by the failure of our semantic structure.<br><br>
+        In this process, I independently deduced and constructed the Will Circuit Activation Theory (WCAT) and Consciousness Mapping Cosmology (CMC). They are both my response to this world and the tools I offer to all confused explorers.
       </div>
     </section>
-
-    <div class="section-divider"></div>
-
-    <section class="intro-section">
-      <h2 style="font-size: 1.8rem;">Organizational Vision</h2>
-      <p>
-        Our emerging nonprofit will serve as a <strong>shared container for spiritual theory and empirical co-verification</strong>. It is intended not only as a structural host, but as a vessel for collective intentionality and meaning reconstruction across cognitive, social, and technological domains.
-      </p>
-      <p style="margin-top: 1rem;">
-        More than an institute — we are building a living membrane of resonance, inviting thinkers, practitioners, and allies to co-evolve with us.
-      </p>
+    <section class="roadmap-section">
+      <div class="roadmap-title">Theory Development Roadmap</div>
+      <div class="roadmap-desc">
+        A five-year plan, an experiment in a knowledge ecosystem.<br><br>
+        What we are doing is far more than just creation. This is a knowledge engineering project with a clear path and specific goals. Our mission is to transform WCAT and CMC from academic ideas into tools and systems that can be applied in the real world.
+      </div>
+      <a href="/interfaces.html" class="roadmap-link">Go to the Three Interfaces to learn about our specific blueprints &gt;&gt;</a>
     </section>
   </main>
-
   <footer>
     © 2025 WCAT Official Site. All rights reserved.
   </footer>
+  <script>
+    // Mobile: click outside to collapse menu
+    document.addEventListener("click", function(e){
+      const navLinks = document.querySelector('.nav-links');
+      const navToggle = document.querySelector('.nav-toggle');
+      if(navLinks && navToggle && navLinks.classList.contains('show')) {
+        if(!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          navLinks.classList.remove('show');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
