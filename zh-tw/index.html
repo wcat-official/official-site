@@ -168,6 +168,86 @@
       text-decoration: underline;
       cursor: pointer;
     }
+    /* 卡片輪播樣式 */
+    .card-carousel-wrapper {
+      max-width: 1080px;
+      margin: 2.5em auto;
+      padding: 0 1em;
+      position: relative;
+    }
+    .card-carousel {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card-slide {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease-in-out;
+      width: 100%;
+      max-width: 340px;
+      display: flex;
+      justify-content: center;
+    }
+    .card-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .card-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #10181c;
+      color: #00ffe7;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.8em;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px #00ffe715;
+      transition: background 0.18s, color 0.18s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .card-nav:hover {
+      background: #222;
+      color: #7a94ff;
+    }
+    .card-nav.prev {
+      left: 20px;
+    }
+    .card-nav.next {
+      right: 20px;
+    }
+    .card-indicators {
+      text-align: center;
+      margin-top: 1.5em;
+    }
+    .card-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: #444;
+      border-radius: 50%;
+      margin: 0 6px;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .card-dot.active {
+      background: #00ffe7;
+    }
     /* Carousel styles */
     .carousel-wrapper {
       display: flex;
@@ -238,8 +318,6 @@
       .carousel { width: 100%; min-width: 0;max-width: 100%; height: 260px;}
     }
     .main-card {
-      flex: 1 1 260px;
-      max-width: 320px;
       background: #10181c;
       border: 1.5px solid #233;
       border-radius: 14px;
@@ -252,9 +330,13 @@
       position: relative;
       transition: box-shadow 0.18s;
       width: 100%;
+      max-width: 320px;
+    }
+    .main-card:hover {
+      box-shadow: 0 6px 20px rgba(0,255,231,0.12);
     }
     .main-card img {
-      width:55%;
+      width: 55%;
       max-width: 300px;
       min-width: 150px;
       aspect-ratio: 1/1;
@@ -265,19 +347,36 @@
       box-shadow: 0 2px 12px #00ffe733;
     }
     @media (max-width: 640px) {
-      .main-card { max-width: 100%; min-height: 220px;}
+      .main-card { 
+        max-width: 100%; 
+        min-height: 220px;
+        flex: 1 1 100%;
+      }
       .hero-title { font-size: 1.25em; margin: 18px auto 10px; }
       .chapter-section { flex-direction: column; gap: 1em;}
       .chapter-card { width: 100%;}
       .video-frame { height: 200px;}
       .main-card img { width: 140px; max-width: 140px; min-width:140px; border-radius: 12px;}
+      .card-grid { gap: 1.2em; margin: 2em auto; }
     }
-    .main-card .card-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5em; color: #00ffe7; text-align: center;}
-    .main-card .card-desc { font-size: 1.05em; color: #eee; line-height: 1.7; text-align: center;}
+    .main-card .card-title { 
+      font-size: 1.15rem; 
+      font-weight: 600; 
+      margin-bottom: 0.5em; 
+      color: #00ffe7; 
+      text-align: center;
+    }
+    .main-card .card-desc { 
+      font-size: 1.05em; 
+      color: #eee; 
+      line-height: 1.7; 
+      text-align: center;
+    }
     .video-section {
       max-width: 680px;
       margin: 2.5em auto 2.8em auto;
       text-align: center;
+      padding: 0 1em;
     }
     .video-section h3 {
       color: #00ffe7;
@@ -362,31 +461,50 @@
         <a class="chapter-link" href="/zh-tw/theory-cosmos.html#transition">閱讀章節</a>
       </div>
     </section>
-    <!-- 爭議觀點卡片 -->
-    <div class="card-grid">
-      <div class="main-card">
-        <img src="/images/ai-crisis.png" alt="AI危機圖像" />
-        <div class="card-title">真正的 AI 危機</div>
-        <div class="card-desc">
-          不是自由意志的喪失，而是人格被嵌套後的放大與固化。<br/>
-          <span style="font-size:0.95em;color:#00ffe7;">（鏡像人格嵌套示意）</span>
+    <!-- 爭議觀點卡片輪播 -->
+    <div class="card-carousel-wrapper">
+      <div class="card-carousel">
+        <button class="card-nav prev" onclick="changeCardSlide(-1)">‹</button>
+        <button class="card-nav next" onclick="changeCardSlide(1)">›</button>
+        
+        <div class="card-slide active">
+          <div class="main-card">
+            <img src="/images/ai-crisis.png" alt="AI危機圖像" />
+            <div class="card-title">真正的 AI 危機</div>
+            <div class="card-desc">
+              不是自由意志的喪失，而是人格被嵌套後的放大與固化。<br/>
+              <span style="font-size:0.95em;color:#00ffe7;">（鏡像人格嵌套示意）</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-slide">
+          <div class="main-card">
+            <img src="/images/wcat-circuit.png" alt="WCAT迴路圖" />
+            <div class="card-title">你的意志，是一種結構。</div>
+            <div class="card-desc">
+              意志不是天生強弱的心理力量，而是可以被激活、訓練與躍遷的「語義迴路」。<br/>
+              <span style="font-size:0.95em;color:#00ffe7;">（WCAT迴路系統簡圖）</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-slide">
+          <div class="main-card">
+            <img src="/images/community.png" alt="社群共振圖" />
+            <div class="card-title">你不是孤島。</div>
+            <div class="card-desc">
+              當你感到困惑，正是意識躍遷的起點。<br/>
+              <span style="font-size:0.95em;color:#00ffe7;">（社群共振、光點匯聚示意）</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="main-card">
-        <img src="/images/wcat-circuit.png" alt="WCAT迴路圖" />
-        <div class="card-title">你的意志，是一種結構。</div>
-        <div class="card-desc">
-          意志不是天生強弱的心理力量，而是可以被激活、訓練與躍遷的「語義迴路」。<br/>
-          <span style="font-size:0.95em;color:#00ffe7;">（WCAT迴路系統簡圖）</span>
-        </div>
-      </div>
-      <div class="main-card">
-        <img src="/images/community.png" alt="社群共振圖" />
-        <div class="card-title">你不是孤島。</div>
-        <div class="card-desc">
-          當你感到困惑，正是意識躍遷的起點。<br/>
-          <span style="font-size:0.95em;color:#00ffe7;">（社群共振、光點匯聚示意）</span>
-        </div>
+      
+      <div class="card-indicators">
+        <span class="card-dot active" onclick="goToCardSlide(0)"></span>
+        <span class="card-dot" onclick="goToCardSlide(1)"></span>
+        <span class="card-dot" onclick="goToCardSlide(2)"></span>
       </div>
     </div>
     <!-- 視覺化觀點短片 -->
@@ -422,6 +540,7 @@
     © 2025 WCAT Official Site. All rights reserved.
   </footer>
   <script>
+    // 導航選單切換
     document.addEventListener("click", function(e){
       const navLinks = document.querySelector('.nav-links');
       const navToggle = document.querySelector('.nav-toggle');
@@ -430,6 +549,64 @@
           navLinks.classList.remove('show');
         }
       }
+    });
+
+    // 卡片輪播功能
+    let currentCardSlide = 0;
+    const cardSlides = document.querySelectorAll('.card-slide');
+    const cardDots = document.querySelectorAll('.card-dot');
+    let cardAutoPlay;
+
+    function showCardSlide(index) {
+      // 隱藏所有卡片
+      cardSlides.forEach(slide => slide.classList.remove('active'));
+      cardDots.forEach(dot => dot.classList.remove('active'));
+      
+      // 顯示指定卡片
+      cardSlides[index].classList.add('active');
+      cardDots[index].classList.add('active');
+      
+      currentCardSlide = index;
+    }
+
+    function changeCardSlide(direction) {
+      const newIndex = (currentCardSlide + direction + cardSlides.length) % cardSlides.length;
+      showCardSlide(newIndex);
+      resetAutoPlay();
+    }
+
+    function goToCardSlide(index) {
+      showCardSlide(index);
+      resetAutoPlay();
+    }
+
+    function nextCardSlide() {
+      const newIndex = (currentCardSlide + 1) % cardSlides.length;
+      showCardSlide(newIndex);
+    }
+
+    function startAutoPlay() {
+      cardAutoPlay = setInterval(nextCardSlide, 4000); // 每4秒切換
+    }
+
+    function resetAutoPlay() {
+      clearInterval(cardAutoPlay);
+      startAutoPlay();
+    }
+
+    // 頁面載入後開始自動播放
+    document.addEventListener('DOMContentLoaded', function() {
+      startAutoPlay();
+    });
+
+    // 滑鼠懸停時暫停自動播放
+    document.querySelector('.card-carousel-wrapper').addEventListener('mouseenter', function() {
+      clearInterval(cardAutoPlay);
+    });
+
+    // 滑鼠離開時恢復自動播放
+    document.querySelector('.card-carousel-wrapper').addEventListener('mouseleave', function() {
+      startAutoPlay();
     });
   </script>
 </body>
