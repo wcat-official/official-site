@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WCAT | Will Circuit Activation Theory</title>
+  <title>WCAT | Volition Circuit Activation Theory</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <style>
     body {
       margin: 0;
-      font-family: 'Helvetica Neue', 'Segoe UI', Arial, 'Noto Sans', sans-serif;
+      /* 字體為英文最佳化，優先 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif */
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
       background-color: #000;
       color: #f0f0f0;
       line-height: 1.6;
@@ -18,27 +19,23 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1em 1.5em;
-      flex-wrap: wrap;
+      padding: 0.7em 1.5em;
       border-bottom: 1px solid #222;
       position: sticky;
-      top: 0;
+      top: 0; left: 0; right: 0;
       z-index: 99;
     }
-    .nav-logo {
-      height: 40px;
-    }
+    .nav-logo { height: 38px; transition: opacity 0.2s;}
     .nav-links {
       display: flex;
-      flex-wrap: wrap;
-      gap: 1em;
+      gap: 1.1em;
       align-items: center;
-      font-size: 1em;
+      font-size: 1.04em;
+      flex-wrap: wrap;
     }
     .nav-links a {
       color: #f0f0f0;
       text-decoration: none;
-      font-size: 0.95em;
       padding: 0.18em 0.7em;
       border-radius: 5px;
       transition: background 0.18s, color 0.15s;
@@ -49,18 +46,18 @@
     }
     .lang-switcher { margin-left: 1em; font-size: 0.97em; opacity: 0.82;}
     .nav-toggle { display: none; }
-
-    @media (max-width: 768px) {
+    @media (max-width: 720px) {
       .nav-links {
-        flex-direction: column;
-        width: 100%;
-        padding-top: 1em;
-        border-top: 1px solid #222;
-        position: absolute;
-        left: 0; right: 0; top: 62px;
-        background: #000;
-        z-index: 99;
         display: none;
+        position: absolute;
+        top: 60px;
+        left: 0; right: 0;
+        background: #000;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid #222;
+        box-shadow: 0 2px 18px #00ffe729;
+        padding-bottom: 1em;
       }
       .nav-links.show {
         display: flex;
@@ -70,7 +67,7 @@
         background: none;
         border: none;
         color: #00ffe7;
-        font-size: 1.8em;
+        font-size: 1.7em;
         cursor: pointer;
         margin-left: 1em;
       }
@@ -79,124 +76,187 @@
     }
     .logo-wrapper {
       position: relative;
-      margin-top: 60px;
+      margin-top: 56px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    .logo {
-      max-width: 180px;
-      z-index: 2;
-    }
+    .logo { max-width: 180px; z-index: 2;}
     .glow {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 240px;
-      height: 240px;
-      background: radial-gradient(circle, rgba(0, 255, 231, 0.3) 0%, transparent 70%);
-      filter: blur(50px);
-      border-radius: 50%;
-      z-index: 1;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(0,255,231,0.3) 0%, transparent 70%);
+      filter: blur(50px); border-radius: 50%; z-index: 1;
     }
-    h1 {
+    .hero-title {
       text-align: center;
-      font-size: 2.6em;
-      margin: 40px auto 20px;
-      color: #ffffff;
-      font-family: 'Helvetica Neue', 'Segoe UI', Arial, 'Noto Sans', sans-serif;
+      font-size: 2.35em;
       font-weight: bold;
+      color: #fff;
+      margin: 38px auto 22px;
+      line-height: 1.2;
+      letter-spacing: 0.1em;
     }
-    p.hero-lead {
+    .hero-lead {
       text-align: center;
-      max-width: 720px;
-      margin: auto;
-      font-size: 1.15em;
-      color: #ccc;
-      margin-bottom: 1.8em;
+      font-size: 1.13em;
+      color: #00ffe7;
+      margin-bottom: 2.1em;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .btn-download {
-      display: inline-block;
-      margin-top: 1.5em;
+    .theory-anchor {
+      text-align: center;
+      margin: 2em 0 2.5em 0;
+    }
+    .theory-anchor .btn-map {
       background: linear-gradient(90deg,#00ffe7 0%,#7a94ff 100%);
       color: #000;
-      padding: 0.75em 2em;
-      border-radius: 6px;
-      text-decoration: none;
+      font-size: 1.13em;
       font-weight: bold;
-      transition: background 0.3s;
+      border-radius: 8px;
+      padding: 0.9em 2.1em;
+      text-decoration: none;
       box-shadow: 0 2px 10px #00ffe733;
-      font-size: 1.05em;
+      transition: background 0.2s;
+      display: inline-block;
+      margin-top: 0.5em;
     }
-    .btn-download:hover {
+    .theory-anchor .btn-map:hover {
       background: linear-gradient(90deg,#00e0d0 0%,#7a94ff 100%);
       color: #fff;
     }
-    .section {
-      padding: 4em 2em;
-      border-top: 1px solid #111;
-      background-color: #000;
+    /* Chapter cards */
+    .chapter-section {
       max-width: 1080px;
-      margin: auto;
+      margin: 2.2em auto 2.7em auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      justify-content: center;
     }
-    .section h2 {
-      text-align: center;
-      font-size: 2em;
-      margin-bottom: 0.5em;
-      font-weight: bold;
+    .chapter-card {
+      background: #10181c;
+      border-radius: 13px;
+      box-shadow: 0 2px 14px #00ffe71a;
+      border: 1.5px solid #233;
+      padding: 1.3em 1em 1.7em 1em;
+      width: 300px;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      color: #eee;
+      transition: box-shadow 0.18s;
+    }
+    .chapter-card .chapter-title {
       color: #00ffe7;
-      letter-spacing: 0.04em;
+      font-size: 1.07em;
+      font-weight: bold;
+      margin-bottom: 0.7em;
     }
-    .section p {
-      text-align: left;
-      color: #ccc;
-      max-width: 720px;
-      margin: 1.2em auto 1.3em auto;
-      font-size: 1.09em;
-      line-height: 1.7;
+    .chapter-card .chapter-desc {
+      font-size: 1em;
+      margin-bottom: 0.5em;
     }
-    .section img {
-      width: 100%;
-      max-width: 1080px;
-      margin: 2em auto 0;
-      display: block;
-      border-radius: 12px;
-      box-shadow: 0 2px 16px #00ffe71a;
+    .chapter-card .chapter-link {
+      margin-top: auto;
+      color: #7a94ff;
+      font-size: 0.97em;
+      text-decoration: underline;
+      cursor: pointer;
     }
-    @media (max-width: 700px) {
-      .section { padding: 2em 0.4em;}
-      .section img { border-radius: 8px;}
-      h1 { font-size: 1.5em;}
-      .section h2 { font-size: 1.2em;}
+    /* Key viewpoints cards */
+    .card-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3em;
+      margin-top: 0.5em;
     }
-    footer {
-      padding: 2em;
+    .main-card {
+      flex: 1 1 260px;
+      max-width: 320px;
+      background: #10181c;
+      border: 1.5px solid #233;
+      border-radius: 14px;
+      padding: 1.7em 1em 2.2em 1em;
+      box-shadow: 0 4px 16px rgba(0,255,231,0.07);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 320px;
+      position: relative;
+      transition: box-shadow 0.18s;
+    }
+    .main-card img {
+      width: 70px; height: 70px; object-fit: contain; margin-bottom: 1em; border-radius: 9px; background: #222; box-shadow: 0 2px 12px #00ffe733;
+    }
+    .main-card .card-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5em; color: #00ffe7; text-align: center;}
+    .main-card .card-desc { font-size: 1.05em; color: #eee; line-height: 1.7; text-align: center;}
+    /* Video section */
+    .video-section {
+      max-width: 680px;
+      margin: 2.5em auto 2.8em auto;
       text-align: center;
-      font-size: 0.9em;
-      color: #555;
-      background: #000;
-      border-top: 1px solid #111;
-      margin-top: 2.2em;
+    }
+    .video-section h3 {
+      color: #00ffe7;
+      font-size: 1.11em;
+      margin-bottom: 1em;
+    }
+    .video-frame {
+      width: 100%;
+      height: 340px;
+      border-radius: 14px;
+      border: none;
+      background: #222;
+      box-shadow: 0 2px 18px #00ffe71c;
+    }
+    @media (max-width: 640px) {
+      .card-grid { flex-direction: column; gap: 1.4rem;}
+      .main-card { max-width: 100%; min-height: 220px;}
+      .hero-title { font-size: 1.4em;}
+      .chapter-section { flex-direction: column; gap: 1em;}
+      .chapter-card { width: 100%;}
+      .video-frame { height: 200px;}
+    }
+    /* About section */
+    .identity-section {
+      background: #10181c;
+      border-radius: 14px;
+      margin: 2.3em auto 2.1em auto;
+      padding: 2.2em 1.5em 1.1em 1.5em;
+      box-shadow: 0 0 8px #00ffe722;
+      max-width: 720px;
+      text-align: left;
+    }
+    .identity-title { font-size: 1.19em; color: #00ffe7; font-weight: bold; margin-bottom: 0.8em;}
+    .identity-desc { color: #eee; font-size: 1.09em; margin-bottom: 0.4em; line-height: 1.7;}
+    .identity-list { margin: 0.7em 0 1em 1.2em; color: #00ffe7; font-size: 1em; list-style: disc inside;}
+    footer {
+      padding: 2em; text-align: center; font-size: 0.9em; color: #555; background: #000; border-top: 1px solid #111; margin-top: 2.2em;
     }
   </style>
 </head>
 <body>
-
   <nav>
     <a href="/">
       <img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" />
     </a>
     <button class="nav-toggle" aria-label="Expand menu" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
     <div class="nav-links">
-      <a href="/" aria-current="page">Overview</a>
-      <a href="/whitepaper/whitepaper.html">Whitepaper</a>
-      <a href="/theory-map.html">Theory Map</a>
-      <a href="#tools">Tools</a>
-      <a href="#interfaces">Worlds</a>
-      <a href="/about.html">About</a>
-      <a href="/log.html">Roadmap</a>
-      <a href="/join.html">Join &amp; Support</a>
+      <a href="/" aria-current="page">Home</a>
+      <a href="/theory-cosmos.html">Theory Cosmos</a>
+      <a href="/tools.html">Transition Tools</a>
+      <a href="/interfaces.html">Three Interfaces</a>
+      <a href="/about.html">Creator</a>
+      <a href="/co-create.html">Co-Creation & Contact</a>
       <span class="lang-switcher">
         <a href="/zh-tw/index.html">繁體</a>｜<strong>EN</strong>
       </span>
@@ -208,48 +268,91 @@
       <div class="glow"></div>
       <img src="/logo-wcat.png" alt="WCAT Logo" class="logo" />
     </div>
-
-    <h1>Meaning is not given.<br>It is awakened.</h1>
-    <p class="hero-lead">
-      A future-facing theory system grounded in volition,<br>
-      aiming to reshape individual consciousness and collective civilization.
-    </p>
-
-    <div style="text-align:center;">
-      <a href="/whitepaper/whitepaper.html" class="btn-download">Read the Whitepaper</a>
+    <!-- Core hero -->
+    <div class="hero-title">
+      The dilemma you feel is a shared symptom of human civilization.
     </div>
-
-    <section class="section" id="tools">
-      <h2>Volition Tools</h2>
-      <p>
-        10-Item Volition Assessment (EN / 繁體 / 简体)<br>
-        Instantly discover your current volition loop.<br>
-        More advanced assessments and personalized training coming soon.
-      </p>
-      <img src="/images/tools-banner.png" alt="Volition Tools" />
+    <div class="hero-lead">
+      Information is overflowing, but volition is scarce.<br>
+      This is not your problem—it's a semantic issue at the very foundation of our civilization.
+    </div>
+    <div class="theory-anchor">
+      <a href="/theory-cosmos.html" class="btn-map">Explore Theory Cosmos &gt;&gt;</a>
+    </div>
+    <!-- Featured chapter cards -->
+    <section class="chapter-section">
+      <div class="chapter-card">
+        <div class="chapter-title">Origin of Volition</div>
+        <div class="chapter-desc">Discover the structure and origins of volition—answering the fundamental question: "Who am I?" and "How do we become human?"</div>
+        <a class="chapter-link" href="/theory-cosmos.html#origin">Read chapter</a>
+      </div>
+      <div class="chapter-card">
+        <div class="chapter-title">Crisis of Mirror Personality</div>
+        <div class="chapter-desc">Discusses the phenomena of nested personalities and loss of self in the age of AI and social networks.</div>
+        <a class="chapter-link" href="/theory-cosmos.html#crisis">Read chapter</a>
+      </div>
+      <div class="chapter-card">
+        <div class="chapter-title">Transition of Civilizational Meaning</div>
+        <div class="chapter-desc">Proposes a social model for activating volition circuits, exploring paths to civilization upgrades.</div>
+        <a class="chapter-link" href="/theory-cosmos.html#transition">Read chapter</a>
+      </div>
     </section>
-
-    <section class="section" id="interfaces">
-      <h2>Three Interfaces · Three Worlds</h2>
-      <p>
-        WCAT and CMC are designed to bridge theory and practice—<br>
-        connect academic, commercial, and public worlds.<br>
-        Explore our research institute, coaching system, and civilization lab.
-      </p>
-      <img src="/images/interfaces-banner.png" alt="Interfaces" />
+    <!-- Key viewpoints cards -->
+    <div class="card-grid">
+      <div class="main-card">
+        <img src="/images/ai-crisis.jpg" alt="AI Crisis illustration" />
+        <div class="card-title">The Real AI Crisis</div>
+        <div class="card-desc">
+          It's not the loss of free will, but the amplification and solidification of personalities after nesting.<br/>
+          <span style="font-size:0.95em;color:#00ffe7;">(Mirror personality nesting demo)</span>
+        </div>
+      </div>
+      <div class="main-card">
+        <img src="/images/wcat-circuit.jpg" alt="WCAT Circuit" />
+        <div class="card-title">Your Volition is a Structure.</div>
+        <div class="card-desc">
+          Volition is not an innate psychological strength, but a "semantic circuit" that can be activated, trained, and evolved.<br/>
+          <span style="font-size:0.95em;color:#00ffe7;">(WCAT circuit diagram)</span>
+        </div>
+      </div>
+      <div class="main-card">
+        <img src="/images/community.jpg" alt="Community Resonance" />
+        <div class="card-title">You Are Not an Island.</div>
+        <div class="card-desc">
+          When you feel lost, that's the beginning of a transition in consciousness.<br/>
+          <span style="font-size:0.95em;color:#00ffe7;">(Community resonance, light point convergence demo)</span>
+        </div>
+      </div>
+    </div>
+    <!-- Video section -->
+    <section class="video-section">
+      <h3>Visual Perspectives: Short Video</h3>
+      <!-- Replace with actual video link -->
+      <iframe class="video-frame" src="https://www.youtube.com/embed/VIDEO_ID" title="WCAT Perspectives Video" frameborder="0" allowfullscreen></iframe>
+      <div style="margin-top:0.9em;color:#888;font-size:0.97em;">(If the video does not display, <a href="https://www.youtube.com/channel/UCXXXXX" target="_blank" style="color:#00ffe7;">visit channel</a>)</div>
     </section>
-
-    <section class="section" id="founder">
-      <h2>Founder & Theory</h2>
-      <p>
-        A thinker and original theorist.<br>
-        Originator of Will Circuit Activation Theory (WCAT) and Consciousness Mapping Cosmology (CMC).<br>
-        Independently developed to answer the origin of volition, the architecture of consciousness, and the pathway of future civilizations.
-      </p>
-      <img src="/images/founder-banner.png" alt="Founder" />
+    <!-- About section -->
+    <section class="identity-section">
+      <div class="identity-title">About the Creator: Thinker & Theory Builder</div>
+      <div class="identity-desc">
+        I am an original theory constructor crossing cognitive science, philosophy, and civilization evolution.<br>
+        Independently developed two core frameworks:
+      </div>
+      <ul class="identity-list">
+        <li>Volition Circuit Activation Theory (WCAT)</li>
+        <li>Consciousness Mapping Cosmology (CMC)</li>
+      </ul>
+      <div class="identity-desc">
+        These theories offer a new framework to answer these ultimate questions:<br>
+        <b>What is the origin and structure of volition?<br>
+        How does our consciousness co-exist with the universe?<br>
+        What is humanity's transition path in the age of AI?</b>
+        <br><br>
+        This site collects all my theories, whitepapers, and practical tools—open in both Chinese and English.<br>
+        If you are anxious about freedom, meaning, and the future, this will be our shared starting point.
+      </div>
     </section>
   </main>
-
   <footer>
     © 2025 WCAT Official Site. All rights reserved.
   </footer>
