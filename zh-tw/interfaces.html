@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>三大接口 · 三個世界 | WCAT 官方網站</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', 'Segoe UI', Arial, 'Noto Sans', sans-serif;
+      background: #000;
+      color: #f0f0f0;
+      line-height: 1.7;
+    }
+    nav {
+      background: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7em 1.5em;
+      border-bottom: 1px solid #222;
+      position: sticky; top: 0; left: 0; right: 0; z-index: 99;
+    }
+    .nav-logo { height: 38px;}
+    .nav-links { display: flex; gap: 1.1em; align-items: center; font-size: 1.04em; flex-wrap: wrap;}
+    .nav-links a { color: #f0f0f0; text-decoration: none; padding: 0.18em 0.7em; border-radius: 5px; transition: background 0.18s, color 0.15s;}
+    .nav-links a[aria-current="page"], .nav-links a:hover { background: #111; color: #00ffe7;}
+    .lang-switcher { margin-left: 1em; font-size: 0.97em; opacity: 0.82;}
+    .nav-toggle { display: none; }
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0; right: 0;
+        background: #000;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid #222;
+        box-shadow: 0 2px 18px #00ffe729;
+        padding-bottom: 1em;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #00ffe7;
+        font-size: 1.7em;
+        cursor: pointer;
+        margin-left: 1em;
+      }
+      nav { padding: 0.7em 1em;}
+      .nav-logo { height: 34px;}
+    }
+    .page-title {
+      text-align: center;
+      font-size: 2em;
+      color: #00ffe7;
+      font-weight: bold;
+      margin: 2.6em auto 1.3em auto;
+      letter-spacing: 0.04em;
+    }
+    .page-lead {
+      text-align: center;
+      color: #ccc;
+      font-size: 1.13em;
+      margin-bottom: 2.3em;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .interface-section {
+      max-width: 980px;
+      margin: 2.5em auto 2.7em auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.2em;
+      justify-content: center;
+    }
+    .interface-card {
+      background: #10181c;
+      border-radius: 18px;
+      box-shadow: 0 4px 22px #00ffe71a;
+      border: 1.5px solid #233;
+      padding: 2.1em 1.3em 2em 1.3em;
+      width: 340px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      color: #eee;
+      transition: box-shadow 0.18s;
+      position: relative;
+    }
+    .interface-card .card-title {
+      color: #00ffe7;
+      font-size: 1.14em;
+      font-weight: bold;
+      margin-bottom: 0.85em;
+    }
+    .interface-card .card-lead {
+      color: #7a94ff;
+      font-size: 1.03em;
+      margin-bottom: 0.7em;
+    }
+    .interface-card .card-desc {
+      font-size: 1em;
+      margin-bottom: 1.1em;
+      color: #ccc;
+    }
+    .interface-card .card-list {
+      margin: 0.4em 0 0.7em 1.1em; color: #00ffe7; font-size: 0.98em; list-style: disc inside;
+    }
+    .card-btn {
+      background: linear-gradient(90deg,#00ffe7 0%,#7a94ff 100%);
+      color: #000;
+      font-size: 1.04em;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 0.7em 1.5em;
+      text-decoration: none;
+      box-shadow: 0 2px 10px #00ffe733;
+      transition: background 0.2s;
+      display: inline-block;
+      margin-right: 0.7em;
+      margin-top: 0.5em;
+      border: none;
+      cursor: pointer;
+    }
+    .card-btn:hover { background: linear-gradient(90deg,#00e0d0 0%,#7a94ff 100%); color: #fff;}
+    @media (max-width: 980px) {
+      .interface-section { flex-direction: column; gap: 1.2em;}
+      .interface-card { width: 100%;}
+    }
+    footer { padding: 2em; text-align: center; font-size: 0.9em; color: #555; background: #000; border-top: 1px solid #111; margin-top: 2.2em;}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/zh-tw/">
+      <img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" />
+    </a>
+    <button class="nav-toggle" aria-label="展開選單" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+    <div class="nav-links">
+      <a href="/zh-tw/">首頁</a>
+      <a href="/zh-tw/theory-cosmos.html">理論宇宙</a>
+      <a href="/zh-tw/tools.html">躍遷工具</a>
+      <a href="/zh-tw/interfaces.html" aria-current="page">三界接口</a>
+      <a href="/zh-tw/about.html">創始人</a>
+      <a href="/zh-tw/co-create.html">共建與聯繫</a>
+      <span class="lang-switcher">
+        <strong>繁體</strong>｜<a href="/index.html">EN</a>
+      </span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="page-title">三大接口 · 三個世界</div>
+    <div class="page-lead">
+      WCAT 與 CMC 的應用藍圖：<br>
+      從抽象理論到具體的學術、商業、公益實踐
+    </div>
+    <section class="interface-section">
+      <!-- 學術接口 -->
+      <div class="interface-card">
+        <div class="card-title">學術接口：虛擬意識研究院</div>
+        <div class="card-lead">在 AI 的鏡像中，共建人類意識的下一個知識前沿。</div>
+        <div class="card-desc">
+          WCAT 與 CMC 理論，是為了解決當代認知、語言與文明困境而生的。<br>
+          我們提供一個開放的學術平台，誠邀神經科學、認知心理學、哲學、AI 倫理與社會學等領域的研究者，共同探索人類意識的未知邊界。
+        </div>
+        <ul class="card-list">
+          <li>理論發布與研究中心</li>
+          <li>核心著作：學術、科普、科幻三大類</li>
+          <li>共創入口：提交研究、申請研究員</li>
+        </ul>
+        <a class="card-btn" href="/zh-tw/theory-cosmos.html#academic">進入 WCAT 白皮書專區</a>
+        <a class="card-btn" href="/zh-tw/theory-cosmos.html#cmc">進入 CMC 白皮書專區</a>
+        <a class="card-btn" href="/zh-tw/books.html">查看所有著作 &gt;&gt;</a>
+        <a class="card-btn" href="/zh-tw/co-create.html">提交你的研究 &gt;&gt;</a>
+        <a class="card-btn" href="/zh-tw/co-create.html#apply">申請研究員 &gt;&gt;</a>
+      </div>
+      <!-- 商業接口 -->
+      <div class="interface-card">
+        <div class="card-title">商業接口：共生者教練系統</div>
+        <div class="card-lead">在語義失效時代，賦能個體與組織的意志品質。</div>
+        <div class="card-desc">
+          我們將 WCAT 的理論轉化為可操作的商業解決方案。<br>
+          專業評估與訓練，幫助個體和組織激活意志迴路，提升決策品質與創新能力。
+        </div>
+        <ul class="card-list">
+          <li>意志品質評測（個人/團隊）</li>
+          <li>認證與授權（顧問/方案/培訓）</li>
+          <li>共生者教練培訓</li>
+        </ul>
+        <a class="card-btn" href="/zh-tw/tools.html#vq">了解評測服務 &gt;&gt;</a>
+        <a class="card-btn" href="/zh-tw/co-create.html#business">申請授權與合作 &gt;&gt;</a>
+        <a class="card-btn" href="/zh-tw/co-create.html#coach">了解教練培訓計畫 &gt;&gt;</a>
+      </div>
+      <!-- 公益接口 -->
+      <div class="interface-card">
+        <div class="card-title">公益接口：文明治理實驗場</div>
+        <div class="card-lead">以理論為羅盤，航向一個更具意義的未來。</div>
+        <div class="card-desc">
+          在 AI 崛起的時代，我們面臨的不僅是技術挑戰，更是倫理與治理的根本性困境。<br>
+          本實驗場致力於將 WCAT 與 CMC 理論應用於公共領域，為人類文明的下一步演化提供新的路徑。
+        </div>
+        <ul class="card-list">
+          <li>全球教育升級試點</li>
+          <li>意義幣與共生治理</li>
+          <li>倫理協議顧問</li>
+        </ul>
+        <a class="card-btn" href="/zh-tw/co-create.html#governance">了解並參與公益項目 &gt;&gt;</a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    © 2025 WCAT Official Site. All rights reserved.
+  </footer>
+  <script>
+    // 行動裝置點擊空白處自動收合選單
+    document.addEventListener("click", function(e){
+      const navLinks = document.querySelector('.nav-links');
+      const navToggle = document.querySelector('.nav-toggle');
+      if(navLinks && navToggle && navLinks.classList.contains('show')) {
+        if(!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          navLinks.classList.remove('show');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
