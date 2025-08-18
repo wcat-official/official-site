@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>理論宇宙 | WCAT 官方網站</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', 'Segoe UI', Arial, 'Noto Sans', sans-serif;
+      background: #000;
+      color: #f0f0f0;
+      line-height: 1.7;
+    }
+    nav {
+      background: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7em 1.5em;
+      border-bottom: 1px solid #222;
+      position: sticky; top: 0; left: 0; right: 0; z-index: 99;
+    }
+    .nav-logo { height: 38px;}
+    .nav-links { display: flex; gap: 1.1em; align-items: center; font-size: 1.04em; flex-wrap: wrap;}
+    .nav-links a { color: #f0f0f0; text-decoration: none; padding: 0.18em 0.7em; border-radius: 5px; transition: background 0.18s, color 0.15s;}
+    .nav-links a[aria-current="page"], .nav-links a:hover { background: #111; color: #00ffe7;}
+    .lang-switcher { margin-left: 1em; font-size: 0.97em; opacity: 0.82;}
+    @media (max-width: 720px) {
+      .nav-links { display: none; position: absolute; top: 60px; left: 0; right: 0; background: #000; flex-direction: column; gap: 0; border-top: 1px solid #222; box-shadow: 0 2px 18px #00ffe729;}
+      .nav-links.show { display: flex;}
+      .nav-toggle { display: block; background: none; border: none; color: #00ffe7; font-size: 1.7em; cursor: pointer; margin-left: 1em;}
+      nav { padding: 0.7em 1em;}
+      .nav-logo { height: 34px;}
+    }
+    .title-main {
+      text-align: center;
+      font-size: 2.1em;
+      color: #00ffe7;
+      font-weight: 700;
+      margin: 2.8em auto 1.2em auto;
+      letter-spacing: 0.04em;
+    }
+    .subtitle-main {
+      text-align: center;
+      color: #ccc;
+      font-size: 1.11em;
+      margin-bottom: 2.2em;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* 雙入口卡片區 */
+    .dual-entry-row {
+      display: flex;
+      gap: 2.5em;
+      justify-content: center;
+      margin-bottom: 2em;
+      max-width: 980px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .entry-card {
+      background: #10181c;
+      border-radius: 18px;
+      box-shadow: 0 4px 22px #00ffe71a;
+      border: 1.5px solid #233;
+      padding: 2.1em 1.3em 2em 1.3em;
+      width: 100%;
+      min-width: 280px;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      color: #eee;
+      transition: box-shadow 0.18s;
+      position: relative;
+    }
+    .entry-card .card-title {
+      color: #00ffe7;
+      font-size: 1.18em;
+      font-weight: bold;
+      margin-bottom: 0.85em;
+    }
+    .entry-card .card-desc {
+      font-size: 1em;
+      margin-bottom: 1.1em;
+      color: #ccc;
+    }
+    .entry-card .entry-btn {
+      background: linear-gradient(90deg,#00ffe7 0%,#7a94ff 100%);
+      color: #000;
+      font-size: 1.07em;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 0.7em 1.7em;
+      text-decoration: none;
+      box-shadow: 0 2px 10px #00ffe733;
+      transition: background 0.2s;
+      display: inline-block;
+      margin-top: 0.3em;
+      border: none;
+      cursor: pointer;
+    }
+    .entry-card .entry-btn:hover { background: linear-gradient(90deg,#00e0d0 0%,#7a94ff 100%); color: #fff;}
+    .entry-card.left { border: 2px solid #00ffe7;}
+    .entry-card.right { border: 2px solid #7a94ff;}
+    @media (max-width: 960px) {
+      .dual-entry-row { flex-direction: column; gap: 1.5em;}
+      .entry-card { max-width: 100%;}
+    }
+    /* 內容區塊 */
+    .section-content { max-width: 900px; margin: 2.2em auto 2.7em auto;}
+    .section-title { color: #00ffe7; font-size: 1.18em; font-weight: bold; margin-bottom: 1.1em;}
+    .section-desc { font-size: 1.07em; color: #ccc; margin-bottom: 1.5em;}
+    .book-list, .paper-list { display: flex; flex-wrap: wrap; gap: 1.3em; }
+    .book-card, .paper-card {
+      background: #10181c;
+      border-radius: 12px;
+      padding: 1.2em 1em 1.7em 1em;
+      box-shadow: 0 2px 14px #00ffe71a;
+      border: 1px solid #233;
+      width: 220px;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 0.5em;
+    }
+    .book-title, .paper-title { color: #7a94ff; font-size: 1.07em; font-weight: bold; margin-bottom: 0.7em;}
+    .book-desc, .paper-desc { font-size: 0.98em; margin-bottom: 0.7em; color: #eee;}
+    .book-link, .paper-link { color: #00ffe7; font-size: 0.97em; text-decoration: underline; cursor: pointer; margin-right: 0.7em;}
+    .paper-meta { font-size: 0.95em; color: #00ffe7; margin-bottom: 0.5em;}
+    .paper-summary { font-size: 0.98em; color: #eee;}
+    .guide-list { margin: 1.2em 0 0.2em 1.5em; color: #7a94ff; font-size: 1em; list-style: disc inside;}
+    .section-divider { height: 1px; background: #222; margin: 2em 0;}
+    @media (max-width: 700px) {
+      .book-list, .paper-list { flex-direction: column; gap: 1em;}
+      .book-card, .paper-card { width: 100%;}
+    }
+    footer { padding: 2em; text-align: center; font-size: 0.9em; color: #555; background: #000; border-top: 1px solid #111; margin-top: 2.2em;}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">
+      <img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" />
+    </a>
+    <button class="nav-toggle" aria-label="展開選單" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+    <div class="nav-links">
+      <a href="/">首頁</a>
+      <a href="/theory-cosmos.html" aria-current="page">理論宇宙</a>
+      <a href="/tools.html">躍遷工具</a>
+      <a href="/interfaces.html">三界接口</a>
+      <a href="/about.html">創始人</a>
+      <a href="/co-create.html">共建與聯繫</a>
+      <span class="lang-switcher">
+        <strong>繁體</strong>｜<a href="/index.html">EN</a>
+      </span>
+    </div>
+  </nav>
+  <main>
+    <div class="title-main">理論宇宙 Theoretical Cosmos</div>
+    <div class="subtitle-main">
+      選擇你的探索路徑 —— 依據你的需求和背景，深入探索 WCAT 及 CMC 理論全貌。
+    </div>
+    <!-- 雙入口卡片 -->
+    <div class="dual-entry-row">
+      <div class="entry-card left">
+        <div class="card-title">面向大眾讀者</div>
+        <div class="card-desc">
+          《意志簡史》系列：你的意識覺醒之旅<br>
+          我們相信，偉大的思想應該易於理解。這裡以最通俗、最引人入勝的方式，呈現 WCAT 與 CMC 的核心洞見。
+        </div>
+        <button class="entry-btn" onclick="showSection('public')">前往大眾入口 &gt;&gt;</button>
+      </div>
+      <div class="entry-card right">
+        <div class="card-title">面向學術與專業社群</div>
+        <div class="card-desc">
+          WCAT/CMC 白皮書：通往原創理論的核心<br>
+          作為一個獨立推導的跨學科原創理論，我們的核心著作將以最嚴謹的學術標準呈現。
+        </div>
+        <button class="entry-btn" onclick="showSection('academic')">前往學術入口 &gt;&gt;</button>
+      </div>
+    </div>
+    <!-- 內容區塊 -->
+    <div id="section-public" class="section-content" style="display:none;">
+      <div class="section-title">「意識簡史」系列：在故事與啟示中完成自我躍遷</div>
+      <div class="section-desc">
+        你的困惑，是這場集體心靈演化的序曲。這裡，我們為你準備了一系列指南，它們是故事，也是科學，旨在幫助你理解並掌控你的意志與意識。
+      </div>
+      <div class="book-list">
+        <div class="book-card">
+          <div class="book-title">《意志簡史》</div>
+          <div class="book-desc">第一本入門著作，以輕鬆易懂的語言，介紹 WCAT 的核心迴路與概念。</div>
+          <a class="book-link" href="/books/will-history.html">詳細介紹</a>
+        </div>
+        <div class="book-card">
+          <div class="book-title">《意識簡史》</div>
+          <div class="book-desc">第二本進階著作，深入探討 CMC 的宏大框架，揭示意識與宇宙的共生關係。</div>
+          <a class="book-link" href="/books/consciousness-history.html">詳細介紹</a>
+        </div>
+        <div class="book-card">
+          <div class="book-title">《2080》</div>
+          <div class="book-desc">基於理論的科幻小說，以故事化方式，讓你身歷其境地感受未來文明的圖景與挑戰。</div>
+          <a class="book-link" href="/books/2080.html">詳細介紹</a>
+        </div>
+        <div class="book-card">
+          <div class="book-title">《勇敢與永恆》</div>
+          <div class="book-desc">聚焦於終極問題的哲學散文集，提供心靈層面的引導與啟發。</div>
+          <a class="book-link" href="/books/brave-eternal.html">詳細介紹</a>
+        </div>
+      </div>
+    </div>
+    <div id="section-academic" class="section-content" style="display:none;">
+      <div class="section-title">原創理論白皮書：通往知識結構的核心</div>
+      <div class="section-desc">
+        本站收錄的理論白皮書，旨在為學術界、技術開發者與政策制定者，提供一個嚴謹、可驗證的理論框架。我們的核心目標是與各領域的專家進行共建，共同將這些理論應用於現實世界。
+      </div>
+      <div class="paper-list">
+        <div class="paper-card">
+          <div class="paper-title">《意志迴路激活理論》(WCAT) 白皮書 v3.0</div>
+          <div class="paper-meta">定位：認知科學與心理學的跨界理論</div>
+          <div class="paper-summary">闡述意志的結構性本質，提出四個迴路系統與躍遷方法論。</div>
+          <a class="paper-link" href="/whitepaper/wcat_v3.pdf" target="_blank">下載 PDF</a>
+          <a class="paper-link" href="/whitepaper/wcat-online.html" target="_blank">閱讀線上版</a>
+        </div>
+        <div class="paper-card">
+          <div class="paper-title">《意識映射宇宙論》(CMC) 白皮書 v1.0</div>
+          <div class="paper-meta">定位：哲學、物理學與 AI 倫理的融合理論</div>
+          <div class="paper-summary">重新定義意識、自由意志與宇宙的關係，為人類在 AI 時代的演化提供宏大框架。</div>
+          <a class="paper-link" href="/whitepaper/cmc_v1.pdf" target="_blank">下載 PDF</a>
+          <a class="paper-link" href="/whitepaper/cmc-online.html" target="_blank">閱讀線上版</a>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="section-title">共建路徑指引</div>
+      <div class="section-desc">
+        你的加入，將是這個理論體系進化的關鍵。我們鼓勵你：
+      </div>
+      <ul class="guide-list">
+        <li>閱讀並審核白皮書，提供學術建議。</li>
+        <li>將理論應用於你的研究領域，並將成果提交給我們。</li>
+        <li>申請成為我們的研究員，共同參與未來的專案。</li>
+      </ul>
+    </div>
+  </main>
+  <footer>
+    © 2025 WCAT Official Site. All rights reserved.
+  </footer>
+  <script>
+    // 雙入口卡片互動切換
+    function showSection(type) {
+      document.getElementById('section-public').style.display = (type === 'public') ? 'block' : 'none';
+      document.getElementById('section-academic').style.display = (type === 'academic') ? 'block' : 'none';
+      // 滾動到內容區
+      setTimeout(function() {
+        const el = document.getElementById(type === 'public' ? 'section-public' : 'section-academic');
+        if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }, 80);
+    }
+    // 行動裝置點擊空白處自動收合選單
+    document.addEventListener("click", function(e){
+      const navLinks = document.querySelector('.nav-links');
+      const navToggle = document.querySelector('.nav-toggle');
+      if(navLinks && navToggle && navLinks.classList.contains('show')) {
+        if(!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          navLinks.classList.remove('show');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
