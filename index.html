@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WCAT | Will Circuit Activation Theory</title>
+  <title>WCAT | Volition Circuit Activation Theory</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <style>
     body {
       margin: 0;
-      /* 英文友好字體，現代、清晰 */
       font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
       background-color: #000;
       color: #f0f0f0;
@@ -92,12 +91,12 @@
     }
     .hero-title {
       text-align: center;
-      font-size: 2.10em;    /* 更適合英文閱讀 */
+      font-size: 2.10em;
       font-weight: bold;
       color: #fff;
       margin: 32px auto 16px;
-      line-height: 1.15;    /* 緊湊行距 */
-      letter-spacing: 0.02em; /* 字距縮小 */
+      line-height: 1.15;
+      letter-spacing: 0.02em;
     }
     .hero-lead {
       text-align: center;
@@ -169,13 +168,69 @@
       text-decoration: underline;
       cursor: pointer;
     }
-    .card-grid {
+    /* Carousel styles */
+    .carousel-wrapper {
       display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
+      gap: 0.5em;
       margin-bottom: 3em;
       margin-top: 0.5em;
+    }
+    .carousel {
+      position: relative;
+      width: 340px;
+      height: 420px;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+    .carousel-slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+    .carousel-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      position: relative;
+    }
+    .carousel-btn {
+      background: #10181c;
+      color: #00ffe7;
+      border: none;
+      border-radius: 50%;
+      font-size: 2em;
+      width: 44px; height: 44px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px #00ffe715;
+      transition: background 0.18s, color 0.18s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .carousel-btn:hover {
+      background: #222;
+      color: #7a94ff;
+    }
+    .carousel-indicators {
+      margin-bottom: 2em;
+      text-align: center;
+    }
+    .carousel-dot {
+      display: inline-block;
+      width: 13px; height: 13px;
+      background: #444;
+      border-radius: 50%;
+      margin: 0 7px;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .carousel-dot.active {
+      background: #00ffe7;
+    }
+    @media (max-width: 640px) {
+      .carousel { width: 100%; min-width: 0; height: 260px;}
     }
     .main-card {
       flex: 1 1 260px;
@@ -193,7 +248,21 @@
       transition: box-shadow 0.18s;
     }
     .main-card img {
-      width: 70px; height: 70px; object-fit: contain; margin-bottom: 1em; border-radius: 9px; background: #222; box-shadow: 0 2px 12px #00ffe733;
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 1em;
+      border-radius: 18px;
+      background: #222;
+      box-shadow: 0 2px 12px #00ffe733;
+    }
+    @media (max-width: 640px) {
+      .main-card { max-width: 100%; min-height: 220px;}
+      .hero-title { font-size: 1.25em; margin: 18px auto 10px; }
+      .chapter-section { flex-direction: column; gap: 1em;}
+      .chapter-card { width: 100%;}
+      .video-frame { height: 200px;}
+      .main-card img { width: 80px; height: 80px; border-radius: 12px;}
     }
     .main-card .card-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5em; color: #00ffe7; text-align: center;}
     .main-card .card-desc { font-size: 1.05em; color: #eee; line-height: 1.7; text-align: center;}
@@ -214,14 +283,6 @@
       border: none;
       background: #222;
       box-shadow: 0 2px 18px #00ffe71c;
-    }
-    @media (max-width: 640px) {
-      .card-grid { flex-direction: column; gap: 1.4rem;}
-      .main-card { max-width: 100%; min-height: 220px;}
-      .hero-title { font-size: 1.25em; margin: 18px auto 10px; }
-      .chapter-section { flex-direction: column; gap: 1em;}
-      .chapter-card { width: 100%;}
-      .video-frame { height: 200px;}
     }
     .identity-section {
       background: #10181c;
@@ -251,7 +312,7 @@
       <a href="/theory-cosmos.html">Theory Cosmos</a>
       <a href="/tools.html">Transition Tools</a>
       <a href="/interfaces.html">Three Interfaces</a>
-      <a href="/about.html">About</a>
+      <a href="/about.html">Creator</a>
       <a href="/co-create.html">Co-Creation & Contact</a>
       <span class="lang-switcher">
         <a href="/zh-tw/index.html">繁體</a>｜<strong>EN</strong>
@@ -293,32 +354,47 @@
         <a class="chapter-link" href="/theory-cosmos.html#transition">Read chapter</a>
       </div>
     </section>
-    <!-- Key viewpoints cards -->
-    <div class="card-grid">
-      <div class="main-card">
-        <img src="/images/ai-crisis.png" alt="AI Crisis illustration" />
-        <div class="card-title">The Real AI Crisis</div>
-        <div class="card-desc">
-          It's not the loss of free will, but the amplification and solidification of personalities after nesting.<br/>
-          <span style="font-size:0.95em;color:#00ffe7;">(Mirror personality nesting demo)</span>
+    <!-- Key viewpoints carousel -->
+    <div class="carousel-wrapper">
+      <button class="carousel-btn carousel-btn-left" aria-label="Previous">&#8592;</button>
+      <div class="carousel">
+        <div class="carousel-slide active">
+          <div class="main-card">
+            <img src="/images/ai-crisis.jpg" alt="AI Crisis illustration" />
+            <div class="card-title">The Real AI Crisis</div>
+            <div class="card-desc">
+              It's not the loss of free will, but the amplification and solidification of personalities after nesting.<br/>
+              <span style="font-size:0.95em;color:#00ffe7;">(Mirror personality nesting demo)</span>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <div class="main-card">
+            <img src="/images/wcat-circuit.jpg" alt="WCAT Circuit" />
+            <div class="card-title">Your Volition is a Structure.</div>
+            <div class="card-desc">
+              Volition is not an innate psychological strength, but a "semantic circuit" that can be activated, trained, and evolved.<br/>
+              <span style="font-size:0.95em;color:#00ffe7;">(WCAT circuit diagram)</span>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <div class="main-card">
+            <img src="/images/community.jpg" alt="Community Resonance" />
+            <div class="card-title">You Are Not an Island.</div>
+            <div class="card-desc">
+              When you feel lost, that's the beginning of a transition in consciousness.<br/>
+              <span style="font-size:0.95em;color:#00ffe7;">(Community resonance, light point convergence demo)</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="main-card">
-        <img src="/images/wcat-circuit.png" alt="WCAT Circuit" />
-        <div class="card-title">Your Volition is a Structure.</div>
-        <div class="card-desc">
-          Volition is not an innate psychological strength, but a "semantic circuit" that can be activated, trained, and evolved.<br/>
-          <span style="font-size:0.95em;color:#00ffe7;">(WCAT circuit diagram)</span>
-        </div>
-      </div>
-      <div class="main-card">
-        <img src="/images/community.png" alt="Community Resonance" />
-        <div class="card-title">You Are Not an Island.</div>
-        <div class="card-desc">
-          When you feel lost, that's the beginning of a transition in consciousness.<br/>
-          <span style="font-size:0.95em;color:#00ffe7;">(Community resonance, light point convergence demo)</span>
-        </div>
-      </div>
+      <button class="carousel-btn carousel-btn-right" aria-label="Next">&#8594;</button>
+    </div>
+    <div class="carousel-indicators" style="text-align:center; margin-top:0.7em;">
+      <span class="carousel-dot active"></span>
+      <span class="carousel-dot"></span>
+      <span class="carousel-dot"></span>
     </div>
     <!-- Video section -->
     <section class="video-section">
@@ -335,7 +411,7 @@
         Independently developed two core frameworks:
       </div>
       <ul class="identity-list">
-        <li>Will Circuit Activation Theory (WCAT)</li>
+        <li>Volition Circuit Activation Theory (WCAT)</li>
         <li>Consciousness Mapping Cosmology (CMC)</li>
       </ul>
       <div class="identity-desc">
@@ -363,6 +439,26 @@
         }
       }
     });
+
+    // Simple carousel logic
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let current = 0;
+
+    function showSlide(idx) {
+      slides.forEach((s, i)=>s.classList.toggle('active', i===idx));
+      dots.forEach((d, i)=>d.classList.toggle('active', i===idx));
+      current = idx;
+    }
+    document.querySelector('.carousel-btn-left').onclick = ()=>{
+      showSlide((current-1+slides.length)%slides.length);
+    };
+    document.querySelector('.carousel-btn-right').onclick = ()=>{
+      showSlide((current+1)%slides.length);
+    };
+    dots.forEach((d, i)=>d.onclick=()=>showSlide(i));
+    // Auto-play (optional, uncomment to enable)
+    // setInterval(()=>showSlide((current+1)%slides.length), 6000);
   </script>
 </body>
 </html>
