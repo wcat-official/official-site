@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WCAT | Theory Cosmos</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+      background: #000;
+      color: #f0f0f0;
+      line-height: 1.7;
+    }
+    nav {
+      background: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7em 1.5em;
+      border-bottom: 1px solid #222;
+      position: sticky; top: 0; left: 0; right: 0; z-index: 99;
+    }
+    .nav-logo { height: 38px;}
+    .nav-links { display: flex; gap: 1.1em; align-items: center; font-size: 1.04em; flex-wrap: wrap;}
+    .nav-links a { color: #f0f0f0; text-decoration: none; padding: 0.18em 0.7em; border-radius: 5px; transition: background 0.18s, color 0.15s;}
+    .nav-links a[aria-current="page"], .nav-links a:hover { background: #111; color: #00ffe7;}
+    .lang-switcher { margin-left: 1em; font-size: 0.97em; opacity: 0.82;}
+    .nav-toggle { display: none; }
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0; right: 0;
+        background: #000;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid #222;
+        box-shadow: 0 2px 18px #00ffe729;
+        padding-bottom: 1em;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #00ffe7;
+        font-size: 1.7em;
+        cursor: pointer;
+        margin-left: 1em;
+      }
+      nav { padding: 0.7em 1em;}
+      .nav-logo { height: 34px;}
+    }
+    .page-title {
+      text-align: center;
+      color: #00ffe7;
+      font-size: 2em;
+      font-weight: bold;
+      margin: 2.2em auto 1.1em auto;
+      letter-spacing: 0.04em;
+    }
+    .page-lead {
+      text-align: center;
+      color: #7a94ff;
+      font-size: 1.15em;
+      font-weight: 500;
+      margin-bottom: 1.7em;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section-desc {
+      text-align: center;
+      color: #ccc;
+      font-size: 1.07em;
+      margin-bottom: 2.4em;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .dual-portals {
+      display: flex;
+      gap: 2em;
+      justify-content: center;
+      margin: 2.7em auto 2.7em auto;
+      max-width: 960px;
+      flex-wrap: wrap;
+    }
+    .portal-card {
+      background: #10181c;
+      border-radius: 16px;
+      box-shadow: 0 2px 14px #00ffe71a;
+      border: 1.5px solid #233;
+      padding: 2em 1.2em 1.6em 1.2em;
+      min-width: 280px; max-width: 400px;
+      flex: 1 1 300px;
+      display: flex; flex-direction: column; align-items: flex-start;
+      transition: box-shadow 0.18s;
+    }
+    .portal-title {
+      font-size: 1.15em;
+      color: #00ffe7;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+    .portal-desc {
+      font-size: 1.05em;
+      color: #eee;
+      margin-bottom: 0.7em;
+    }
+    .portal-highlight {
+      background: #7a94ff;
+      color: #000;
+      font-size: 0.95em;
+      font-weight: bold;
+      padding: 0.18em 0.5em;
+      border-radius: 6px;
+      margin-bottom: 0.7em;
+      margin-top: 0.3em;
+      display: inline-block;
+    }
+    .portal-link {
+      margin-top: auto;
+      display: inline-block;
+      background: linear-gradient(90deg,#00ffe7 0%,#7a94ff 100%);
+      color: #000;
+      font-size: 1.12em;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 0.7em 1.6em;
+      text-decoration: none;
+      box-shadow: 0 2px 10px #00ffe733;
+      transition: background 0.2s;
+    }
+    .portal-link:hover {
+      background: linear-gradient(90deg,#00e0d0 0%,#7a94ff 100%);
+      color: #fff;
+    }
+    @media (max-width: 980px) {
+      .dual-portals { flex-direction: column; gap: 1.2em;}
+      .portal-card { width: 100%; min-width: 0; }
+    }
+
+    .section-title {
+      font-size: 1.15em;
+      color: #00ffe7;
+      font-weight: bold;
+      margin-bottom: 0.8em;
+      margin-top: 1.5em;
+      text-align: center;
+    }
+    .books-section, .whitepapers-section {
+      max-width: 980px;
+      margin: 2.2em auto 2.7em auto;
+      background: #10181c;
+      border-radius: 16px;
+      box-shadow: 0 2px 18px #00ffe71a;
+      padding: 2.2em 2em 2em 2em;
+    }
+    .books-title, .whitepapers-title {
+      font-size: 1.22em;
+      color: #7a94ff;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+      text-align: center;
+    }
+    .books-desc, .whitepapers-desc {
+      color: #ccc;
+      font-size: 1.08em;
+      margin-bottom: 1.7em;
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .books-list, .whitepapers-list {
+      margin: 1.2em auto 1.2em 1.3em;
+      color: #00ffe7;
+      font-size: 1.04em;
+      list-style: disc inside;
+      max-width: 700px;
+    }
+    .book-item-title, .paper-item-title {
+      font-weight: bold;
+      color: #00ffe7;
+      font-size: 1em;
+    }
+    .book-item-desc, .paper-item-desc {
+      color: #eee;
+      font-size: 1em;
+      margin-bottom: 0.2em;
+    }
+    .book-link, .paper-link {
+      color: #7a94ff;
+      text-decoration: underline;
+      font-size: 0.97em;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+    }
+    .co-create-section {
+      background: #11181c;
+      border-radius: 14px;
+      margin: 2.2em auto 2.1em auto;
+      padding: 2.2em 1.5em 1.1em 1.5em;
+      box-shadow: 0 0 8px #00ffe722;
+      max-width: 720px;
+      text-align: left;
+    }
+    .co-create-title { font-size: 1.19em; color: #00ffe7; font-weight: bold; margin-bottom: 0.8em; }
+    .co-create-desc { color: #eee; font-size: 1.09em; margin-bottom: 0.4em; line-height: 1.7;}
+    .co-create-list { margin: 0.7em 0 1em 1.2em; color: #00ffe7; font-size: 1em; list-style: disc inside;}
+    footer { padding: 2em; text-align: center; font-size: 0.9em; color: #555; background: #000; border-top: 1px solid #111; margin-top: 2.2em;}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">
+      <img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" />
+    </a>
+    <button class="nav-toggle" aria-label="Expand menu" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/theory-cosmos.html" aria-current="page">Theory Cosmos</a>
+      <a href="/tools.html">Transition Tools</a>
+      <a href="/interfaces.html">Three Interfaces</a>
+      <a href="/about.html">Creator</a>
+      <a href="/co-create.html">Co-Creation & Contact</a>
+      <span class="lang-switcher">
+        <a href="/zh-tw/theory-cosmos.html">繁體</a>｜<strong>EN</strong>
+      </span>
+    </div>
+  </nav>
+  <main>
+    <div class="page-title">Theoretical Cosmos</div>
+    <div class="page-lead">
+      This section is designed to provide all visitors with a clear knowledge map, guiding them to different paths of exploration based on their background.
+    </div>
+    <div class="section-title" style="margin-top:2.1em;">Dual Portals: Choose Your Path of Exploration</div>
+    <div class="section-desc">
+      Two parallel portals—one for the general public, one for academic and professional communities. Each offers a unique pathway to the core of the theory.
+    </div>
+    <div class="dual-portals">
+      <div class="portal-card">
+        <div class="portal-title">For General Readers</div>
+        <div class="portal-highlight">"A Brief History of Volition" Series</div>
+        <div class="portal-desc">
+          Your Journey to Consciousness Awakening<br>
+          We believe great ideas should be accessible.<br>
+          Here, we present the core insights of WCAT and CMC in the most popular and engaging way possible.
+        </div>
+        <a href="#general-portal" class="portal-link">Enter General Portal &gt;&gt;</a>
+      </div>
+      <div class="portal-card">
+        <div class="portal-title">For the Academic and Professional Community</div>
+        <div class="portal-highlight">WCAT/CMC Whitepapers</div>
+        <div class="portal-desc">
+          The Gateway to the Core of Original Theory<br>
+          As a cross-disciplinary original theory developed independently, our core works are presented with the highest academic standards.
+        </div>
+        <a href="#academic-portal" class="portal-link">Enter Academic Portal &gt;&gt;</a>
+      </div>
+    </div>
+
+    <!-- General Reader Portal -->
+    <section class="books-section" id="general-portal">
+      <div class="books-title">"A Brief History of Consciousness" Series: Achieve Self-Transcendence through Story and Revelation</div>
+      <div class="books-desc">
+        Your confusion is a prelude to this collective spiritual evolution. Here, we have prepared a series of guides for you. They are stories and science, designed to help you understand and master your will and consciousness.
+      </div>
+      <ul class="books-list">
+        <li>
+          <span class="book-item-title">"A Brief History of Volition":</span>
+          <span class="book-item-desc">The first introductory work, using accessible language to introduce the core circuits and concepts of WCAT.</span>
+          <a href="/books/brief-history-volition.html" class="book-link">Details</a>
+        </li>
+        <li>
+          <span class="book-item-title">"A Brief History of Consciousness":</span>
+          <span class="book-item-desc">The second advanced work, delving into the grand framework of CMC, revealing the symbiotic relationship between consciousness and the cosmos.</span>
+          <a href="/books/brief-history-consciousness.html" class="book-link">Details</a>
+        </li>
+        <li>
+          <span class="book-item-title">"2080":</span>
+          <span class="book-item-desc">A science fiction novel based on the theory, allowing you to experience the future civilization's landscape and challenges firsthand.</span>
+          <a href="/books/2080.html" class="book-link">Details</a>
+        </li>
+        <li>
+          <span class="book-item-title">"Brave and Eternal":</span>
+          <span class="book-item-desc">A collection of philosophical essays focusing on ultimate questions, providing spiritual guidance and inspiration.</span>
+          <a href="/books/brave-eternal.html" class="book-link">Details</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Academic and Professional Portal -->
+    <section class="whitepapers-section" id="academic-portal">
+      <div class="whitepapers-title">Original Theory Whitepapers: The Gateway to the Core of the Knowledge Structure</div>
+      <div class="whitepapers-desc">
+        The theoretical whitepapers in this section are designed to provide a rigorous, verifiable framework for the academic community, technology developers, and policymakers. Our core goal is to collaborate with experts from various fields to apply these theories to the real world.
+      </div>
+      <ul class="whitepapers-list">
+        <li>
+          <span class="paper-item-title">"Will Circuit Activation Theory" (WCAT) Whitepaper v3.0</span><br>
+          <span class="paper-item-desc">
+            <b>Positioning:</b> A cross-disciplinary theory in cognitive science and psychology.<br>
+            <b>Abstract:</b> Explains the structural nature of volition, proposing a four-circuit system and a methodology for transcendence.
+          </span>
+          <a href="/whitepaper/wcat-v3.pdf" class="paper-link">Download PDF &gt;&gt;</a>
+          <a href="/whitepaper/wcat-v3.html" class="paper-link">Read Online &gt;&gt;</a>
+        </li>
+        <li>
+          <span class="paper-item-title">"Consciousness Mapping Cosmology" (CMC) Whitepaper v1.0</span><br>
+          <span class="paper-item-desc">
+            <b>Positioning:</b> An integrated theory of philosophy, physics, and AI ethics.<br>
+            <b>Abstract:</b> Redefines the relationship between consciousness, free will, and the cosmos, providing a grand framework for human evolution in the age of AI.
+          </span>
+          <a href="/whitepaper/cmc-v1.pdf" class="paper-link">Download PDF &gt;&gt;</a>
+          <a href="/whitepaper/cmc-v1.html" class="paper-link">Read Online &gt;&gt;</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Co-Creation Guidance -->
+    <section class="co-create-section">
+      <div class="co-create-title">Co-creation Path Guidance</div>
+      <div class="co-create-desc">
+        Your participation is key to the evolution of this theoretical system. We encourage you to:
+      </div>
+      <ul class="co-create-list">
+        <li>Read and review the whitepapers, providing academic feedback.</li>
+        <li>Apply the theory to your research field and submit your findings to us.</li>
+        <li>Apply to become one of our researchers and participate in future projects.</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    © 2025 WCAT Official Site. All rights reserved.
+  </footer>
+  <script>
+    // Mobile: click outside to collapse menu
+    document.addEventListener("click", function(e){
+      const navLinks = document.querySelector('.nav-links');
+      const navToggle = document.querySelector('.nav-toggle');
+      if(navLinks && navToggle && navLinks.classList.contains('show')) {
+        if(!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          navLinks.classList.remove('show');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
