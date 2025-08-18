@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WCAT | Transition Tools</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+      background: #000;
+      color: #f0f0f0;
+      line-height: 1.7;
+    }
+    nav {
+      background: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7em 1.5em;
+      border-bottom: 1px solid #222;
+      position: sticky; top: 0; left: 0; right: 0; z-index: 99;
+    }
+    .nav-logo { height: 38px;}
+    .nav-links { display: flex; gap: 1.1em; align-items: center; font-size: 1.04em; flex-wrap: wrap;}
+    .nav-links a { color: #f0f0f0; text-decoration: none; padding: 0.18em 0.7em; border-radius: 5px; transition: background 0.18s, color 0.15s;}
+    .nav-links a[aria-current="page"], .nav-links a:hover { background: #111; color: #00ffe7;}
+    .lang-switcher { margin-left: 1em; font-size: 0.97em; opacity: 0.82;}
+    .nav-toggle { display: none; }
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0; right: 0;
+        background: #000;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid #222;
+        box-shadow: 0 2px 18px #00ffe729;
+        padding-bottom: 1em;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #00ffe7;
+        font-size: 1.7em;
+        cursor: pointer;
+        margin-left: 1em;
+      }
+      nav { padding: 0.7em 1em;}
+      .nav-logo { height: 34px;}
+    }
+    .page-title {
+      text-align: center;
+      color: #00ffe7;
+      font-size: 2em;
+      font-weight: bold;
+      margin: 2.2em auto 1.1em auto;
+      letter-spacing: 0.04em;
+    }
+    .page-lead {
+      text-align: center;
+      color: #7a94ff;
+      font-size: 1.15em;
+      font-weight: 500;
+      margin-bottom: 1.7em;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .core-section {
+      max-width: 980px;
+      margin: 2.2em auto 2.7em auto;
+      background: #10181c;
+      border-radius: 16px;
+      box-shadow: 0 2px 18px #00ffe71a;
+      padding: 2.2em 2em 2em 2em;
+    }
+    .core-title {
+      font-size: 1.15em;
+      color: #00ffe7;
+      font-weight: bold;
+      margin-bottom: 0.8em;
+      text-align: center;
+    }
+    .core-desc {
+      color: #ccc;
+      font-size: 1.08em;
+      margin-bottom: 1.7em;
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .tool-list {
+      display: flex;
+      gap: 2em;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2em;
+      margin-bottom: 1em;
+    }
+    .tool-card {
+      background: #11181c;
+      border-radius: 13px;
+      box-shadow: 0 2px 14px #00ffe71a;
+      border: 1.5px solid #233;
+      padding: 1.3em 1em 1.7em 1em;
+      min-width: 250px; max-width: 340px;
+      flex: 1 1 280px;
+      display: flex; flex-direction: column; align-items: flex-start;
+      color: #eee;
+      transition: box-shadow 0.18s;
+      margin-bottom: 1em;
+    }
+    .tool-title {
+      color: #00ffe7;
+      font-size: 1.13em;
+      font-weight: bold;
+      margin-bottom: 0.7em;
+    }
+    .tool-position {
+      color: #7a94ff;
+      font-size: 0.97em;
+      font-weight: 500;
+      margin-bottom: 0.5em;
+    }
+    .tool-desc {
+      font-size: 1em;
+      margin-bottom: 0.8em;
+    }
+    .tool-link {
+      margin-top: auto;
+      display: inline-block;
+      background: linear-gradient(90deg,#00ffe7 0%,#7a94ff 100%);
+      color: #000;
+      font-size: 1.07em;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 0.7em 1.2em;
+      text-decoration: none;
+      box-shadow: 0 2px 10px #00ffe733;
+      transition: background 0.2s;
+    }
+    .tool-link:hover {
+      background: linear-gradient(90deg,#00e0d0 0%,#7a94ff 100%);
+      color: #fff;
+    }
+    @media (max-width: 980px) {
+      .tool-list { flex-direction: column; gap: 1.2em;}
+      .tool-card { width: 100%; min-width: 0; }
+      .core-section { padding: 1.5em 0.7em 1.2em 0.7em;}
+    }
+    .vision-section {
+      background: #10181c;
+      border-radius: 14px;
+      margin: 2.2em auto 2.1em auto;
+      padding: 2.2em 1.5em 1.1em 1.5em;
+      box-shadow: 0 0 8px #00ffe722;
+      max-width: 720px;
+      text-align: left;
+    }
+    .vision-title { font-size: 1.19em; color: #00ffe7; font-weight: bold; margin-bottom: 0.8em; }
+    .vision-desc { color: #eee; font-size: 1.09em; margin-bottom: 0.7em; line-height: 1.7;}
+    .vision-list { margin: 0.7em 0 1em 1.2em; color: #00ffe7; font-size: 1em; list-style: disc inside;}
+    .vision-link {
+      color: #7a94ff;
+      text-decoration: underline;
+      font-size: 1em;
+      margin-top: 0.6em;
+      display: inline-block;
+    }
+    footer { padding: 2em; text-align: center; font-size: 0.9em; color: #555; background: #000; border-top: 1px solid #111; margin-top: 2.2em;}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">
+      <img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" />
+    </a>
+    <button class="nav-toggle" aria-label="Expand menu" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/theory-cosmos.html">Theory Cosmos</a>
+      <a href="/tools.html" aria-current="page">Transition Tools</a>
+      <a href="/interfaces.html">Three Interfaces</a>
+      <a href="/about.html">Creator</a>
+      <a href="/co-create.html">Co-Creation & Contact</a>
+      <span class="lang-switcher">
+        <a href="/zh-tw/tools.html">繁體</a>｜<strong>EN</strong>
+      </span>
+    </div>
+  </nav>
+  <main>
+    <div class="page-title">From Theory to Practice: Activate Your Volitional Transition</div>
+    <div class="page-lead">
+      Understanding the theory is the starting point for change.<br>
+      Practice, on the other hand, is the only path to volitional upgrade.<br>
+      We have transformed the WCAT theoretical framework into a series of quantifiable tools designed to help you:
+    </div>
+    <section class="core-section">
+      <div class="core-title">Identify · Assess · Activate</div>
+      <div class="core-desc">
+        <b>Identify:</b> Which circuit system is your volition in?<br>
+        <b>Assess:</b> What is your Volition Quality (VQ)?<br>
+        <b>Activate:</b> Where is your next transition node?
+      </div>
+      <div class="tool-list">
+        <div class="tool-card">
+          <div class="tool-title">10-Item Volition Transition Scale</div>
+          <div class="tool-position">Quick start for self-awareness</div>
+          <div class="tool-desc">
+            This is the first step in your exploration of the volitional circuits. Through these 10 quick questions, you will gain a preliminary insight: Which circuit system do your current thought and behavior patterns primarily fall into?
+          </div>
+          <a href="/tools/volition-transition-10.html" class="tool-link">Start Assessment Now &gt;&gt;</a>
+        </div>
+        <div class="tool-card">
+          <div class="tool-title">25-Item Professional Volition Quality Assessment</div>
+          <div class="tool-position">Deep assessment, precise analysis</div>
+          <div class="tool-desc">
+            Designed for explorers seeking a deep understanding of the self. This professional scale will analyze your volitional structure in finer detail, providing a comprehensive report that helps you identify key nodes of volitional solidification and offers precise guidance for your personal growth.
+          </div>
+          <a href="/tools/volition-quality-25.html" class="tool-link">Learn More and Apply for Assessment &gt;&gt;</a>
+        </div>
+        <div class="tool-card">
+          <div class="tool-title">API Research Integration</div>
+          <div class="tool-position">Professional collaboration, theoretical application</div>
+          <div class="tool-desc">
+            We are committed to applying the WCAT theory to fields such as cognitive science, psychotherapy, education, and organizational management. This interface is open to academic institutions and technology developers to jointly transform the theory into more scalable applied tools.
+          </div>
+          <a href="/tools/api-integration.html" class="tool-link">Learn about API Integration and Research Collaboration &gt;&gt;</a>
+        </div>
+      </div>
+    </section>
+    <section class="vision-section">
+      <div class="vision-title">The Future: Your Volition Can Be Measured, Trained, and Co-created.</div>
+      <div class="vision-desc">
+        We are building the WCAT/CMC theory into a complete Consciousness Assessment and Activation Ecosystem. Future tools will include:
+      </div>
+      <ul class="vision-list">
+        <li>Personalized Training Modules: Providing customized volitional training plans based on your assessment results.</li>
+        <li>Certification System: Offering professional volition quality certification for individuals and organizations.</li>
+        <li>Symbiont Coach System: Training professional coaches to apply the theory in one-on-one guidance and consultation.</li>
+      </ul>
+      <div class="vision-desc">
+        These visions will be progressively realized within the <a href="/interfaces.html" class="vision-link">"Three Interfaces · Three Worlds"</a>.
+      </div>
+    </section>
+  </main>
+  <footer>
+    © 2025 WCAT Official Site. All rights reserved.
+  </footer>
+  <script>
+    // Mobile: click outside to collapse menu
+    document.addEventListener("click", function(e){
+      const navLinks = document.querySelector('.nav-links');
+      const navToggle = document.querySelector('.nav-toggle');
+      if(navLinks && navToggle && navLinks.classList.contains('show')) {
+        if(!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          navLinks.classList.remove('show');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
