@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>躍遷工具 | WCAT 官方網站</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', 'Segoe UI', Arial, 'Noto Sans', sans-serif;
+      background: #000;
+      color: #f0f0f0;
+      line-height: 1.7;
+    }
+    nav {
+      background: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7em 1.5em;
+      border-bottom: 1px solid #222;
+      position: sticky; top: 0; left: 0; right: 0; z-index: 99;
+    }
+    .nav-logo { height: 38px;}
+    .nav-links { display: flex; gap: 1.1em; align-items: center; font-size: 1.04em; flex-wrap: wrap;}
+    .nav-links a { color: #f0f0f0; text-decoration: none; padding: 0.18em 0.7em; border-radius: 5px; transition: background 0.18s, color 0.15s;}
+    .nav-links a[aria-current="page"], .nav-links a:hover { background: #111; color: #00ffe7;}
+    .lang-switcher { margin-left: 1em; font-size: 0.97em; opacity: 0.82;}
+    .nav-toggle { display: none; }
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0; right: 0;
+        background: #000;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid #222;
+        box-shadow: 0 2px 18px #00ffe729;
+        padding-bottom: 1em;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #00ffe7;
+        font-size: 1.7em;
+        cursor: pointer;
+        margin-left: 1em;
+      }
+      nav { padding: 0.7em 1em;}
+      .nav-logo { height: 34px;}
+    }
+    .page-title {
+      text-align: center;
+      font-size: 2em;
+      color: #00ffe7;
+      font-weight: bold;
+      margin: 2.6em auto 1.3em auto;
+      letter-spacing: 0.04em;
+    }
+    .page-lead {
+      text-align: center;
+      color: #ccc;
+      font-size: 1.15em;
+      margin-bottom: 2.2em;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .tool-section {
+      max-width: 980px;
+      margin: 2.2em auto 2.7em auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2em;
+      justify-content: center;
+    }
+    .tool-card {
+      background: #10181c;
+      border-radius: 16px;
+      box-shadow: 0 2px 18px #00ffe71a;
+      border: 1.5px solid #233;
+      padding: 2.1em 1.4em 2em 1.4em;
+      width: 340px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      color: #eee;
+      transition: box-shadow 0.18s;
+      position: relative;
+    }
+    .tool-card .tool-title {
+      color: #00ffe7;
+      font-size: 1.12em;
+      font-weight: bold;
+      margin-bottom: 0.7em;
+    }
+    .tool-card .tool-meta {
+      color: #7a94ff;
+      font-size: 0.97em;
+      margin-bottom: 0.6em;
+    }
+    .tool-card .tool-desc {
+      font-size: 1em;
+      margin-bottom: 1.1em;
+      color: #ccc;
+    }
+    .tool-btn {
+      background: linear-gradient(90deg,#00ffe7 0%,#7a94ff 100%);
+      color: #000;
+      font-size: 1.05em;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 0.7em 1.5em;
+      text-decoration: none;
+      box-shadow: 0 2px 10px #00ffe733;
+      transition: background 0.2s;
+      display: inline-block;
+      margin-top: 0.3em;
+      border: none;
+      cursor: pointer;
+    }
+    .tool-btn:hover { background: linear-gradient(90deg,#00e0d0 0%,#7a94ff 100%); color: #fff;}
+    @media (max-width: 980px) {
+      .tool-section { flex-direction: column; gap: 1.2em;}
+      .tool-card { width: 100%;}
+    }
+    .tools-vision {
+      background: #10181c;
+      border-radius: 14px;
+      margin: 2.7em auto 2.1em auto;
+      padding: 2.2em 1.5em 1.1em 1.5em;
+      box-shadow: 0 0 12px #00ffe722;
+      max-width: 700px;
+      text-align: left;
+    }
+    .vision-title { font-size: 1.15em; color: #00ffe7; font-weight: bold; margin-bottom: 0.8em;}
+    .vision-desc { color: #eee; font-size: 1.09em; margin-bottom: 0.8em; line-height: 1.7;}
+    .vision-list { margin: 0.7em 0 1em 1.2em; color: #7a94ff; font-size: 1em; list-style: disc inside;}
+    .vision-link {
+      display: inline-block;
+      background: linear-gradient(90deg,#00ffe7 0%,#7a94ff 100%);
+      color: #000;
+      font-size: 1.01em;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 0.6em 1.3em;
+      text-decoration: none;
+      box-shadow: 0 2px 10px #00ffe733;
+      transition: background 0.2s;
+      margin-top: 0.7em;
+    }
+    .vision-link:hover { background: linear-gradient(90deg,#00e0d0 0%,#7a94ff 100%); color: #fff;}
+    footer { padding: 2em; text-align: center; font-size: 0.9em; color: #555; background: #000; border-top: 1px solid #111; margin-top: 2.2em;}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/zh-tw/">
+      <img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" />
+    </a>
+    <button class="nav-toggle" aria-label="展開選單" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+    <div class="nav-links">
+      <a href="/zh-tw/">首頁</a>
+      <a href="/zh-tw/theory-cosmos.html">理論宇宙</a>
+      <a href="/zh-tw/tools.html" aria-current="page">躍遷工具</a>
+      <a href="/zh-tw/interfaces.html">三界接口</a>
+      <a href="/zh-tw/about.html">創始人</a>
+      <a href="/zh-tw/co-create.html">共建與聯繫</a>
+      <span class="lang-switcher">
+        <strong>繁體</strong>｜<a href="/index.html">EN</a>
+      </span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="page-title">躍遷工具 Transition Tools</div>
+    <div class="page-lead">
+      從理論到實踐：啟動你的意志躍遷<br>
+      理解理論，是改變的起點。而實踐，則是意志升級的唯一路徑。<br>
+      我們將 WCAT 的理論框架，轉化為一系列可量化的工具，旨在幫助你：<br>
+      <span style="color:#00ffe7;">辨識</span>：你的意志處於哪個迴路系統？<br>
+      <span style="color:#00ffe7;">評估</span>：你的意志品質（Volition Quality, VQ）如何？<br>
+      <span style="color:#00ffe7;">啟動</span>：你的下一個躍遷節點在哪裡？
+    </div>
+    <!-- 工具區塊 -->
+    <section class="tool-section">
+      <div class="tool-card">
+        <div class="tool-title">10題「意志躍遷」量表</div>
+        <div class="tool-meta">定位：快速入門，自我覺察</div>
+        <div class="tool-desc">
+          這是你探索意志迴路的第一步。透過這10個快速問題，你將獲得一個初步的洞見：你當前的思維與行為模式，主要處於哪個迴路系統中？
+        </div>
+        <a class="tool-btn" href="#">立即開始測試 &gt;&gt;</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-title">25題「意志品質」專業量表</div>
+        <div class="tool-meta">定位：深度評估，精準分析</div>
+        <div class="tool-desc">
+          專為尋求深度自我理解的探索者設計。此專業量表將更細緻地分析你的意志結構，提供一份詳細的報告，幫助你找到意志固化的關鍵節點，並為你的個人成長提供精準指引。
+        </div>
+        <a class="tool-btn" href="#">了解更多並申請評測 &gt;&gt;</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-title">API 研究對接</div>
+        <div class="tool-meta">定位：專業協作，理論應用</div>
+        <div class="tool-desc">
+          我們致力於將 WCAT 理論應用於認知科學、心理治療、教育與組織管理等領域。此接口開放給學術機構與技術開發者，共同將理論轉化為更具規模的應用工具。
+        </div>
+        <a class="tool-btn" href="#">了解API接口與研究合作 &gt;&gt;</a>
+      </div>
+    </section>
+    <!-- 工具生態願景區塊 -->
+    <section class="tools-vision">
+      <div class="vision-title">未來：你的意志，將可被測量、訓練與共同建構。</div>
+      <div class="vision-desc">
+        我們正在將 WCAT/CMC 的理論，打造為一個完整的意識評估與激活生態系統。未來的工具將包括：
+      </div>
+      <ul class="vision-list">
+        <li>個性化訓練模組：根據你的量表結果，提供定制化的意志訓練方案。</li>
+        <li>認證系統：為個人與組織提供專業的意志品質認證。</li>
+        <li>共生者教練體系：訓練專業教練，將理論應用於一對一的指導與諮詢。</li>
+      </ul>
+      <div class="vision-desc">
+        這些願景將在
+        <a href="/zh-tw/interfaces.html" class="vision-link">「三大接口 · 三個世界」</a>
+        中逐步實現。
+      </div>
+    </section>
+  </main>
+  <footer>
+    © 2025 WCAT Official Site. All rights reserved.
+  </footer>
+  <script>
+    // 行動裝置點擊空白處自動收合選單
+    document.addEventListener("click", function(e){
+      const navLinks = document.querySelector('.nav-links');
+      const navToggle = document.querySelector('.nav-toggle');
+      if(navLinks && navToggle && navLinks.classList.contains('show')) {
+        if(!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          navLinks.classList.remove('show');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
