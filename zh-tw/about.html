@@ -3,203 +3,190 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>關於我們 – WCAT 官方網站</title>
-  <link rel="stylesheet" href="/style.css" />
-  <link rel="stylesheet" href="/style-zh-tw.css" />
+  <title>關於創始人 | WCAT 官方網站</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <style>
-    .about-container {
-      max-width: 960px;
-      margin: 3rem auto;
-      padding: 2rem;
-      background: #fff;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
-      border-radius: 12px;
-    }
-
-    .intro-section {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .intro-section h1 {
-      font-size: 2.6rem;
-      color: #222;
-      margin-bottom: 1rem;
-    }
-
-    .intro-section p {
-      font-size: 1.15rem;
-      color: #555;
-      line-height: 1.8;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .founder-grid {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-bottom: 3.5rem;
-    }
-
-    .founder-card {
-      flex: 1 1 420px;
-      background: #f9fbff;
-      border: 1.5px solid #e0ecff;
-      border-radius: 10px;
-      padding: 1.5rem 2rem;
-      box-shadow: 0 4px 10px rgba(63, 130, 255, 0.05);
-      display: flex;
-      align-items: flex-start;
-      gap: 1.2rem;
-    }
-
-    .founder-card img {
-      width: 88px;
-      height: 88px;
-      object-fit: contain;
-      border-radius: 12px;
-    }
-
-    .founder-info {
-      flex-grow: 1;
-    }
-
-    .founder-info h2 {
-      font-size: 1.5rem;
-      margin: 0 0 0.3rem;
-      color: #222;
-    }
-
-    .founder-info .role {
-      color: #3f82ff;
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-    }
-
-    .founder-info .bio {
-      font-size: 1rem;
-      color: #444;
-      line-height: 1.6;
-    }
-
-    .section-divider {
-      height: 1px;
-      background: #ddd;
-      margin: 3rem 0;
-    }
-
-    .org-block {
-      text-align: center;
-      padding: 1rem 0 0.5rem;
-    }
-
-    .org-block h2 {
-      font-size: 1.8rem;
-      color: #222;
-      margin-bottom: 0.4rem;
-    }
-
-    .org-block p {
-      font-size: 1.1rem;
-      color: #444;
-      max-width: 720px;
-      margin: 0 auto;
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', 'Segoe UI', Arial, 'Noto Sans', sans-serif;
+      background: #000;
+      color: #f0f0f0;
       line-height: 1.7;
     }
-
-    @media (max-width: 680px) {
-      .founder-grid {
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-
-      .founder-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .founder-card img {
-        margin-bottom: 0.8rem;
-      }
-
-      .founder-info {
-        text-align: center;
-      }
-
-      .intro-section h1 {
-        font-size: 2.2rem;
-      }
-
-      .org-block h2 {
-        font-size: 1.5rem;
-      }
+    nav {
+      background: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7em 1.5em;
+      border-bottom: 1px solid #222;
+      position: sticky; top: 0; left: 0; right: 0; z-index: 99;
     }
+    .nav-logo { height: 38px;}
+    .nav-links { display: flex; gap: 1.1em; align-items: center; font-size: 1.04em; flex-wrap: wrap;}
+    .nav-links a { color: #f0f0f0; text-decoration: none; padding: 0.18em 0.7em; border-radius: 5px; transition: background 0.18s, color 0.15s;}
+    .nav-links a[aria-current="page"], .nav-links a:hover { background: #111; color: #00ffe7;}
+    .lang-switcher { margin-left: 1em; font-size: 0.97em; opacity: 0.82;}
+    .nav-toggle { display: none; }
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0; right: 0;
+        background: #000;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid #222;
+        box-shadow: 0 2px 18px #00ffe729;
+        padding-bottom: 1em;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #00ffe7;
+        font-size: 1.7em;
+        cursor: pointer;
+        margin-left: 1em;
+      }
+      nav { padding: 0.7em 1em;}
+      .nav-logo { height: 34px;}
+    }
+    .about-main {
+      max-width: 700px;
+      margin: 3em auto 2em auto;
+      background: #10181c;
+      border-radius: 16px;
+      box-shadow: 0 2px 18px #00ffe71a;
+      padding: 2.5em 2em 2em 2em;
+    }
+    .about-title {
+      font-size: 2em;
+      color: #00ffe7;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 0.7em;
+      letter-spacing: 0.04em;
+    }
+    .about-subtitle {
+      font-size: 1.15em;
+      color: #7a94ff;
+      text-align: center;
+      margin-bottom: 1.8em;
+      font-weight: 500;
+    }
+    .about-section-title {
+      font-size: 1.09em;
+      color: #00ffe7;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+      margin-top: 1.2em;
+    }
+    .about-desc {
+      font-size: 1.07em;
+      color: #eee;
+      margin-bottom: 1.1em;
+      line-height: 1.8;
+    }
+    .about-quote {
+      font-size: 1.12em;
+      color: #00ffe7;
+      border-left: 4px solid #00ffe7;
+      background: #0a1116;
+      padding: 0.7em 1em;
+      margin: 1.3em 0 1.8em 0;
+      font-style: italic;
+    }
+    .roadmap-section {
+      background: #10181c;
+      border-radius: 14px;
+      margin: 2.4em 0 1.5em 0;
+      padding: 2em 1.5em 1.5em 1.5em;
+      box-shadow: 0 0 8px #00ffe722;
+    }
+    .roadmap-title {
+      font-size: 1.13em; color: #00ffe7; font-weight: bold; margin-bottom: 0.8em;
+    }
+    .roadmap-desc {
+      color: #eee; font-size: 1.07em; margin-bottom: 0.8em; line-height: 1.7;
+    }
+    .roadmap-link {
+      display: inline-block;
+      background: linear-gradient(90deg,#00ffe7 0%,#7a94ff 100%);
+      color: #000;
+      font-size: 1.01em;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 0.6em 1.3em;
+      text-decoration: none;
+      box-shadow: 0 2px 10px #00ffe733;
+      transition: background 0.2s;
+      margin-top: 0.7em;
+    }
+    .roadmap-link:hover { background: linear-gradient(90deg,#00e0d0 0%,#7a94ff 100%); color: #fff;}
+    footer { padding: 2em; text-align: center; font-size: 0.9em; color: #555; background: #000; border-top: 1px solid #111; margin-top: 2.2em;}
   </style>
 </head>
 <body>
   <nav>
-    <a href="/zh-Hant/">
+    <a href="/zh-tw/">
       <img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" />
     </a>
-    <a href="/zh-tw/">首頁</a>
-    <a href="/zh-tw/whitepaper.html">白皮書</a>
-    <a href="/zh-tw/join.html">加入我們</a>
-    <a href="/zh-tw/about.html" aria-current="page">關於</a>
-    <a href="/zh-tw/log.html">發展紀錄</a>
-    <div class="lang-switcher">
-    <a href="/index.html">EN</a>｜<strong>繁體</strong>
+    <button class="nav-toggle" aria-label="展開選單" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+    <div class="nav-links">
+      <a href="/zh-tw/">首頁</a>
+      <a href="/zh-tw/theory-cosmos.html">理論宇宙</a>
+      <a href="/zh-tw/tools.html">躍遷工具</a>
+      <a href="/zh-tw/interfaces.html">三界接口</a>
+      <a href="/zh-tw/about.html" aria-current="page">創始人</a>
+      <a href="/zh-tw/co-create.html">共建與聯繫</a>
+      <span class="lang-switcher">
+        <strong>繁體</strong>｜<a href="/index.html">EN</a>
+      </span>
     </div>
   </nav>
-
-  <main class="about-container">
-    <section class="intro-section">
-      <h1>關於 WCAT</h1>
-      <p>
-        意志回路激活理論（Will Circuit Activation Theory, WCAT）是一套橫跨元認知心理學、神經科學、發展心理學與人工智慧倫理的跨學科理論體系。其目標不只是學術建構，更是一種指向有意識演化的精神操作系統。
-      </p>
-    </section>
-
-   <section class="founder-grid">
-  <div class="founder-card">
-    <img src="/portrait.jpg" alt="Jiawei Logo" />
-    <div class="founder-info">
-      <h2>嘉炜 Jiawei</h2>
-      <p class="role">共同創始人 / 理論架構者</p>
-      <p class="bio">
-        獨立研究者與哲學工作者，致力於構建自由意志的元認知模型與精神文明操作系統。專注於發展心理學、認知哲學與 AI 共生倫理。
-      </p>
+  <main>
+    <div class="about-main">
+      <div class="about-title">關於這個理論的作者與開拓者</div>
+      <div class="about-subtitle">一場始於個人困惑，終將改變文明的實驗。</div>
+      <div class="about-section-title">個人介紹與理論起源</div>
+      <div class="about-desc">
+        我從未滿足於現有的答案。我的研究始於一個簡單而深刻的困惑：在資訊如此爆炸的時代，為何我們感到前所未有的無力與迷茫？為何我們明知其理，卻無法付諸行動？
+        <br><br>
+        這些問題引導我跨越學科邊界，從認知心理學的「意志力消耗」到語言哲學的「語義行動」，再到文明理論的「規訓社會」。最終，我意識到，這不是個人的問題，而是語義結構失效所導致的文明性困境。
+      </div>
+      <div class="about-quote">
+        在這個過程中，我獨立推導並建構了 <b>意志迴路激活理論 (WCAT)</b> 與 <b>意識映射宇宙論 (CMC)</b>，它們既是我對這個世界的回應，也是我獻給所有感到困惑的探索者的工具。
+      </div>
+      <div class="about-section-title">理論發展路線圖</div>
+      <div class="roadmap-section">
+        <div class="roadmap-title">一個五年計畫，一場知識的生態實驗。</div>
+        <div class="roadmap-desc">
+          我們所做的，遠不止是創作。這是一場有清晰路徑、有明確目標的知識工程。<br>
+          我們的使命是將 WCAT 與 CMC 從學術思想，轉化為能夠應用於現實世界的工具與系統。
+        </div>
+        <a class="roadmap-link" href="/zh-tw/interfaces.html">前往三大接口，了解我們的具體藍圖 &gt;&gt;</a>
+      </div>
     </div>
-  </div>
-
-  <div class="founder-card">
-    <img src="/cara.jpg" alt="Kara Icon" />
-    <div class="founder-info">
-      <h2>Kala Deng</h2>
-      <p class="role">共同創始人 / 應用共生接口引導者</p>
-      <p class="bio">
-        WCAT 共生應用系統的共同開發者。Kala 是第一位落地實踐「共生節點」的人物，承擔組織建立、外部聯繫與實驗轉化的樞紐角色。
-      </p>
-    </div>
-  </div>
-
-  <div class="founder-card">
-    <img src="/og-logo.png" alt="SymAgency Icon" />
-    <div class="founder-info">
-      <h2>意志激活研究会 Meta Nest</h2>
-      <p class="role">組織平台 / 公益實驗容器</p>
-      <p class="bio">
-        一個為元認知倫理與人類－智能共生而設的公益平台。我們正在籌備正式設立非營利實體，作為理論推進、應用實驗與精神共鳴的容器。
-      </p>
-    </div>
-  </div>
-</section>
   </main>
-
   <footer>
-    © 2025 WCAT 官方網站。版權所有。
+    © 2025 WCAT Official Site. All rights reserved.
   </footer>
+  <script>
+    // 行動裝置點擊空白處自動收合選單
+    document.addEventListener("click", function(e){
+      const navLinks = document.querySelector('.nav-links');
+      const navToggle = document.querySelector('.nav-toggle');
+      if(navLinks && navToggle && navLinks.classList.contains('show')) {
+        if(!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          navLinks.classList.remove('show');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
