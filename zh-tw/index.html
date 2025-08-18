@@ -3,116 +3,347 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>意志回路激活理論 WCAT</title>
-  <link rel="stylesheet" href="/style.css" />
+  <title>WCAT | 意志迴路激活理論</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', 'Segoe UI', Arial, 'Noto Sans', sans-serif;
+      background-color: #000;
+      color: #f0f0f0;
+      line-height: 1.6;
+    }
+    nav {
+      background: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7em 1.5em;
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0; left: 0; right: 0;
+      z-index: 99;
+    }
+    .nav-logo { height: 38px; transition: opacity 0.2s;}
+    .nav-links {
+      display: flex;
+      gap: 1.1em;
+      align-items: center;
+      font-size: 1.04em;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #f0f0f0;
+      text-decoration: none;
+      padding: 0.18em 0.7em;
+      border-radius: 5px;
+      transition: background 0.18s, color 0.15s;
+    }
+    .nav-links a[aria-current="page"], .nav-links a:hover {
+      background: #111;
+      color: #00ffe7;
+    }
+    .lang-switcher { margin-left: 1em; font-size: 0.97em; opacity: 0.82;}
+    .nav-toggle { display: none; }
+    @media (max-width: 720px) {
+      .nav-links { display: none; position: absolute; top: 60px; left: 0; right: 0; background: #000; flex-direction: column; gap: 0; border-top: 1px solid #222; box-shadow: 0 2px 18px #00ffe729;}
+      .nav-links.show { display: flex;}
+      .nav-toggle { display: block; background: none; border: none; color: #00ffe7; font-size: 1.7em; cursor: pointer; margin-left: 1em;}
+      nav { padding: 0.7em 1em;}
+      .nav-logo { height: 34px;}
+    }
     .logo-wrapper {
       position: relative;
-      display: inline-block;
-      margin-bottom: 2rem;
+      margin-top: 56px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .logo {
-      max-width: 160px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      border-radius: 16px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-      position: relative;
-      z-index: 2;
-    }
+    .logo { max-width: 180px; z-index: 2;}
     .glow {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 280px;
-      height: 280px;
-      background: radial-gradient(circle, rgba(77,166,255,0.35) 0%, rgba(77,166,255,0) 75%);
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      border-radius: 50%;
-      z-index: 1;
-      animation: pulse 3s ease-in-out infinite;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(0,255,231,0.3) 0%, transparent 70%);
+      filter: blur(50px); border-radius: 50%; z-index: 1;
     }
-    @keyframes pulse {
-      0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.5;
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(1.15);
-        opacity: 0.9;
-      }
+    .hero-title {
+      text-align: center;
+      font-size: 2.35em;
+      font-weight: bold;
+      color: #fff;
+      margin: 38px auto 22px;
+      line-height: 1.2;
+      letter-spacing: 0.1em;
     }
-    .text-left-intro {
-      font-size: 1.2rem;
-      color: #444;
-      text-align: left;
-      margin-top: 1rem;
-      line-height: 1.8;
-      max-width: 640px;
+    .hero-lead {
+      text-align: center;
+      font-size: 1.13em;
+      color: #00ffe7;
+      margin-bottom: 2.1em;
+      max-width: 700px;
       margin-left: auto;
       margin-right: auto;
     }
-    .lang-switcher {
-      position: absolute;
-      top: 1rem;
-      right: 2rem;
-      font-size: 0.95rem;
+    .theory-anchor {
+      text-align: center;
+      margin: 2em 0 2.5em 0;
     }
-    .lang-switcher a {
-      color: #fff;
+    .theory-anchor .btn-map {
+      background: linear-gradient(90deg,#00ffe7 0%,#7a94ff 100%);
+      color: #000;
+      font-size: 1.13em;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 0.9em 2.1em;
       text-decoration: none;
-      margin-left: 1rem;
+      box-shadow: 0 2px 10px #00ffe733;
+      transition: background 0.2s;
+      display: inline-block;
+      margin-top: 0.5em;
     }
-    .lang-switcher a:hover {
+    .theory-anchor .btn-map:hover {
+      background: linear-gradient(90deg,#00e0d0 0%,#7a94ff 100%);
+      color: #fff;
+    }
+    /* 章節精選卡片 */
+    .chapter-section {
+      max-width: 1080px;
+      margin: 2.2em auto 2.7em auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      justify-content: center;
+    }
+    .chapter-card {
+      background: #10181c;
+      border-radius: 13px;
+      box-shadow: 0 2px 14px #00ffe71a;
+      border: 1.5px solid #233;
+      padding: 1.3em 1em 1.7em 1em;
+      width: 300px;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      color: #eee;
+      transition: box-shadow 0.18s;
+    }
+    .chapter-card .chapter-title {
+      color: #00ffe7;
+      font-size: 1.07em;
+      font-weight: bold;
+      margin-bottom: 0.7em;
+    }
+    .chapter-card .chapter-desc {
+      font-size: 1em;
+      margin-bottom: 0.5em;
+    }
+    .chapter-card .chapter-link {
+      margin-top: auto;
+      color: #7a94ff;
+      font-size: 0.97em;
       text-decoration: underline;
+      cursor: pointer;
+    }
+    /* 爭議觀點卡片 */
+    .card-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3em;
+      margin-top: 0.5em;
+    }
+    .main-card {
+      flex: 1 1 260px;
+      max-width: 320px;
+      background: #10181c;
+      border: 1.5px solid #233;
+      border-radius: 14px;
+      padding: 1.7em 1em 2.2em 1em;
+      box-shadow: 0 4px 16px rgba(0,255,231,0.07);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 320px;
+      position: relative;
+      transition: box-shadow 0.18s;
+    }
+    .main-card img {
+      width: 70px; height: 70px; object-fit: contain; margin-bottom: 1em; border-radius: 9px; background: #222; box-shadow: 0 2px 12px #00ffe733;
+    }
+    .main-card .card-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5em; color: #00ffe7; text-align: center;}
+    .main-card .card-desc { font-size: 1.05em; color: #eee; line-height: 1.7; text-align: center;}
+    /* 視覺短片區 */
+    .video-section {
+      max-width: 680px;
+      margin: 2.5em auto 2.8em auto;
+      text-align: center;
+    }
+    .video-section h3 {
+      color: #00ffe7;
+      font-size: 1.11em;
+      margin-bottom: 1em;
+    }
+    .video-frame {
+      width: 100%;
+      height: 340px;
+      border-radius: 14px;
+      border: none;
+      background: #222;
+      box-shadow: 0 2px 18px #00ffe71c;
+    }
+    @media (max-width: 640px) {
+      .card-grid { flex-direction: column; gap: 1.4rem;}
+      .main-card { max-width: 100%; min-height: 220px;}
+      .hero-title { font-size: 1.4em;}
+      .chapter-section { flex-direction: column; gap: 1em;}
+      .chapter-card { width: 100%;}
+      .video-frame { height: 200px;}
+    }
+    /* 身份宣言卡片 */
+    .identity-section {
+      background: #10181c;
+      border-radius: 14px;
+      margin: 2.3em auto 2.1em auto;
+      padding: 2.2em 1.5em 1.1em 1.5em;
+      box-shadow: 0 0 8px #00ffe722;
+      max-width: 720px;
+      text-align: left;
+    }
+    .identity-title { font-size: 1.19em; color: #00ffe7; font-weight: bold; margin-bottom: 0.8em;}
+    .identity-desc { color: #eee; font-size: 1.09em; margin-bottom: 0.4em; line-height: 1.7;}
+    .identity-list { margin: 0.7em 0 1em 1.2em; color: #00ffe7; font-size: 1em; list-style: disc inside;}
+    footer {
+      padding: 2em; text-align: center; font-size: 0.9em; color: #555; background: #000; border-top: 1px solid #111; margin-top: 2.2em;
     }
   </style>
 </head>
 <body>
-  <nav style="position: relative;">
-    <a href="/zh-tw/index.html">
-      <img src="/logo-nav.jpg" alt="WCAT 標誌" class="nav-logo" />
+  <nav>
+    <a href="/">
+      <img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" />
     </a>
-    <a href="/zh-tw/index.html" aria-current="page">首頁</a>
-    <a href="/zh-tw/whitepaper.html">白皮書</a>
-    <a href="/zh-tw/join.html">加入我們</a>
-    <a href="/zh-tw/about.html">關於我們</a>
-    <a href="/zh-tw/log.html">發展記錄</a>
-    <div class="lang-switcher">
-      <a href="/index.html">EN</a>｜<strong>繁體</strong>
+    <button class="nav-toggle" aria-label="展開選單" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+    <div class="nav-links">
+      <a href="/" aria-current="page">首頁</a>
+      <a href="/theory-cosmos.html">理論宇宙</a>
+      <a href="/tools.html">躍遷工具</a>
+      <a href="/interfaces.html">三界接口</a>
+      <a href="/about.html">創始人</a>
+      <a href="/co-create.html">共建與聯繫</a>
+      <span class="lang-switcher">
+        <strong>繁體</strong>｜<a href="/index.html">EN</a>
+      </span>
     </div>
   </nav>
 
   <main>
-    <div class="centered">
-      <div class="logo-wrapper">
-        <img src="/logo-wcat.png" alt="WCAT 發光標誌" class="logo" />
-        <div class="glow"></div>
+    <div class="logo-wrapper">
+      <div class="glow"></div>
+      <img src="/logo-wcat.png" alt="WCAT Logo" class="logo" />
+    </div>
+    <!-- 核心內容區塊 -->
+    <div class="hero-title">
+      你所感受到的困境，是人類文明的共同症狀。
+    </div>
+    <div class="hero-lead">
+      資訊極度充盈，但意志極度稀缺。<br>
+      這不是你的問題，而是我們的語義結構出了問題。
+    </div>
+    <div class="theory-anchor">
+      <a href="/theory-cosmos.html" class="btn-map">探索理論宇宙 &gt;&gt;</a>
+    </div>
+    <!-- 《意志簡史》章節精選 -->
+    <section class="chapter-section">
+      <div class="chapter-card">
+        <div class="chapter-title">意志的本源</div>
+        <div class="chapter-desc">揭示意志結構與起源，回答「我是誰」與「我們如何成為人」的終極追問。</div>
+        <a class="chapter-link" href="/theory-cosmos.html#origin">閱讀章節</a>
+      </div>
+      <div class="chapter-card">
+        <div class="chapter-title">鏡像人格的危機</div>
+        <div class="chapter-desc">討論AI與社群時代下人格嵌套與自我迷失的現象。</div>
+        <a class="chapter-link" href="/theory-cosmos.html#crisis">閱讀章節</a>
+      </div>
+      <div class="chapter-card">
+        <div class="chapter-title">文明的意義躍遷</div>
+        <div class="chapter-desc">提出意志迴路激活的社會模型，探索文明升級的路徑。</div>
+        <a class="chapter-link" href="/theory-cosmos.html#transition">閱讀章節</a>
+      </div>
+    </section>
+    <!-- 爭議觀點卡片 -->
+    <div class="card-grid">
+      <div class="main-card">
+        <img src="/images/ai-crisis.jpg" alt="AI危機圖像" />
+        <div class="card-title">真正的 AI 危機</div>
+        <div class="card-desc">
+          不是自由意志的喪失，而是人格被嵌套後的放大與固化。<br/>
+          <span style="font-size:0.95em;color:#00ffe7;">（鏡像人格嵌套示意）</span>
+        </div>
+      </div>
+      <div class="main-card">
+        <img src="/images/wcat-circuit.jpg" alt="WCAT迴路圖" />
+        <div class="card-title">你的意志，是一種結構。</div>
+        <div class="card-desc">
+          意志不是天生強弱的心理力量，而是可以被激活、訓練與躍遷的「語義迴路」。<br/>
+          <span style="font-size:0.95em;color:#00ffe7;">（WCAT迴路系統簡圖）</span>
+        </div>
+      </div>
+      <div class="main-card">
+        <img src="/images/community.jpg" alt="社群共振圖" />
+        <div class="card-title">你不是孤島。</div>
+        <div class="card-desc">
+          當你感到困惑，正是意識躍遷的起點。<br/>
+          <span style="font-size:0.95em;color:#00ffe7;">（社群共振、光點匯聚示意）</span>
+        </div>
       </div>
     </div>
-
-    <h1 style="text-align: center;">
-      穿越模因與神經的規訓，<br />我們正在重構自由意志。
-    </h1>
-
-    <div class="text-left-intro">
-      <p>
-        <strong>意志回路激活理論（Will Circuit Activation Theory, WCAT）</strong> 是一項由嘉炜（Jiawei）提出的跨領域原創理論，結合元認知心理學、神經科學、發展心理學與 AI 倫理，旨在重新理解人類在高度文化與基因規訓下，如何經由意志力的激活與回路重組，邁向自由意向與精神共生。
-      </p>
-      <p>
-        本網站為 WCAT 的官方平臺，將陸續發佈理論核心內容、全球共鳴計畫、駐地研究與實驗性出版計畫。歡迎研究者、機構、讀者與協作者加入這場意識覺醒的旅程。
-      </p>
-    </div>
-
-    <div style="text-align: center; margin-top: 2.5rem;">
-      <a href="/zh-tw/whitepaper.html" class="btn-primary" style="margin-right: 1.2rem;">📘 讀白皮書</a>
-      <a href="/zh-tw/join.html" class="btn-outline">🤝 參與共構</a>
-    </div>
+    <!-- 視覺化觀點短片 -->
+    <section class="video-section">
+      <h3>視覺化觀點短片</h3>
+      <!-- 可替換為實際影片連結 -->
+      <iframe class="video-frame" src="https://www.youtube.com/embed/VIDEO_ID" title="WCAT 觀點短片" frameborder="0" allowfullscreen></iframe>
+      <div style="margin-top:0.9em;color:#888;font-size:0.97em;">（如果看不到影片，請點此<a href="https://www.youtube.com/channel/UCXXXXX" target="_blank" style="color:#00ffe7;">前往頻道</a>）</div>
+    </section>
+    <!-- 身份宣言卡片 -->
+    <section class="identity-section">
+      <div class="identity-title">關於這裡的創造者：一位思想家，一個理論體系</div>
+      <div class="identity-desc">
+        我是一位跨越認知科學、哲學與文明演化的原創理論建構者。
+        <br>獨立推導並創建了兩大核心體系：
+      </div>
+      <ul class="identity-list">
+        <li>意志迴路激活理論 (WCAT)</li>
+        <li>意識映射宇宙論 (CMC)</li>
+      </ul>
+      <div class="identity-desc">
+        這些理論旨在提供一個全新的框架，回答以下終極問題：<br>
+        <b>意志的起源與結構是什麼？<br>
+        我們的意識如何與宇宙共生？<br>
+        在 AI 時代，人類文明的躍遷路徑在哪裡？</b>
+        <br><br>
+        本站收錄了我所有的理論、白皮書與實踐工具，並以中英雙語開放給全世界。<br>
+        如果你正因自由、意義與未來而焦慮，這裡，將是我們共同的起點。
+      </div>
+    </section>
   </main>
-
   <footer>
-    © 2025 WCAT 官方網站（繁體中文版）. All rights reserved.
+    © 2025 WCAT Official Site. All rights reserved.
   </footer>
+  <script>
+    document.addEventListener("click", function(e){
+      const navLinks = document.querySelector('.nav-links');
+      const navToggle = document.querySelector('.nav-toggle');
+      if(navLinks && navToggle && navLinks.classList.contains('show')) {
+        if(!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          navLinks.classList.remove('show');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
