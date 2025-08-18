@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WCAT | Co-Creation & Contact</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+      background: #000;
+      color: #f0f0f0;
+      line-height: 1.7;
+    }
+    nav {
+      background: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7em 1.5em;
+      border-bottom: 1px solid #222;
+      position: sticky; top: 0; left: 0; right: 0; z-index: 99;
+    }
+    .nav-logo { height: 38px;}
+    .nav-links { display: flex; gap: 1.1em; align-items: center; font-size: 1.04em; flex-wrap: wrap;}
+    .nav-links a { color: #f0f0f0; text-decoration: none; padding: 0.18em 0.7em; border-radius: 5px; transition: background 0.18s, color 0.15s;}
+    .nav-links a[aria-current="page"], .nav-links a:hover { background: #111; color: #00ffe7;}
+    .lang-switcher { margin-left: 1em; font-size: 0.97em; opacity: 0.82;}
+    .nav-toggle { display: none; }
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0; right: 0;
+        background: #000;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid #222;
+        box-shadow: 0 2px 18px #00ffe729;
+        padding-bottom: 1em;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #00ffe7;
+        font-size: 1.7em;
+        cursor: pointer;
+        margin-left: 1em;
+      }
+      nav { padding: 0.7em 1em;}
+      .nav-logo { height: 34px;}
+    }
+    .co-create-title {
+      text-align: center;
+      color: #00ffe7;
+      font-size: 2em;
+      font-weight: bold;
+      margin: 2.2em auto 1.1em auto;
+      letter-spacing: 0.04em;
+    }
+    .co-create-subtitle {
+      text-align: center;
+      color: #7a94ff;
+      font-size: 1.15em;
+      font-weight: 500;
+      margin-bottom: 2em;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .co-create-section {
+      max-width: 880px;
+      margin: 2.2em auto 2.7em auto;
+      background: #10181c;
+      border-radius: 16px;
+      box-shadow: 0 2px 18px #00ffe71a;
+      padding: 2.4em 2em 2em 2em;
+    }
+    .section-title {
+      font-size: 1.17em;
+      color: #00ffe7;
+      font-weight: bold;
+      margin-bottom: 0.7em;
+      margin-top: 0.7em;
+    }
+    .section-desc {
+      color: #ccc;
+      font-size: 1.08em;
+      margin-bottom: 1.6em;
+      line-height: 1.7;
+    }
+    .pathways-section {
+      background: #11181c;
+      border-radius: 14px;
+      margin: 2.2em auto 2.1em auto;
+      padding: 2.2em 1.5em 1.1em 1.5em;
+      box-shadow: 0 0 8px #00ffe722;
+      max-width: 720px;
+      text-align: left;
+    }
+    .pathways-title { font-size: 1.15em; color: #00ffe7; font-weight: bold; margin-bottom: 0.8em; }
+    .pathways-desc { color: #eee; font-size: 1.09em; margin-bottom: 0.7em; line-height: 1.7;}
+    .pathways-list { margin: 0.7em 0 1em 1.2em; color: #00ffe7; font-size: 1em; list-style: disc inside;}
+    .pathways-link {
+      color: #7a94ff;
+      text-decoration: underline;
+      font-size: 1em;
+      margin-top: 0.6em;
+      display: inline-block;
+    }
+    .funding-section {
+      background: #10181c;
+      border-radius: 14px;
+      margin: 2.2em auto 2.1em auto;
+      padding: 2.2em 1.5em 1.1em 1.5em;
+      box-shadow: 0 0 8px #00ffe722;
+      max-width: 720px;
+      text-align: left;
+    }
+    .funding-title { font-size: 1.15em; color: #00ffe7; font-weight: bold; margin-bottom: 0.8em; }
+    .funding-desc { color: #eee; font-size: 1.09em; margin-bottom: 0.7em; line-height: 1.7;}
+    .contact-section {
+      background: #10181c;
+      border-radius: 14px;
+      margin: 2.2em auto 2.1em auto;
+      padding: 2em 1.5em 1.1em 1.5em;
+      box-shadow: 0 0 8px #00ffe722;
+      max-width: 720px;
+      text-align: left;
+    }
+    .contact-title { font-size: 1.15em; color: #00ffe7; font-weight: bold; margin-bottom: 0.8em; }
+    .contact-desc { color: #eee; font-size: 1.09em; margin-bottom: 0.7em; line-height: 1.7;}
+    .subscribe-form {
+      margin-top: 1.3em;
+      display: flex;
+      gap: 0.5em;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .subscribe-input {
+      padding: 0.6em 1em;
+      border-radius: 7px;
+      border: 1px solid #7a94ff;
+      font-size: 1em;
+      background: #222;
+      color: #fff;
+      margin-right: 0.5em;
+      min-width: 210px;
+      outline: none;
+    }
+    .subscribe-btn {
+      background: linear-gradient(90deg,#00ffe7 0%,#7a94ff 100%);
+      color: #000;
+      font-size: 1em;
+      font-weight: bold;
+      border-radius: 7px;
+      padding: 0.6em 1.5em;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 10px #00ffe733;
+      transition: background 0.2s;
+    }
+    .subscribe-btn:hover {
+      background: linear-gradient(90deg,#00e0d0 0%,#7a94ff 100%);
+      color: #fff;
+    }
+    .contact-links {
+      margin: 0.7em 0 0.5em 0;
+      font-size: 1.03em;
+    }
+    .contact-links a {
+      color: #7a94ff;
+      text-decoration: underline;
+      margin-right: 1em;
+    }
+    @media (max-width: 980px) {
+      .co-create-section { padding: 1.5em 0.7em 1.2em 0.7em;}
+      .pathways-section, .funding-section, .contact-section { padding: 1.3em 0.7em 1em 0.7em;}
+    }
+    footer { padding: 2em; text-align: center; font-size: 0.9em; color: #555; background: #000; border-top: 1px solid #111; margin-top: 2.2em;}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">
+      <img src="/logo-nav.jpg" alt="WCAT Logo" class="nav-logo" />
+    </a>
+    <button class="nav-toggle" aria-label="Expand menu" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/theory-cosmos.html">Theory Cosmos</a>
+      <a href="/tools.html">Transition Tools</a>
+      <a href="/interfaces.html">Three Interfaces</a>
+      <a href="/about.html">Creator</a>
+      <a href="/co-create.html" aria-current="page">Co-Creation & Contact</a>
+      <span class="lang-switcher">
+        <a href="/zh-tw/co-create.html">繁體</a>｜<strong>EN</strong>
+      </span>
+    </div>
+  </nav>
+  <main>
+    <div class="co-create-title">One Person's Theory, One World's Co-creation</div>
+    <div class="co-create-subtitle">We are looking for you, from the future.</div>
+    <section class="co-create-section">
+      <div class="section-title">Introduction</div>
+      <div class="section-desc">
+        The theoretical vitality of WCAT and CMC comes from their continuous interaction and evolution with the real world.<br>
+        We know that this grand civilizational experiment cannot be completed by one person.<br>
+        We are recruiting pioneers from different fields to jointly turn this blueprint into reality.
+      </div>
+    </section>
+    <section class="pathways-section">
+      <div class="pathways-title">Project Co-creation Pathways</div>
+      <div class="pathways-desc">
+        <b>Phase One (Currently Open Projects):</b><br>
+        We are in the early stages of putting our theory into practice, and the following projects urgently need your involvement:
+      </div>
+      <ul class="pathways-list">
+        <li><b>Publishing Collaboration:</b> Seeking publishing partners for works like "A Brief History of Volition," "A Brief History of Consciousness," and "2080."</li>
+        <li><b>Academic Collaboration:</b> Professors and researchers are welcome to explore integrating WCAT/CMC into Ph.D. programs or academic research.</li>
+        <li><b>Website Technical Collaboration:</b> Professional website developers, interface designers, and content management assistants needed to build a user-friendly, powerful platform.</li>
+        <li><b>Public Project Co-creation:</b> Preparing to integrate WCAT/CMC theory for UN or regional ethical protocols and piloting educational upgrades from K-12 to university.</li>
+        <li><b>Commercial System Licensing:</b> Seeking strategic partners for the VQ Global Assessment and Certification System and Volition Coach System.</li>
+      </ul>
+      <a href="/co-create-blueprint.html" class="pathways-link">View a more detailed co-creator blueprint &gt;&gt;</a>
+    </section>
+    <section class="funding-section">
+      <div class="funding-title">Funding and Support</div>
+      <div class="funding-desc">
+        We do not accept any form of donations or funding.<br><br>
+        At this stage, your every <b>"continued attention," "repost and share,"</b> and <b>"reproduction with proper attribution"</b> is the greatest support for this intellectual project.<br><br>
+        When we have specific projects that require financial support, we will publicly release detailed development budgets and execution reports.
+      </div>
+    </section>
+    <section class="contact-section">
+      <div class="contact-title">Contact Us</div>
+      <div class="contact-desc">
+        Email: <a href="mailto:wcat-world@proton.me">wcat-world@proton.me</a><br>
+        Community: 
+        <span class="contact-links">
+          <a href="https://x.com/wcat_world" target="_blank">X (Twitter)</a>
+          <a href="https://discord.gg/XXXXXX" target="_blank">Discord</a>
+          <!-- Add other community links as needed -->
+        </span>
+        <br>
+        Subscribe for Updates: Be among the first to witness the future.
+      </div>
+      <form class="subscribe-form" action="#" method="post" onsubmit="alert('Thank you for subscribing!');return false;">
+        <input class="subscribe-input" type="email" name="email" placeholder="Enter your email" required>
+        <button class="subscribe-btn" type="submit">Subscribe</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    © 2025 WCAT Official Site. All rights reserved.
+  </footer>
+  <script>
+    // Mobile: click outside to collapse menu
+    document.addEventListener("click", function(e){
+      const navLinks = document.querySelector('.nav-links');
+      const navToggle = document.querySelector('.nav-toggle');
+      if(navLinks && navToggle && navLinks.classList.contains('show')) {
+        if(!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          navLinks.classList.remove('show');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
