@@ -107,9 +107,83 @@
       margin-left: auto;
       margin-right: auto;
     }
+    /* 行動號召按鈕區塊 */
+    .cta-section {
+      max-width: 900px;
+      margin: 3em auto 3.5em auto;
+      padding: 0 1em;
+      text-align: center;
+    }
+    .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5em;
+      margin-bottom: 2em;
+    }
+    .cta-button {
+      background: linear-gradient(135deg, #10181c 0%, #1a2832 100%);
+      border: 2px solid #233;
+      border-radius: 12px;
+      padding: 1.8em 1.2em;
+      text-decoration: none;
+      color: #f0f0f0;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      display: block;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,255,231,0.1), transparent);
+      transition: left 0.5s;
+    }
+    .cta-button:hover::before {
+      left: 100%;
+    }
+    .cta-button:hover {
+      border-color: #00ffe7;
+      box-shadow: 0 6px 24px rgba(0,255,231,0.2);
+      transform: translateY(-2px);
+    }
+    .cta-title {
+      font-size: 1.15em;
+      font-weight: bold;
+      color: #00ffe7;
+      margin-bottom: 0.8em;
+      display: block;
+    }
+    .cta-desc {
+      font-size: 1em;
+      line-height: 1.5;
+      color: #ccc;
+      margin-bottom: 1em;
+    }
+    .cta-target {
+      font-size: 0.9em;
+      color: #7a94ff;
+      font-weight: 500;
+    }
+    
+    /* 理論地圖錨點 */
     .theory-anchor {
       text-align: center;
-      margin: 2em 0 2.5em 0;
+      margin: 2.5em 0 1.5em 0;
+      padding: 2em 1em;
+      background: linear-gradient(135deg, rgba(0,255,231,0.05) 0%, rgba(122,148,255,0.05) 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(0,255,231,0.1);
+    }
+    .theory-anchor h3 {
+      color: #00ffe7;
+      font-size: 1.2em;
+      margin-bottom: 1em;
+      font-weight: 600;
     }
     .theory-anchor .btn-map {
       background: linear-gradient(90deg,#00ffe7 0%,#7a94ff 100%);
@@ -120,13 +194,14 @@
       padding: 0.9em 2.1em;
       text-decoration: none;
       box-shadow: 0 2px 10px #00ffe733;
-      transition: background 0.2s;
+      transition: all 0.3s ease;
       display: inline-block;
-      margin-top: 0.5em;
     }
     .theory-anchor .btn-map:hover {
       background: linear-gradient(90deg,#00e0d0 0%,#7a94ff 100%);
       color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px #00ffe755;
     }
     .chapter-section {
       max-width: 1080px;
@@ -440,20 +515,23 @@
       資訊極度充盈，但意志極度稀缺。<br>
       這不是你的問題，而是我們的語義結構出了問題。
     </div>
-    <div class="theory-anchor">
-      <a href="/zh-tw/theory-cosmos.html" class="btn-map">探索理論宇宙 &gt;&gt;</a>
-    </div>
+    <!-- 理論地圖錨點 -->
+    <section class="theory-anchor">
+      <h3>探索我們的理論宇宙</h3>
+      <a href="/zh-tw/theory-cosmos.html" class="btn-map">前往理論地圖 &gt;&gt;</a>
+    </section>
+    
     <!-- 《意志簡史》章節精選 -->
     <section class="chapter-section">
       <div class="chapter-card">
         <div class="chapter-title">意志的本源</div>
         <div class="chapter-desc">揭示意志結構與起源，回答「我是誰」與「我們如何成為人」的終極追問。</div>
-        <a class="chapter-link" href="https://matters.town/a/cbxbyp4es6dt">閱讀章節</a>
+        <a class="chapter-link" href="/zh-tw/theory-cosmos.html#origin">閱讀章節</a>
       </div>
       <div class="chapter-card">
         <div class="chapter-title">鏡像人格的危機</div>
         <div class="chapter-desc">討論AI與社群時代下人格嵌套與自我迷失的現象。</div>
-        <a class="chapter-link" href="https://matters.town/a/tpvvc16i1xny">閱讀章節</a>
+        <a class="chapter-link" href="/zh-tw/theory-cosmos.html#crisis">閱讀章節</a>
       </div>
       <div class="chapter-card">
         <div class="chapter-title">文明的意義躍遷</div>
@@ -461,6 +539,39 @@
         <a class="chapter-link" href="/zh-tw/theory-cosmos.html#transition">閱讀章節</a>
       </div>
     </section>
+    
+    <!-- 行動號召按鈕區塊 - 流量分流入口 -->
+    <section class="cta-section">
+      <div class="cta-grid">
+        <a href="/zh-tw/tools.html" class="cta-button">
+          <span class="cta-title">立即開始你的意志躍遷</span>
+          <div class="cta-desc">
+            有明確的困惑想立即找到答案？<br>
+            直接進入10題意志躍遷量表，開始你的個人診斷與躍遷路徑。
+          </div>
+          <span class="cta-target">→ 問題解決型訪客</span>
+        </a>
+        
+        <a href="/zh-tw/theory-cosmos.html" class="cta-button">
+          <span class="cta-title">深入探索理論宇宙</span>
+          <div class="cta-desc">
+            對理論本身感興趣，想了解背後的邏輯？<br>
+            進入理論地圖，從大眾或學術入口開始系統性探索。
+          </div>
+          <span class="cta-target">→ 知識探索型訪客</span>
+        </a>
+        
+        <a href="/zh-tw/co-create.html" class="cta-button">
+          <span class="cta-title">參與文明共建計畫</span>
+          <div class="cta-desc">
+            認同我們的願景，想知道如何加入？<br>
+            了解出版、學術與技術合作的路徑，成為理論推廣的一部分。
+          </div>
+          <span class="cta-target">→ 共建合作型訪客</span>
+        </a>
+      </div>
+    </section>
+
     <!-- 爭議觀點卡片輪播 -->
     <div class="card-carousel-wrapper">
       <div class="card-carousel">
@@ -473,7 +584,7 @@
             <div class="card-title">真正的 AI 危機</div>
             <div class="card-desc">
               不是自由意志的喪失，而是人格被嵌套後的放大與固化。<br/>
-              <span style="font-size:0.95em;color:#00ffe7;">當前時代，尋找並掌控自由意志，未來才會變得可能不會滑向失控。</span>
+              <span style="font-size:0.95em;color:#00ffe7;">（鏡像人格嵌套示意）</span>
             </div>
           </div>
         </div>
@@ -484,7 +595,7 @@
             <div class="card-title">你的意志，是一種結構。</div>
             <div class="card-desc">
               意志不是天生強弱的心理力量，而是可以被激活、訓練與躍遷的「語義迴路」。<br/>
-              <span style="font-size:0.95em;color:#00ffe7;">深入的探測了解，意志回路系統1.0-4.0，使得結構性的控制意志成為可能。</span>
+              <span style="font-size:0.95em;color:#00ffe7;">（WCAT迴路系統簡圖）</span>
             </div>
           </div>
         </div>
@@ -495,7 +606,7 @@
             <div class="card-title">你不是孤島。</div>
             <div class="card-desc">
               當你感到困惑，正是意識躍遷的起點。<br/>
-              <span style="font-size:0.95em;color:#00ffe7;">文明的延續，在孤獨的裂縫中產生，在協同共生中升級。</span>
+              <span style="font-size:0.95em;color:#00ffe7;">（社群共振、光點匯聚示意）</span>
             </div>
           </div>
         </div>
@@ -518,21 +629,24 @@
     <section class="identity-section">
       <div class="identity-title">關於這裡的創造者：一位思想家，一個理論體系</div>
       <div class="identity-desc">
-        我是一位跨越認知科學、哲學與文明演化的原創理論建構者。
-        <br>獨立推導並創建了兩大核心體系：
+        我是一位跨越認知科學、哲學與文明演化的原創理論建構者。<br>
+        我獨立推導並創建了兩大核心體系：
       </div>
       <ul class="identity-list">
-        <li>意志迴路激活理論 (WCAT)</li>
-        <li>意識映射宇宙論 (CMC)</li>
+        <li><strong>意志迴路激活理論 (WCAT)</strong></li>
+        <li><strong>意識映射宇宙論 (CMC)</strong></li>
       </ul>
       <div class="identity-desc">
-        這些理論旨在提供一個全新的框架，回答以下終極問題：<br>
-        <b>意志的起源與結構是什麼？<br>
-        我們的意識如何與宇宙共生？<br>
-        在 AI 時代，人類文明的躍遷路徑在哪裡？</b>
-        <br><br>
+        這些理論旨在提供一個全新的框架，回答以下終極問題：
+      </div>
+      <div class="identity-desc" style="margin: 1em 0; padding: 1em; background: rgba(0,255,231,0.05); border-left: 3px solid #00ffe7; border-radius: 4px;">
+        <strong>• 意志的起源與結構是什麼？<br>
+        • 我們的意識如何與宇宙共生？<br>
+        • 在 AI 時代，人類文明的躍遷路徑在哪裡？</strong>
+      </div>
+      <div class="identity-desc">
         本站收錄了我所有的理論、白皮書與實踐工具，並以中英雙語開放給全世界。<br>
-        如果你正因自由、意義與未來而焦慮，這裡，將是我們共同的起點。
+        <strong style="color: #00ffe7;">如果你正因自由、意義與未來而焦慮，這裡，將是我們共同的起點。</strong>
       </div>
     </section>
   </main>
