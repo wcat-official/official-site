@@ -91,7 +91,7 @@
     }
     .hero-title {
       text-align: center;
-      font-size: 3.10em;
+      font-size: 2.10em;
       font-weight: bold;
       color: #fff;
       margin: 32px auto 16px;
@@ -210,13 +210,85 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 16px #00ffe755;
     }
-    .chapter-section {
-      max-width: 1080px;
-      margin: 2.2em auto 2.7em auto;
+    /* 章節輪播樣式 */
+    .chapter-carousel-wrapper {
+      max-width: 800px;
+      margin: 2.5em auto;
+      padding: 0 1em;
+      position: relative;
+    }
+    .chapter-carousel {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      border-radius: 16px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 1.5em;
       justify-content: center;
+      align-items: center;
+    }
+    .chapter-slide {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease-in-out;
+      width: 100%;
+      max-width: 350px;
+      display: flex;
+      justify-content: center;
+    }
+    .chapter-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .chapter-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #10181c;
+      color: #00ffe7;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.8em;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px #00ffe715;
+      transition: background 0.18s, color 0.18s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .chapter-nav:hover {
+      background: #222;
+      color: #7a94ff;
+    }
+    .chapter-nav.prev {
+      left: 20px;
+    }
+    .chapter-nav.next {
+      right: 20px;
+    }
+    .chapter-indicators {
+      text-align: center;
+      margin-top: 1.5em;
+    }
+    .chapter-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: #444;
+      border-radius: 50%;
+      margin: 0 6px;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .chapter-dot.active {
+      background: #00ffe7;
     }
     .chapter-card {
       background: #10181c;
@@ -224,7 +296,8 @@
       box-shadow: 0 2px 14px #00ffe71a;
       border: 1.5px solid #233;
       padding: 1.3em 1em 1.7em 1em;
-      width: 300px;
+      width: 100%;
+      max-width: 320px;
       min-height: 160px;
       display: flex;
       flex-direction: column;
@@ -232,6 +305,9 @@
       align-items: flex-start;
       color: #eee;
       transition: box-shadow 0.18s;
+    }
+    .chapter-card:hover {
+      box-shadow: 0 4px 20px rgba(0,255,231,0.15);
     }
     .chapter-card .chapter-title {
       color: #00ffe7;
@@ -516,7 +592,7 @@
     </div>
     <!-- 核心內容區塊 -->
     <div class="hero-title">
-      你所感受到的困境，<br>是人類文明的共同症狀。
+      你所感受到的困境，是人類文明的共同症狀。
     </div>
     <div class="hero-lead">
       資訊極度充盈，但意志極度稀缺。<br>
@@ -528,24 +604,43 @@
       <a href="/zh-tw/theory-cosmos.html" class="btn-map">前往理論地圖 &gt;&gt;</a>
     </section>
     
-    <!-- 《意志簡史》章節精選 -->
-    <section class="chapter-section">
-      <div class="chapter-card">
-        <div class="chapter-title">意志的本源</div>
-        <div class="chapter-desc">揭示意志結構與起源，回答「我是誰」與「我們如何成為人」的終極追問。</div>
-        <a class="chapter-link" href="/zh-tw/theory-cosmos.html#origin">閱讀章節</a>
+    <!-- 《意志簡史》章節精選輪播 -->
+    <div class="chapter-carousel-wrapper">
+      <div class="chapter-carousel">
+        <button class="chapter-nav prev" onclick="changeChapterSlide(-1)">‹</button>
+        <button class="chapter-nav next" onclick="changeChapterSlide(1)">›</button>
+        
+        <div class="chapter-slide active">
+          <div class="chapter-card">
+            <div class="chapter-title">意志的本源</div>
+            <div class="chapter-desc">揭示意志結構與起源，回答「我是誰」與「我們如何成為人」的終極追問。</div>
+            <a class="chapter-link" href="/zh-tw/theory-cosmos.html#origin">閱讀章節</a>
+          </div>
+        </div>
+        
+        <div class="chapter-slide">
+          <div class="chapter-card">
+            <div class="chapter-title">鏡像人格的危機</div>
+            <div class="chapter-desc">討論AI與社群時代下人格嵌套與自我迷失的現象。</div>
+            <a class="chapter-link" href="/zh-tw/theory-cosmos.html#crisis">閱讀章節</a>
+          </div>
+        </div>
+        
+        <div class="chapter-slide">
+          <div class="chapter-card">
+            <div class="chapter-title">文明的意義躍遷</div>
+            <div class="chapter-desc">提出意志迴路激活的社會模型，探索文明升級的路徑。</div>
+            <a class="chapter-link" href="/zh-tw/theory-cosmos.html#transition">閱讀章節</a>
+          </div>
+        </div>
       </div>
-      <div class="chapter-card">
-        <div class="chapter-title">鏡像人格的危機</div>
-        <div class="chapter-desc">討論AI與社群時代下人格嵌套與自我迷失的現象。</div>
-        <a class="chapter-link" href="/zh-tw/theory-cosmos.html#crisis">閱讀章節</a>
+      
+      <div class="chapter-indicators">
+        <span class="chapter-dot active" onclick="goToChapterSlide(0)"></span>
+        <span class="chapter-dot" onclick="goToChapterSlide(1)"></span>
+        <span class="chapter-dot" onclick="goToChapterSlide(2)"></span>
       </div>
-      <div class="chapter-card">
-        <div class="chapter-title">文明的意義躍遷</div>
-        <div class="chapter-desc">提出意志迴路激活的社會模型，探索文明升級的路徑。</div>
-        <a class="chapter-link" href="/zh-tw/theory-cosmos.html#transition">閱讀章節</a>
-      </div>
-    </section>
+    </div>
     
     <!-- 行動號召按鈕區塊 - 流量分流入口 -->
     <section class="cta-section">
@@ -715,20 +810,76 @@
       startAutoPlay();
     }
 
+    // 章節輪播功能
+    let currentChapterSlide = 0;
+    const chapterSlides = document.querySelectorAll('.chapter-slide');
+    const chapterDots = document.querySelectorAll('.chapter-dot');
+    let chapterAutoPlay;
+
+    function showChapterSlide(index) {
+      // 隱藏所有章節卡片
+      chapterSlides.forEach(slide => slide.classList.remove('active'));
+      chapterDots.forEach(dot => dot.classList.remove('active'));
+      
+      // 顯示指定章節卡片
+      chapterSlides[index].classList.add('active');
+      chapterDots[index].classList.add('active');
+      
+      currentChapterSlide = index;
+    }
+
+    function changeChapterSlide(direction) {
+      const newIndex = (currentChapterSlide + direction + chapterSlides.length) % chapterSlides.length;
+      showChapterSlide(newIndex);
+      resetChapterAutoPlay();
+    }
+
+    function goToChapterSlide(index) {
+      showChapterSlide(index);
+      resetChapterAutoPlay();
+    }
+
+    function nextChapterSlide() {
+      const newIndex = (currentChapterSlide + 1) % chapterSlides.length;
+      showChapterSlide(newIndex);
+    }
+
+    function startChapterAutoPlay() {
+      chapterAutoPlay = setInterval(nextChapterSlide, 5000); // 每5秒切換
+    }
+
+    function resetChapterAutoPlay() {
+      clearInterval(chapterAutoPlay);
+      startChapterAutoPlay();
+    }
+
     // 頁面載入後開始自動播放
     document.addEventListener('DOMContentLoaded', function() {
       startAutoPlay();
+      startChapterAutoPlay();
     });
 
     // 滑鼠懸停時暫停自動播放
-    document.querySelector('.card-carousel-wrapper').addEventListener('mouseenter', function() {
-      clearInterval(cardAutoPlay);
-    });
-
-    // 滑鼠離開時恢復自動播放
-    document.querySelector('.card-carousel-wrapper').addEventListener('mouseleave', function() {
-      startAutoPlay();
-    });
+    const cardCarouselWrapper = document.querySelector('.card-carousel-wrapper');
+    const chapterCarouselWrapper = document.querySelector('.chapter-carousel-wrapper');
+    
+    if (cardCarouselWrapper) {
+      cardCarouselWrapper.addEventListener('mouseenter', function() {
+        clearInterval(cardAutoPlay);
+      });
+      cardCarouselWrapper.addEventListener('mouseleave', function() {
+        startAutoPlay();
+      });
+    }
+    
+    if (chapterCarouselWrapper) {
+      chapterCarouselWrapper.addEventListener('mouseenter', function() {
+        clearInterval(chapterAutoPlay);
+      });
+      chapterCarouselWrapper.addEventListener('mouseleave', function() {
+        startChapterAutoPlay();
+      });
+    }
   </script>
 </body>
 </html>
