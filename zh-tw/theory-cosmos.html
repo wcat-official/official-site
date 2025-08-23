@@ -56,6 +56,56 @@
       nav { padding: 0.7em 1em;}
       .nav-logo { height: 34px;}
     }
+
+    /* 頂部概念圖區域 */
+    .hero-image-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+    .hero-image {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 2/1;
+      object-fit: cover;
+      display: block;
+      background: #000;
+      transition: opacity 0.8s ease-in-out;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(
+        180deg, 
+        rgba(0,0,0,0.1) 0%,
+        rgba(0,0,0,0.3) 70%,
+        rgba(0,0,0,0.6) 100%
+      );
+      pointer-events: none;
+    }
+    .hero-glow {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      height: 80%;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(0,255,231,0.08) 0%,
+        rgba(122,148,255,0.05) 40%,
+        transparent 70%
+      );
+      pointer-events: none;
+      animation: pulse 4s ease-in-out infinite alternate;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+    }
+
     .title-main {
       text-align: center;
       font-size: 2.1em;
@@ -157,10 +207,17 @@
     .paper-summary { font-size: 0.98em; color: #eee;}
     .guide-list { margin: 1.2em 0 0.2em 1.5em; color: #7a94ff; font-size: 1em; list-style: disc inside;}
     .section-divider { height: 1px; background: #222; margin: 2em 0;}
+    
+    /* 響應式設計 */
     @media (max-width: 700px) {
       .book-list, .paper-list { flex-direction: column; gap: 1em;}
       .book-card, .paper-card { width: 100%;}
+      .hero-image-container { margin: 0 1em; }
     }
+    @media (max-width: 480px) {
+      .hero-image-container { margin: 0 0.5em; }
+    }
+    
     footer { padding: 2em; text-align: center; font-size: 0.9em; color: #555; background: #000; border-top: 1px solid #111; margin-top: 2.2em;}
   </style>
 </head>
@@ -182,6 +239,14 @@
       </span>
     </div>
   </nav>
+
+  <!-- 頂部概念圖區域 -->
+  <div class="hero-image-container">
+    <img src="/path-to-your-consciousness-concept-image.png" alt="意識種族誕生概念圖" class="hero-image" />
+    <div class="hero-overlay"></div>
+    <div class="hero-glow"></div>
+  </div>
+
   <main>
     <div class="title-main">理論宇宙 Theoretical Cosmos</div>
     <div class="subtitle-main">
