@@ -73,7 +73,12 @@
   .hero-questions { margin-bottom: 1.75rem; max-width: 600px; }
   .hero-q-main { font-family: var(--serif); font-size: 2.3rem; font-weight: 500; line-height: 1.4; color: var(--text-primary); margin-bottom: 0.9rem; }
   .hero-q-main .hl { color: var(--primary-600); }
-  .hero-q-sub { font-family: var(--serif); font-size: 1.05rem; font-weight: 400; line-height: 1.6; color: var(--text-primary); margin-bottom: 0.35rem; }
+  .hero-q-sub { font-family: var(--serif); font-size: 1.05rem; font-weight: 400; line-height: 1.6; color: var(--text-primary); margin-bottom: 0.35rem; padding-left: 0.9rem; border-left: 2px solid var(--primary-300); transition: color 0.2s, border-left-color 0.2s; opacity: 0; animation: hero-q-fadein 0.55s ease forwards; }
+  .hero-q-sub:hover { color: var(--primary-600); border-left-color: var(--primary-600); }
+  .hero-q-sub:nth-child(1) { animation-delay: 0.08s; }
+  .hero-q-sub:nth-child(2) { animation-delay: 0.22s; }
+  .hero-q-sub:nth-child(3) { animation-delay: 0.38s; }
+  @keyframes hero-q-fadein { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
   .hero-sub { font-family: var(--sans); font-size: 15px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 2rem; max-width: 540px; }
   .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
   .hero-status { margin-top: 1.75rem; font-family: var(--mono); font-size: 12px; color: var(--text-tertiary); }
