@@ -227,7 +227,7 @@
   .detail-cta { padding: 2.5rem 0 4rem; display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
 
   /* ===== JOIN ===== */
-  .intent-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; padding: 0 0 2.5rem; }
+  .intent-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem; padding: 0 0 2.5rem; }
   .intent-card { background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.4rem; cursor: pointer; transition: border-color 0.15s; }
   .intent-card:hover { border-color: var(--border-default); }
   .intent-card.selected { border-color: var(--primary-300); background: var(--primary-50); }
@@ -244,6 +244,9 @@
   .detail-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-tertiary); margin-bottom: 0.75rem; text-transform: uppercase; }
   .detail-body { font-size: 14px; color: var(--text-secondary); line-height: 1.85; max-width: 600px; margin-bottom: 1.75rem; }
   .detail-body strong { color: var(--text-primary); font-weight: 600; }
+  .wechat-contact { display: inline-flex; align-items: center; gap: 1rem; background: var(--bg-secondary); border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: 0.85rem 1.5rem; }
+  .wechat-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary); }
+  .wechat-id { font-family: var(--mono); font-size: 1rem; font-weight: 600; color: var(--primary-600); }
   .form-row { margin-bottom: 1.1rem; max-width: 480px; }
   .form-label { font-size: 12.5px; color: var(--text-secondary); margin-bottom: 0.4rem; display: block; }
   .form-input, .form-textarea { width: 100%; background: var(--bg-secondary); border: 1px solid var(--border-default); border-radius: var(--radius-sm); padding: 9px 12px; color: var(--text-primary); font-family: var(--sans); font-size: 13.5px; outline: none; }
