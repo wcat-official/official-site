@@ -429,19 +429,23 @@ function closeCase(){
 
 /* ===== JOIN DATA + LOGIC ===== */
 const INTENTS = [
-  { key:"read", titleEn:"READ", title:"阅读", desc:"通过文章、白皮书和案例了解项目", meta:"无需联系，直接阅读" },
-  { key:"anonymous_case", titleEn:"ANONYMOUS CASE", title:"匿名案例", desc:"适合：情绪困扰 / 职业迷茫 / 关系问题 / 意义感危机", meta:"所有资料匿名处理",
-    detailTitle:"匿名案例",
-    detailBody:"如果你正在经历情绪困扰、职业迷茫、关系问题或意义感危机，可以匿名分享你的情况。<strong>所有资料匿名处理</strong>，这是观察，不是诊断或咨询。",
-    fields:[{label:"简单描述你目前的情况",type:"textarea"}] },
-  { key:"longterm", titleEn:"LONG-TERM CASE", title:"长期案例计划", desc:"邀请制，持续记录梦境、反馈与变化过程", meta:"长期观察",
-    detailTitle:"长期案例计划",
-    detailBody:"长期案例计划目前为<strong>邀请制</strong>。如果你愿意被持续观察，可以先留下联系方式，我们会根据当前情况评估是否邀请你加入。内容包括持续记录梦境、阶段性反馈与变化过程，属于长期观察。",
-    fields:[{label:"称呼",type:"input"},{label:"简单说明你的情况",type:"textarea"},{label:"联系方式",type:"input"}] },
-  { key:"cobuild", titleEn:"CO-BUILD", title:"共建计划", desc:"适合：研究 / 翻译 / AI实验 / 工具开发 / 传播", meta:"共同参与项目成长",
-    detailTitle:"共建计划",
-    detailBody:"欢迎研究、翻译、AI实验、工具开发或传播方面的协作。共同参与项目成长。",
-    fields:[{label:"你感兴趣的协作方向",type:"textarea"},{label:"联系方式",type:"input"}] }
+  { key:"read", titleEn:"READ", title:"阅读", desc:"免费公开资料，无需申请，直接浏览即可", meta:"无需联系" },
+  { key:"open_obs", titleEn:"OPEN OBSERVATION", title:"开放观察", desc:"适合：职业困扰 / 关系问题 / 情绪波动 / 梦境记录 / 意义感危机", meta:"基础参与免费",
+    type:"wechat",
+    detailTitle:"开放观察",
+    detailBody:"内容包括：一次性结构观察、梦境记录与整理、基础访谈、状态追踪、匿名案例研究。<br><br>所有资料默认匿名处理。参与不代表认同理论。<strong>基础参与免费。</strong>" },
+  { key:"longterm", titleEn:"LONG-TERM CASE", title:"长期案例", desc:"持续记录变化过程，共同参与研究积累", meta:"长期观察",
+    type:"wechat",
+    detailTitle:"长期随访与案例共建",
+    detailBody:"内容包括：定期随访、梦境追踪、人生阶段记录、相位差变化观察、结构变化档案、工具反馈与共同完善。<br><br>通常在完成基础观察后逐步进入。重点并非咨询，而是共同完成一个长期案例。" },
+  { key:"research", titleEn:"RESEARCH & PUBLICATION", title:"研究与出版合作", desc:"适合：研究人员 / 博士生 / AI研究者 / 翻译者 / 出版机构 / 媒体", meta:"学术合作",
+    type:"contact",
+    detailTitle:"学术、出版与研究合作",
+    detailBody:"合作方向包括：理论讨论、实验设计、数据分析、翻译项目、出版合作、AI工具开发、案例数据库建设。" },
+  { key:"cobuild", titleEn:"CO-BUILD", title:"共建计划", desc:"适合：长期关注项目 / 希望贡献能力", meta:"志愿协作",
+    type:"wechat",
+    detailTitle:"志愿协作与项目共建",
+    detailBody:"可能参与：网站维护、AI工具开发、翻译工作、播客与视频制作、数据整理、国际传播。<br><br>项目目前仍由个人维护，未来会逐渐形成开放协作网络。" }
 ];
 let selectedKey = null;
 function renderGrid(){
@@ -459,20 +463,23 @@ function renderGrid(){
   }).join('');
 }
 function selectIntent(key){
+  const item = INTENTS.find(i=>i.key===key);
+  if (item && item.type === 'contact') {
+    showPage('contact');
+    return;
+  }
   selectedKey = key;
   renderGrid();
-  const item = INTENTS.find(i=>i.key===key);
   const panel = document.getElementById('join-detail-panel');
   panel.innerHTML = `
     <div class="detail-eyebrow">${item.titleEn}</div>
     <h2 class="detail-title">${item.detailTitle}</h2>
     <p class="detail-body">${item.detailBody}</p>
-    <form onsubmit="event.preventDefault(); alert('原型演示：实际表单将在此提交。');">
-      ${item.fields.map(f => `<div class="form-row"><label class="form-label">${f.label}</label>${f.type==='textarea'?`<textarea class="form-textarea"></textarea>`:`<input class="form-input" type="text">`}</div>`).join('')}
-      <button class="btn btn-primary" type="submit">提交</button>
-      <button class="btn btn-secondary" type="button" onclick="closeJoinPanel()">取消</button>
-      <div class="response-note">提交后将由人工审核，回复时间约1–2周。</div>
-    </form>`;
+    <div class="wechat-contact">
+      <div class="wechat-label">微信</div>
+      <div class="wechat-id">meta-jiawei</div>
+    </div>
+    <button class="btn btn-secondary" type="button" onclick="closeJoinPanel()" style="margin-top:1.5rem;">关闭</button>`;
   panel.style.display='block';
   panel.scrollIntoView({behavior:'smooth', block:'start'});
 }
