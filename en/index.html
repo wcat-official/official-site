@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WCAT Open Research Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<button class="mode-toggle" onclick="toggleMode()">Dark Mode</button>
+
+<nav>
+  <a class="nav-logo" onclick="showPage('home')"><img class="nav-logo-icon" src="../logo-icon.png" alt="WCAT"><span>WCAT</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="showPage('home')" data-page="home">Home</a></li>
+    <li><a onclick="showPage('pubs')" data-page="pubs">Publications</a></li>
+    <li><a onclick="showPage('research')" data-page="research">Research</a></li>
+    <li><a onclick="showPage('cases')" data-page="cases">Case Archive</a></li>
+    <li><a onclick="showPage('log')" data-page="log">Research Log</a></li>
+    <li><a onclick="showPage('papers')" data-page="papers">White Papers</a></li>
+    <li><a onclick="showPage('join')" data-page="join">Participate</a></li>
+    <li><a onclick="showPage('about')" data-page="about">About</a></li>
+  </ul>
+  <a class="nav-cta" onclick="showPage('join')">Join Research</a>
+  <span class="nav-lang" style="font-family:var(--mono); font-size:12px; color:var(--text-tertiary); margin-left:0.75rem;"><a href="../cn/index.html" style="color:var(--text-tertiary); text-decoration:none;">中文</a></span>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ══════════ HOME ══════════ -->
+<div class="page active" id="page-home">
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow">WCAT × CMC</div>
+      <h1 class="hero-title">Exploring Experiential Worlds, Subject Structures, and Structural Freedom</h1>
+      <p class="hero-sub">An evolving open research project. Through writing, case observation, dream research, AI experimentation, and open collaboration, we attempt to understand:</p>
+      <div class="hero-questions" style="margin-top:-0.5rem;">
+        <p class="hero-q-sub">Why do different people form different experiential worlds?</p>
+        <p class="hero-q-sub">Why do some pathways gradually become locked?</p>
+        <p class="hero-q-sub">Is there such a thing as observable, reconstructible structural freedom?</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-primary" onclick="showPage('cases')">Browse Case Archive</a>
+        <a class="btn btn-secondary" onclick="showPage('research')">Explore Research</a>
+        <a class="btn btn-secondary" onclick="showPage('join')">Participate</a>
+      </div>
+      <div class="hero-status">Ongoing observation · Open case collection · Continuously updated</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="block">
+      <div class="section-title">Currently in Progress</div>
+      <div class="case-grid">
+        <div class="case-card" onclick="showPage('pubs'); openPub('will-history');">
+          <div class="case-id">Ongoing</div>
+          <div class="case-summary" style="font-weight:600; margin-bottom:0.4rem;">The Short History of Will</div>
+          <div class="case-summary">Using WCAT as a framework to observe subject structures, emotion objectification, and meaning generation.</div>
+        </div>
+        <div class="case-card" onclick="showPage('pubs'); openPub('consciousness-history');">
+          <div class="case-id">Ongoing</div>
+          <div class="case-summary" style="font-weight:600; margin-bottom:0.4rem;">The Short History of Consciousness</div>
+          <div class="case-summary">Approaching consciousness, experiential worlds, and structural freedom from cognitive science and complex systems perspectives.</div>
+        </div>
+        <div class="case-card" onclick="showPage('cases')">
+          <div class="case-id">Ongoing</div>
+          <div class="case-summary" style="font-weight:600; margin-bottom:0.4rem;">Open Case Program</div>
+          <div class="case-summary">Ongoing accumulation of anonymized cases. Target: 100+ short-term cases, 20+ long-term cases.</div>
+        </div>
+        <div class="case-card" onclick="showPage('research')">
+          <div class="case-id">Exploratory</div>
+          <div class="case-summary" style="font-weight:600; margin-bottom:0.4rem;">AI × Subject Structure Experiments</div>
+          <div class="case-summary">Exploring structural changes in the coupling between different subject structures and AI.</div>
+        </div>
+        <div class="case-card" onclick="showPage('cases')">
+          <div class="case-id">Long-term Ongoing</div>
+          <div class="case-summary" style="font-weight:600; margin-bottom:0.4rem;">Dream Observation Program</div>
+          <div class="case-summary">Recording tension, coping patterns, and structural changes observed in dreams.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="section-title">Participation</div>
+      <div class="join-grid-mini">
+        <div class="join-card-mini" onclick="showPage('join'); selectIntent('open_obs');"><div class="join-title-mini">Open Observation</div><div class="join-desc-mini">No identity disclosure required; all materials are anonymized</div></div>
+        <div class="join-card-mini" onclick="showPage('join'); selectIntent('longterm');"><div class="join-title-mini">Long-term Case Program</div><div class="join-desc-mini">Invitation-based; ongoing records of dreams and change processes</div></div>
+        <div class="join-card-mini" onclick="showPage('join'); selectIntent('cobuild');"><div class="join-title-mini">Co-Build Program</div><div class="join-desc-mini">Research / Translation / AI experiments / Tool development</div></div>
+      </div>
+      <div class="section-foot"><a class="link-arrow" onclick="showPage('join')">View all participation pathways →</a></div>
+    </section>
+
+    <!-- Email subscription is not yet available; the entry remains hidden until launch. -->
+    <!--
+    <section class="block" style="border-bottom:none;">
+      <div class="section-title">Stay Connected</div>
+      <p style="font-size:13px; color:var(--text-tertiary);">Email updates are not yet open for subscription (Coming Soon). If you have questions, please visit the <a class="link-arrow" onclick="showPage('contact')" style="display:inline;">Contact page</a>.</p>
+    </section>
+    -->
+  </div>
+</div>
+
+<!-- ══════════ RESEARCH ══════════ -->
+<div class="page" id="page-research">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">RESEARCH</div>
+      <h1 class="page-title">Theory is not the answer.<br>Theory is a question waiting to be tested.</h1>
+      <p class="page-sub">WCAT does not attempt to provide final answers. It poses a question: why do humans accumulate ever more knowledge, yet find it increasingly difficult to achieve genuine change?</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Theory Map</div>
+      <div class="tmap-grid">
+        <div class="tmap-card">
+          <div class="tmap-code">WCAT</div>
+          <div class="tmap-name">Will Circuit Activation Theory</div>
+          <div class="tmap-sub">A mid-level framework</div>
+          <ul class="tmap-list">
+            <li>Emotion objectification</li>
+            <li>Attractor lock-in</li>
+            <li>Decoupling process</li>
+            <li>Meaning generation</li>
+            <li>Subject structure change</li>
+          </ul>
+          <div class="tmap-corr">Corresponding: <a onclick="showPage('pubs'); openPub('will-history');">The Short History of Will</a> · <a onclick="showPage('papers'); openPaper('wcat');">White Paper</a> · <a onclick="showPage('cases')">Case Research</a></div>
+        </div>
+        <div class="tmap-card">
+          <div class="tmap-code">CMC</div>
+          <div class="tmap-name">Consciousness Mapping Cosmology</div>
+          <div class="tmap-sub">An overarching framework</div>
+          <ul class="tmap-list">
+            <li>Consciousness formation</li>
+            <li>Experiential world</li>
+            <li>Encoding and re-encoding</li>
+            <li>Path accessibility</li>
+            <li>Structural freedom</li>
+          </ul>
+          <div class="tmap-corr">Corresponding: <a onclick="showPage('pubs'); openPub('consciousness-history');">The Short History of Consciousness</a> · <a onclick="showPage('papers'); openPaper('cmc');">White Paper</a> · Experiments · Future research</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Theory Overview</div>
+      <div class="intro-prose">
+        <p>WCAT focuses on structural states at the individual level — how emotions are objectified, how attractors form and lock in, and how the decoupling process unfolds. CMC operates at a broader scale, attending to how consciousness forms, how experiential worlds are encoded and re-encoded, and whether structural freedom is observable and reconstructible.</p>
+        <p>Both frameworks are under continuous revision. The research directions, questions, and boundaries listed below represent work at the current stage — not final conclusions.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Current Experiments and Research</div>
+      <div class="section-intro">Research is still in an open phase; findings will be updated continuously.</div>
+      <div class="rq-grid">
+        <div class="rq-card"><div class="rq-id">Open Case Program</div><div class="rq-title">Anonymous Long-term Case Accumulation</div><div class="rq-q">Target: 100+ short-term cases, 20+ long-term cases</div><div class="rq-status">Ongoing</div></div>
+        <div class="rq-card"><div class="rq-id">AI × Subject Structure Experiments</div><div class="rq-title">Human–AI Coupling Process</div><div class="rq-q">Observing structural changes as different subject structures engage with AI</div><div class="rq-status">Exploratory</div></div>
+        <div class="rq-card"><div class="rq-id">Dream Observation Program</div><div class="rq-title">Structural Changes in Dreams</div><div class="rq-q">Long-term recording of tension, coping patterns, and recurring motifs</div><div class="rq-status">Long-term Ongoing</div></div>
+        <div class="rq-card"><div class="rq-id">Hypotheses & Predictions</div><div class="rq-title">Verification of Preliminary Predictions</div><div class="rq-q">Some propositions have formed preliminary predictions; these will be progressively tested through cases and experiments</div><div class="rq-status">Ongoing verification</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Working Hypotheses</div>
+      <div class="notice"><strong>Note</strong>: The following are working hypotheses. They have not yet received sufficient empirical support and may be confirmed, revised, or falsified.</div>
+      <div class="hypo-card"><div class="hypo-top"><span class="hypo-id">WCAT-H1</span><span class="hypo-status validating">Validating</span></div><div class="hypo-text">Volition is not a personality trait but a structural state.</div></div>
+      <div class="hypo-card"><div class="hypo-top"><span class="hypo-id">WCAT-H2</span><span class="hypo-status validating">Validating</span></div><div class="hypo-text">"Knowing but not doing" may be the result of a decoupling between the semantic and action systems.</div></div>
+      <div class="hypo-card"><div class="hypo-top"><span class="hypo-id">WCAT-H3</span><span class="hypo-status revised">Revised</span></div><div class="hypo-text">Chronic procrastination does not necessarily indicate weak volition.</div><div class="hypo-note">2026.04 revision: clearly distinguishes two subtypes — "defensive stasis" and "capacity deficit."</div></div>
+      <div class="hypo-card"><div class="hypo-top"><span class="hypo-id">WCAT-H4</span><span class="hypo-status validating">Validating</span></div><div class="hypo-text">Meaning crises tend to occur following the breakdown of identity structures.</div></div>
+      <div class="hypo-card"><div class="hypo-top"><span class="hypo-id">WCAT-H5</span><span class="hypo-status validating">Validating</span></div><div class="hypo-text">Individual development may follow identifiable structural transition pathways.</div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Theoretical Boundaries</div>
+      <div class="section-intro">The following are areas that WCAT and CMC currently cannot explain, or have not yet attempted to explain.</div>
+      <div class="boundary-item"><div class="boundary-title">No Clinical Diagnosis</div><div class="boundary-text">Structural encodings (R-zone, E1–E8, etc.) are research observation tools, not diagnostic criteria for mental illness. They cannot substitute for professional psychological counseling or psychiatric assessment.</div></div>
+      <div class="boundary-item"><div class="boundary-title">Limited Sample Size</div><div class="boundary-text">The current case archive is small. Any structural conclusions should be treated as preliminary observations, not statistically significant findings.</div></div>
+      <div class="boundary-item"><div class="boundary-title">Unknown Cultural Applicability</div><div class="boundary-text">Existing cases are concentrated in specific cultural and linguistic contexts. There is currently no evidence for or against the applicability of this framework to other cultural settings.</div></div>
+      <div class="boundary-item"><div class="boundary-title">Causality Not Established</div><div class="boundary-text">Current case research primarily presents correlational observations. Causal directions have not yet been established through experimental design.</div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Research Methods</div>
+      <div class="method-grid">
+        <div class="method-item"><div class="method-name">Writing</div><div class="method-desc">Long-term serialized publication and conceptual clarification</div></div>
+        <div class="method-item"><div class="method-name">Case Observation</div><div class="method-desc">Qualitative collection of life experience</div></div>
+        <div class="method-item"><div class="method-name">Dream Research</div><div class="method-desc">Recording structural changes observed in dreams</div></div>
+        <div class="method-item"><div class="method-name">AI Experiments</div><div class="method-desc">Structural features in human–AI collaboration</div></div>
+        <div class="method-item"><div class="method-name">Long-term Follow-up</div><div class="method-desc">Timeline observation of change processes</div></div>
+        <div class="method-item"><div class="method-name">Future: Collaborative Research</div><div class="method-desc">Still in planning; academic collaboration welcome</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Key Terms at a Glance</div>
+      <div class="glossary-row">
+        <div class="gloss-term"><div class="gloss-code">S_sem</div><div class="gloss-def">Semantic Maturity</div></div>
+        <div class="gloss-term"><div class="gloss-code">S_exe</div><div class="gloss-def">Existential Integration</div></div>
+        <div class="gloss-term"><div class="gloss-code">ΔP</div><div class="gloss-def">Theory–Reality Lead Relationship</div></div>
+        <div class="gloss-term"><div class="gloss-code">R-zone</div><div class="gloss-def">Structural State Zone</div></div>
+        <div class="gloss-term"><div class="gloss-code">E1–E8</div><div class="gloss-def">Eight-indicator Structural Event Profile</div></div>
+      </div>
+      <div class="section-foot"><a class="link-arrow" onclick="showPage('glossary')">View full glossary →</a></div>
+    </div>
+
+    <div class="cta-block">
+      <h3>Academic Collaboration Welcome</h3>
+      <p>Researchers in cognitive science, psychology, philosophy, education, AI, and organizational behavior are welcome to explore these questions, challenge or revise existing hypotheses.</p>
+      <a class="btn btn-primary" onclick="showPage('join'); selectIntent('cobuild');">Submit a Collaboration Inquiry</a>
+      <a class="btn btn-secondary" onclick="showPage('papers'); openPaper('wcat');">Read WCAT White Paper</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ CASE LIBRARY ══════════ -->
+<div class="page" id="page-cases">
+  <div class="wrap">
+    <div id="cl-list-view">
+      <div class="page-header">
+        <div class="eyebrow">CASE ARCHIVE</div>
+        <h1 class="page-title">Case Archive</h1>
+        <p class="page-sub">All cases have been anonymized and appropriately revised. Case analyses do not provide diagnostic conclusions. They are used primarily to observe emotion loops, meaning crises, decoupling processes, AI coupling, creative stasis, and subject structure changes.</p>
+      </div>
+      <div class="notice"><strong>Note</strong>: Case analyses serve as structural observation tools only and do not constitute medical, psychological, or other professional advice.</div>
+      <div class="filter-block">
+        <div class="filter-label">Phenomenon Tags</div>
+        <div class="chip-row" id="tag-filters"></div>
+        <div class="filter-label">Tracking Status</div>
+        <div class="chip-row" id="status-filters"></div>
+        <div class="result-count" id="result-count"></div>
+      </div>
+      <div class="case-grid" id="cl-case-grid"></div>
+      <div class="empty-state" id="cl-empty-state" style="display:none;">No cases match current filters</div>
+
+      <div class="section" style="margin-top:1rem;">
+        <div class="section-title">Dream Observations</div>
+        <p style="font-family:var(--serif); font-size:15px; color:var(--text-primary); line-height:1.85; max-width:580px; margin-bottom:1rem;">Dreams do not necessarily reveal truth. But the tensions, coping patterns, and recurring motifs that appear in dreams may resonate with structural patterns in waking life.</p>
+        <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.8; max-width:580px; margin-bottom:1.5rem;">Anonymized dream records are collected here to observe: recurring tension, risk perception, relational patterns, path lock-in, and meaning generation.</p>
+        <div class="case-grid">
+          <div class="case-card" style="cursor:default;">
+            <div class="case-id">Dream Record</div>
+            <div class="case-tags"><span class="tag">Recurring Tension</span></div>
+            <div class="case-summary">A recurring pursuit scenario — always waking just before reaching the goal.</div>
+          </div>
+          <div class="case-card" style="cursor:default;">
+            <div class="case-id">Dream Record</div>
+            <div class="case-tags"><span class="tag">Path Lock-in</span></div>
+            <div class="case-summary">Repeatedly returning to the same room in a dream; the door shifts direction each time, yet escape remains impossible.</div>
+          </div>
+          <div class="case-card" style="cursor:default;">
+            <div class="case-id">Dream Record</div>
+            <div class="case-tags"><span class="tag">Relational Pattern</span></div>
+            <div class="case-summary">Repeatedly reconciling with estranged figures in dreams; the emotional residue lingers for hours after waking.</div>
+          </div>
+        </div>
+        <p style="font-size:12.5px; color:var(--text-tertiary); margin-top:1.5rem; max-width:560px; line-height:1.8;">Dream analyses serve as auxiliary observation tools only and do not represent definitive interpretations.</p>
+      </div>
+    </div>
+    <div id="cl-detail-view"></div>
+  </div>
+</div>
+
+<!-- ══════════ JOIN ══════════ -->
+<div class="page" id="page-join">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">PARTICIPATION PATHWAYS</div>
+      <h1 class="page-title">Participation Pathways</h1>
+      <p class="page-sub">WCAT / CMC is still in an open research phase. Basic participation is free. Different pathways correspond to different levels of engagement.</p>
+    </div>
+
+    <p class="join-principle"><strong>No prior commitment to any theory or conclusion is required.</strong> Supporters, skeptics, and critics are equally welcome. You may simply read, or choose to participate in observation, long-term follow-up, research collaboration, or co-building.</p>
+
+    <div class="intent-grid" id="intent-grid-a"></div>
+
+    <div class="honest-note">As this project is currently maintained by one person, all inquiries are handled individually. Response time may be 1–2 weeks.</div>
+    <div id="join-detail-panel"></div>
+
+    <div class="section">
+      <div class="section-title">Frequently Asked Questions</div>
+      <div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do I need to agree with WCAT's claims before participating?<span class="faq-toggle">+</span></button><div class="faq-a">No. The prerequisite for participation is not agreement, but willingness to share or collaborate. Skepticism and criticism are equally valuable to this research.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is participation paid?<span class="faq-toggle">+</span></button><div class="faq-a">No. Basic participation is free. Supporting the project is entirely voluntary — see the <a class="link-arrow" onclick="showPage('support')" style="display:inline;">Support page</a>.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Will my data be made public?<span class="faq-toggle">+</span></button><div class="faq-a">All personal information is anonymized. Any public content appears only in structural, non-identifiable form. Raw records will not enter any public channel. You may request deletion of your data at any time.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I withdraw at any time?<span class="faq-toggle">+</span></button><div class="faq-a">Yes. All participation is voluntary. You may withdraw at any time and for any reason.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is this a psychological counseling or diagnostic service?<span class="faq-toggle">+</span></button><div class="faq-a">No. This is an observational research project. It does not provide psychological counseling, diagnoses, or clinical advice. If you are facing difficulties, we recommend also seeking professional counseling or medical support.</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Notes</div>
+      <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.9; max-width:620px;">This project is in a long-term open research phase. Reading, questioning, criticizing, participating, or leaving — all are entirely welcome. Participation does not imply acceptance of any theoretical conclusion. The goal of this research is not to prove a belief, but to allow theory and reality to refine each other through sustained observation. If the theory needs revision in the future, revision is equally welcome. <strong style="color:var(--text-primary);">Openness matters more than conclusions.</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ WHITE PAPERS ══════════ -->
+<div class="page" id="page-papers">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">WHITE PAPERS</div>
+      <h1 class="page-title">Citable, versioned theoretical documents</h1>
+      <p class="page-sub">White papers are the technical, citable documents of WCAT, distinct from the serialized publications intended for general readers. Once a version is released, its URL is permanently preserved — even when newer versions are available, older versions remain findable and citable.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">All White Papers</div>
+      <div id="papers-index"></div>
+    </div>
+
+    <div id="paper-detail" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- ══════════ RESEARCH LOG ══════════ -->
+<div class="page" id="page-log">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">RESEARCH LOG</div>
+      <h1 class="page-title">A Record of Ongoing Progress</h1>
+      <p class="page-sub">Updated monthly. This log records how the project itself develops — case growth, scale revisions, theoretical adjustments, and collaboration progress — rather than results per se.</p>
+    </div>
+
+    <div class="section">
+      <div class="filter-label" style="font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:0.75rem;">Filter by type</div>
+      <div class="chip-row" id="log-filters" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2rem;"></div>
+      <div id="log-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ABOUT ══════════ -->
+<div class="page" id="page-about">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">ABOUT</div>
+      <h1 class="page-title">WCAT Open Research Project</h1>
+      <p class="page-sub">A long-term research project on volition, meaning, and human transformation.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Research Origins</div>
+      <p style="font-family:var(--serif); font-size:16px; line-height:1.85; max-width:600px; color:var(--text-primary); margin-bottom:1rem;">This research began with a simple question:</p>
+      <div class="origin-quote">Why do we understand more and more, yet find it harder and harder to change?</div>
+      <p style="font-size:14px; color:var(--text-secondary); line-height:1.8; max-width:580px; margin-top:1rem;">Over the past few decades, humanity has accumulated unprecedented knowledge. Yet anxiety has not diminished, disorientation has not decreased, and crises of meaning have become increasingly common. WCAT's research begins precisely here.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Core Questions</div>
+      <p class="section-intro">The questions addressed by WCAT and CMC span cognitive science, psychology, philosophy, education, and AI research:</p>
+      <ul style="max-width:620px; padding-left:1.25rem; font-size:14px; color:var(--text-primary); line-height:2;">
+        <li>What is volition?</li>
+        <li>Why is change so difficult?</li>
+        <li>How does meaning arise, and why does it collapse?</li>
+        <li>Are there identifiable pathways for individual structural transitions?</li>
+        <li>What is the relationship between individual consciousness and structures at the civilizational scale?</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Project Timeline</div>
+      <div class="proj-timeline">
+        <div class="proj-tl-item">
+          <div class="proj-tl-dot"></div>
+          <div class="proj-tl-year">2023</div>
+          <div class="proj-tl-content">Began systematically organizing research notes; formed early conceptual framework.</div>
+        </div>
+        <div class="proj-tl-item">
+          <div class="proj-tl-dot"></div>
+          <div class="proj-tl-year">2024</div>
+          <div class="proj-tl-content">Developed the initial WCAT framework; began drafting theoretical white papers.</div>
+        </div>
+        <div class="proj-tl-item">
+          <div class="proj-tl-dot"></div>
+          <div class="proj-tl-year">2025</div>
+          <div class="proj-tl-content">Completed <strong>The Short History of Will</strong>, WCAT White Paper, and CMC White Paper.</div>
+        </div>
+        <div class="proj-tl-item">
+          <div class="proj-tl-dot active"></div>
+          <div class="proj-tl-year">2026</div>
+          <div class="proj-tl-content">Launched the scale program, case program, and long-term follow-up program. Official site opened.</div>
+        </div>
+        <div class="proj-tl-item">
+          <div class="proj-tl-dot"></div>
+          <div class="proj-tl-year">2027+</div>
+          <div class="proj-tl-content">Continuing: experimental collaboration, database construction, theory verification.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Long-term Vision</div>
+      <p class="section-intro">The aim is to build an open case database, a long-term tracking sample pool, and a cross-disciplinary research network. The goal is not to prove this theory correct, but to understand more accurately how humans change.</p>
+      <div class="roadmap-grid">
+        <div class="roadmap-card">
+          <div class="roadmap-phase">Phase I</div>
+          <div class="roadmap-period">2025–2027</div>
+          <ul class="roadmap-items">
+            <li>Framework stabilization</li>
+            <li>Scale system established</li>
+            <li>100+ cases collected</li>
+          </ul>
+        </div>
+        <div class="roadmap-card">
+          <div class="roadmap-phase">Phase II</div>
+          <div class="roadmap-period">2027–2030</div>
+          <ul class="roadmap-items">
+            <li>Long-term tracking data</li>
+            <li>Experimental collaboration begins</li>
+            <li>1,000+ cases</li>
+          </ul>
+        </div>
+        <div class="roadmap-card">
+          <div class="roadmap-phase">Phase III</div>
+          <div class="roadmap-period">2030–2035</div>
+          <ul class="roadmap-items">
+            <li>Open database</li>
+            <li>International academic collaboration</li>
+            <li>Interdisciplinary research network</li>
+          </ul>
+        </div>
+        <div class="roadmap-card">
+          <div class="roadmap-phase">Phase IV</div>
+          <div class="roadmap-period">2035+</div>
+          <ul class="roadmap-items">
+            <li>Applications in education</li>
+            <li>AI collaborative research</li>
+            <li>Research on organizational and civilizational governance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Published Works</div>
+      <div class="works-list">
+        <div class="work-row"><span class="work-name">The Short History of Will</span><span class="work-meta"><a class="link-arrow" onclick="showPage('pubs'); openPub('will-history');">Serializing →</a></span></div>
+        <div class="work-row"><span class="work-name">The Short History of Consciousness</span><span class="work-meta"><a class="link-arrow" onclick="showPage('pubs'); openPub('consciousness-history');">Serializing →</a></span></div>
+        <div class="work-row"><span class="work-name">WCAT White Paper</span><span class="work-meta"><a class="link-arrow" onclick="showPage('papers'); openPaper('wcat');">v1.2 →</a></span></div>
+        <div class="work-row"><span class="work-name">CMC White Paper</span><span class="work-meta"><a class="link-arrow" onclick="showPage('papers'); openPaper('cmc');">v1.0 →</a></span></div>
+        <div class="work-row"><span class="work-name">Scale System / Case Research Program</span><span class="work-meta"><a class="link-arrow" onclick="showPage('cases')">Case Archive →</a></span></div>
+      </div>
+    </div>
+
+    <div class="section" style="border-bottom:none;">
+      <div class="section-title">About the Researcher</div>
+      <div class="founder-block" style="margin-bottom:1.75rem;">
+        <div class="founder-name">Jiawei</div>
+        <div class="founder-bio">
+          <p style="margin-bottom:0.85rem;">An independent researcher. Years of sustained writing, documentation, and case observation gradually developed into the WCAT and CMC frameworks — still being revised.</p>
+          <p style="margin-bottom:0.85rem;">Currently unaffiliated with any academic institution. This independent research is grounded primarily in long-term personal observation and iterative reflection. Methodological foundations include cognitive science, complex systems theory, and phenomenological interviewing — though the framework does not belong to any single discipline.</p>
+          <p>This body of observation continues to evolve. People from all backgrounds are welcome to discuss, examine, and challenge it.</p>
+        </div>
+      </div>
+      <div style="margin-top:1.25rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <a class="btn btn-secondary" onclick="showPage('pubs')">Read Publications</a>
+        <a class="btn btn-secondary" onclick="showPage('join')">Participate</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════ PUBLICATIONS ══════════ -->
+<div class="page" id="page-pubs">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">PUBLICATIONS</div>
+      <h1 class="page-title">Accessible narrative introductions to the research</h1>
+      <p class="page-sub">Publications differ from white papers: white papers are technical, citable framework documents; publications are serialized, accessible narrative works — the first point of entry for most readers.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">All Publications</div>
+      <div id="pubs-index"></div>
+    </div>
+
+    <div id="pub-detail" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- ══════════ GLOSSARY ══════════ -->
+<div class="page" id="page-glossary">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">GLOSSARY</div>
+      <h1 class="page-title">Glossary</h1>
+      <p class="page-sub">The coded terms appearing throughout the Case Archive, research plans, and white papers have authoritative definitions here. All pages referencing these terms should maintain consistent usage.</p>
+    </div>
+
+    <div class="section">
+      <input class="gloss-search" id="gloss-search" type="text" placeholder="Search terms, e.g. E7, cultural decoupling, ΔP..." oninput="filterGlossary(this.value)">
+      <div id="glossary-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ CONTACT ══════════ -->
+<div class="page" id="page-contact">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">CONTACT</div>
+      <h1 class="page-title">Contact</h1>
+      <p class="page-sub">If you wish to participate in case observation, long-term follow-up, or volunteer collaboration, the <a class="link-arrow" onclick="showPage('join')" style="display:inline;">Participation page</a> offers more appropriate entry points. This page is primarily for research collaboration, publishing inquiries, and other contact.</p>
+    </div>
+
+    <div class="section">
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-title">Research Collaboration</div>
+          <div class="contact-desc">WCAT / CMC theoretical discussion, experimental design and structural verification, data analysis and case research, doctoral projects and academic collaboration, AI and cognitive science topics.</div>
+          <a class="contact-email" href="mailto:wcat-world@proton.me">wcat-world@proton.me</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-title">Publishing & Media</div>
+          <div class="contact-desc">Publisher partnerships, translator collaboration, media interviews, podcast and video invitations, academic events, and public lectures.</div>
+          <a class="contact-email" href="mailto:wcat-world@proton.me">wcat-world@proton.me</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-title">Cases / Long-term Follow-up / Volunteering</div>
+          <div class="contact-desc">These participation modes have dedicated application processes. Please go directly to the Participation page to select the appropriate pathway.</div>
+          <a class="link-arrow" onclick="showPage('join')">Go to Participation page →</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-title">General Inquiries</div>
+          <div class="contact-desc">If you simply want to learn about the project, exchange ideas, or stay in touch, feel free to reach out.</div>
+          <div style="margin-bottom:0.5rem;"><span style="font-size:13px; color:var(--text-tertiary);">WeChat: </span><span style="font-family:var(--mono); font-size:13px; color:var(--text-primary);">meta-jiawei</span></div>
+          <a class="contact-email" href="mailto:wcat-world@proton.me">wcat-world@proton.me</a>
+        </div>
+      </div>
+
+      <div class="not-forum-note">This project is currently maintained by one person. Email response time may range from several days to 1–2 weeks. Thank you for your patience.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Official Channels & Index</div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-title">Official Website</div>
+          <a class="contact-email" href="https://wcat.world/" target="_blank">https://wcat.world/</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-title">OIP Matrix</div>
+          <div class="contact-desc">Research roadmap, publication plans, and long-term project index.</div>
+          <a class="contact-email" href="https://local-wealth-ef7.notion.site/2e38c67ec23b809cbeb1fed72cb825f9" target="_blank">View on Notion →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" style="border-bottom:none;">
+      <div class="section-title">Platforms & Content</div>
+      <p style="font-size:13px; color:var(--text-tertiary); max-width:560px; line-height:2;">
+        Different platforms carry different types of content:<br>
+        <strong style="color:var(--text-primary);">Medium</strong> — Will Circuit Journal<br>
+        <strong style="color:var(--text-primary);">Matters ｜ Xiaohongshu ｜ Jike ｜ Zhihu</strong> — Jiawei<br>
+        <strong style="color:var(--text-primary);">Video Channel</strong> — Ten O'Clock Observatory (live most evenings around 22:00)<br>
+        <strong style="color:var(--text-primary);">WeChat Public Account</strong> — 意识地平线<br>
+        <strong style="color:var(--text-primary);">Douban Reading</strong> — The Short History of Will<br>
+        <strong style="color:var(--text-primary);">Podcast</strong>(Xiaoyuzhou ｜ Apple Podcasts ｜ Spotify) — Structure Misalignment
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PRIVACY & ETHICS ══════════ -->
+<div class="page" id="page-privacy">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">METHODS, DATA &amp; ETHICS</div>
+      <h1 class="page-title">Methods, Data & Ethics</h1>
+      <p class="page-sub">This is not a legal disclaimer, but a statement of the principles actually followed in case observation and data handling. If you are considering whether to participate in cases or long-term follow-up, this is the page to read first.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Research Nature and Scope</div>
+      <div class="notice">
+        <strong>Important:</strong> WCAT and CMC are currently open theoretical frameworks and working hypotheses. They do not constitute medical, psychological diagnostic, or therapeutic advice.
+      </div>
+      <div class="intro-prose">
+        <p>The WCAT Open Research Project focuses on experiential structures, action patterns, meaning generation, and subject change — not on pathologizing individuals.</p>
+        <p>All cases, scales, interviews, and dream records are used to observe the processes of change in volition, meaning, subject structure, and experiential worlds. Any interpretation should be regarded as a provisional observation, not a final conclusion.</p>
+      </div>
+      <div class="commit-list" style="margin-top:1.5rem;">
+        <div class="commit-item"><span class="commit-mark">—</span><div>Does not provide psychological diagnoses, and does not substitute for psychological counseling, psychiatric services, or medical advice.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>Does not promise any individual change outcomes, and does not treat case participation as an intervention.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>Does not use a single case as theoretical proof; all case interpretations are provisional observations.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>Does not reduce participants' experiences to fixed labels.</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Data Sources</div>
+      <p class="section-intro">Current data come primarily from the following sources. Different sources vary in reliability, completeness, and interpretive force, and are not treated as equivalent.</p>
+      <div class="method-grid">
+        <div class="method-item">
+          <div class="method-name">Anonymous Case Submissions</div>
+          <div class="method-desc">Experiences, difficulties, change processes, and self-observations submitted voluntarily by participants.</div>
+        </div>
+        <div class="method-item">
+          <div class="method-name">Scale Completion</div>
+          <div class="method-desc">Used for preliminary observation of structural variables, action resistance, meaning stability, and change phases.</div>
+        </div>
+        <div class="method-item">
+          <div class="method-name">Long-term Follow-up Records</div>
+          <div class="method-desc">Periodic recording of action, relationships, dreams, emotional states, and identity changes.</div>
+        </div>
+        <div class="method-item">
+          <div class="method-name">Interviews and Written Records</div>
+          <div class="method-desc">Open-ended interviews or written questions supplementing the timeline and structural context of cases.</div>
+        </div>
+        <div class="method-item">
+          <div class="method-name">Dream Observations</div>
+          <div class="method-desc">Recording of tension, coping patterns, symbolic objects, and structural change signals in dreams.</div>
+        </div>
+        <div class="method-item">
+          <div class="method-name">AI Collaboration Experiment Records</div>
+          <div class="method-desc">Observing structural changes in different subject structures during AI dialogue, writing, or decision support.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Data Processing Pipeline</div>
+      <p class="section-intro">Cases are not treated as direct theoretical proof. Complete raw records are stored only on the researcher's local machine or private database. What is publicly displayed is only derived information that has been anonymized, restructured, and appropriately modified.</p>
+      <div class="layer-diagram">
+        <div class="layer-box layer-private">Raw Layer — Participant narratives, open-ended responses, scales, interviews, dreams, or phase records</div>
+        <div class="layer-arrow">↓</div>
+        <div class="layer-box layer-process">Anonymization — Removing identifying information, replacing with codes, age ranges, and general descriptions</div>
+        <div class="layer-arrow">↓</div>
+        <div class="layer-box layer-process">Structural Coding — Annotating action resistance, meaning state, emotion objectification, attractor lock-in, and related elements</div>
+        <div class="layer-arrow">↓</div>
+        <div class="layer-box layer-process">Interpretation & Comparison — Restructuring narratives and comparing across cases</div>
+        <div class="layer-arrow">↓</div>
+        <div class="layer-box layer-public">Public Layer — Anonymized summaries, structural encodings, and revisable working hypotheses</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Core Commitments</div>
+      <div class="commit-list">
+        <div class="commit-item"><span class="commit-mark">—</span><div>Raw data <strong style="color:var(--text-primary);">will not be made public</strong>, nor will it enter any public website or code repository.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>Public content may be <strong style="color:var(--text-primary);">anonymized, restructured, and appropriately modified</strong> — it is not verbatim.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>Cases are used primarily for <strong style="color:var(--text-primary);">structural observation</strong> and do not constitute diagnoses.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>All content is <strong style="color:var(--text-primary);">not for commercial sale</strong>.</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Anonymization Methods</div>
+      <ul style="max-width:580px; padding-left:1.25rem; font-size:13.5px; color:var(--text-secondary); line-height:2;">
+        <li>No real names or nicknames that could be linked to real identities; only codes are used</li>
+        <li>Exact birth years replaced with age ranges; specific cities replaced with broad regions</li>
+        <li>Verbatim records are not published; what is made public is a researcher-rewritten summary</li>
+        <li>Structural encoding values (e.g., E1–E8) carry no narrative content and cannot be used to identify individuals</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Your Rights</div>
+      <div class="right-item"><span class="right-mark">01</span><div class="right-text"><strong>Withdraw at any time</strong>: All participation is voluntary. You may withdraw at any time and for any reason.</div></div>
+      <div class="right-item"><span class="right-mark">02</span><div class="right-text"><strong>Request deletion</strong>: You may request deletion of your data at any time, including already anonymized derived information.</div></div>
+      <div class="right-item"><span class="right-mark">03</span><div class="right-text"><strong>Know how your data is used</strong>: You have the right to know how your data will be used and whether it will be publicly displayed.</div></div>
+      <div class="right-item"><span class="right-mark">04</span><div class="right-text"><strong>No agreement required</strong>: Participation does not imply agreement with any claim made by WCAT. Skeptics and critics are equally protected by these rights.</div></div>
+    </div>
+
+    <div class="section" style="border-bottom:none;">
+      <div class="section-title">Research Ethics Principles</div>
+      <div class="principle-row">
+        <span class="principle-tag">Openness</span>
+        <span class="principle-tag">Challengeability</span>
+        <span class="principle-tag">Revisability</span>
+        <span class="principle-tag">Falsifiability</span>
+      </div>
+      <p style="font-size:13.5px; color:var(--text-tertiary); margin-top:1rem; max-width:560px; line-height:1.8;">If you have any questions about data handling, feel free to ask directly via the <a class="link-arrow" onclick="showPage('contact')" style="display:inline;">Contact page</a>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SUPPORT ══════════ -->
+<div class="page" id="page-support">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">SUPPORT</div>
+      <h1 class="page-title">Support the Project</h1>
+      <p class="page-sub">WCAT × CMC is still in an open research phase. Basic participation remains free.</p>
+    </div>
+
+    <div class="section">
+      <p style="font-size:14px; color:var(--text-secondary); line-height:1.85; max-width:580px; margin-bottom:1.5rem;">If this work has been useful to you, or if you value sustained open research, you may support the project's continued development through:</p>
+      <ul style="max-width:480px; padding-left:1.25rem; font-size:14px; color:var(--text-primary); line-height:2;">
+        <li>Reading and sharing</li>
+        <li>Participating in cases</li>
+        <li>Providing feedback</li>
+        <li>Voluntary financial support</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <p style="font-size:14px; color:var(--text-secondary); line-height:1.85; max-width:580px;">Future publications, tools, and research outputs will be made available to supporters first.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">A Few Notes</div>
+      <div class="commit-list">
+        <div class="commit-item"><span class="commit-mark">—</span><div>Support <strong style="color:var(--text-primary);">does not constitute a purchase commitment</strong>.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>Support <strong style="color:var(--text-primary);">does not affect anyone's right to participate</strong>.</div></div>
+      </div>
+    </div>
+
+    <div class="section" style="border-bottom:none;">
+      <div class="section-title">How to Support</div>
+      <span class="coming-soon">Methods · Coming Soon</span>
+      <p style="font-size:13px; color:var(--text-tertiary); margin-top:1rem; max-width:500px; line-height:1.8;">This page will be updated when specific methods are confirmed.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>© 2026 WCAT OPEN RESEARCH PROJECT</div>
+  <div><a onclick="showPage('contact')">Contact</a><a onclick="showPage('glossary')">Glossary</a><a onclick="showPage('privacy')">Methods &amp; Ethics</a><a onclick="showPage('support')">Support</a></div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
