@@ -102,26 +102,51 @@ const PUBS = [
     status: "serializing",
     statusLabel: "连载中",
     description: "面向大众的叙事性入口。从历史脉络出发，追溯人类如何理解'意志'这个概念——不需要任何背景知识即可阅读。",
-    chapters: [
-      { number: 1, title: "意志是什么", date: "2025-08-01" },
-      { number: 2, title: "古典时代的意志观", date: "2025-08-15" },
-      { number: 3, title: "意志的消失：行为主义的冲击", date: "2025-09-02" },
-      { number: 4, title: "重新发现结构", date: "2025-10-10" },
-      { number: 5, title: "知道却做不到", date: "2025-11-20" },
-      { number: 6, title: "吸引子与命名", date: "2026-01-15" },
-      { number: 7, title: "命名与失效", date: "2026-06-10" }
+    trackingUrl: "https://read.douban.com/column/72467157/?dcs=search",
+    intro: { title: "导论：为什么必须重写一部意志史？", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484065&idx=1&sn=616390aa9d366e1ba8c393228a7fc4c7&scene=21#wechat_redirect" },
+    parts: [
+      {
+        partTitle: "第一编｜系统0：意志尚未诞生的世界",
+        partIntro: "我们从最底层的'意志'来源出发，从一种想当然的属性，还原为一个在演化中艰难生成的结构。",
+        chapters: [
+          { title: "系统0：在没有'我'的世界里：云雾态意识", date: "2026-01-28", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484074&idx=1&sn=1e5d61806f9aee8ea8abeb980ca9d5ed&scene=21#wechat_redirect" },
+          { title: "回路0.5：前意志结构：生命如何被无形牵引", date: "2026-01-30", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484079&idx=1&sn=ecc20e808d3292ac69e207454939b82d&scene=21#wechat_redirect" }
+        ]
+      },
+      {
+        partTitle: "第二编｜个人意志的生成：W-CAT四回路模型",
+        partIntro: "我们从个体意志的角度，慢慢描绘出一张个体如何以结构拓扑的形式，拉扯与跃迁的地图，它并不特别，每个人都有可能握住它，选择自己的结构入口。",
+        chapters: [
+          { title: "回路1.0：本能驱动的牢笼", date: "2026-01-31", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484085&idx=1&sn=d2d69485620edf2e5edbcacbb0b31c6f&scene=21#wechat_redirect" },
+          { title: "回路1.5：基因与模因的战争：关于\"青春期叛逆\"与\"中年危机\"的结构性解读", date: "2026-02-03", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484092&idx=1&sn=83d0922b5fbc84fab34c1f899c38b7b4&scene=21#wechat_redirect" },
+          { title: "回路2.0：我们都在一艘巨大的意识航母之上，自动航行", date: "2026-02-05", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484099&idx=1&sn=70c027b554c4420e087ec42edfa63491&scene=21#wechat_redirect" },
+          { title: "回路2.5：高功能陷阱：为什么越聪明的人，越容易陷入危险的自由", date: "2026-02-11", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484246&idx=1&sn=d0ed3c482cfbb72d8db6a777715f8a18&scene=21#wechat_redirect" },
+          { title: "回路3.0：当认知的重力消失之后", date: "2026-02-12", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484110&idx=1&sn=c91c587faf4f7a2a8a63775ce5f3aff5&scene=21#wechat_redirect" },
+          { title: "回路3.5：当认知的重力消失之后，系统只有两个选择，那是回退，还是重组？", date: "2026-02-20", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484124&idx=1&sn=ff09b2e5f110f7db86e06dc242d29bfa&scene=21#wechat_redirect" },
+          { title: "回路4.0：自主生成吸引子与创造性语义耦合——从《红楼梦》、皮娜·鲍什 到《芬尼根的守灵夜》", date: "2026-03-10", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484155&idx=1&sn=dbfae5db417b346149544d1e305bd66d&scene=21#wechat_redirect" }
+        ]
+      },
+      {
+        partTitle: "第三编｜文明意志的沉积：谁在替人类做选择？",
+        partIntro: "个体意志与集体意志缠绕而生，拓扑同构地形成文明史，这也揭示了我们所面临时代的结构性困境。",
+        chapters: [
+          { title: "从个体到文明：意志结构如何被世界继承", date: "2026-05-17", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484252&idx=1&sn=5d6a4fc1be6adc44e3c657799ebf32a4&scene=21#wechat_redirect" },
+          { title: "文明结构 0.5：当意志开始被文明记住——巫性文明与集体结构的第一次沉积", date: "2026-05-17", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484297&idx=1&sn=bf432493403a624214caf8d797486413&scene=21#wechat_redirect" },
+          { title: "文明结构 1.0：当人类开始命名世界——生理吸引子如何冻结为文明现实", date: "2026-05-23", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484321&idx=1&sn=44bb23e4557608050e7be8e9ee99c153&scene=21#wechat_redirect" },
+          { title: "文明结构 1.5：当人类开始思考自身——抽象意义如何塑造文明", date: "2026-06-16", url: null },
+          { title: "文明结构 2.0：当思想开始统治世界——规训系统如何塑造文明现实", date: "2026-06-16", url: null }
+        ]
+      }
     ]
   },
   {
     id: "consciousness-history",
     name: "《意识简史》",
-    status: "serializing",
-    statusLabel: "连载中",
-    description: "《意志简史》的延伸阅读，探讨意识与意志之间更深的结构关系，为 CMC 框架提供叙事性背景。",
-    chapters: [
-      { number: 1, title: "意识问题的回归", date: "2026-02-01" },
-      { number: 2, title: "反身性是如何形成的", date: "2026-04-18" }
-    ]
+    status: "planned",
+    statusLabel: "规划中",
+    description: "《意志简史》的延伸阅读，探讨意识与意志之间更深的结构关系，为 CMC 框架提供叙事性背景。尚未开始连载。",
+    intro: null,
+    parts: []
   },
   {
     id: "2080",
@@ -129,47 +154,64 @@ const PUBS = [
     status: "planned",
     statusLabel: "规划中",
     description: "面向未来的长篇虚构 / 推测性作品，探讨个体结构理论在更长时间尺度上的应用。尚未开始连载。",
-    chapters: []
+    intro: null,
+    parts: []
   }
 ];
 
 function renderPubsIndex() {
-  document.getElementById('pubs-index').innerHTML = PUBS.map(p => `
+  document.getElementById('pubs-index').innerHTML = PUBS.map(p => {
+    const chCount = p.parts.reduce((sum, part) => sum + part.chapters.length, 0) + (p.intro ? 1 : 0);
+    return `
     <div class="wp-row" style="cursor:pointer;" onclick="openPub('${p.id}')">
       <div>
         <span class="wp-name">${p.name}</span>
-        <span class="wp-ver">${p.statusLabel}${p.chapters.length ? ' · ' + p.chapters.length + ' 章' : ''}</span>
+        <span class="wp-ver">${p.statusLabel}${chCount ? ' · ' + chCount + ' 篇' : ''}</span>
       </div>
-      <a class="link-arrow">${p.chapters.length ? '查看章节 →' : '了解详情 →'}</a>
+      <a class="link-arrow">${chCount ? '查看章节 →' : '了解详情 →'}</a>
     </div>
-  `).join('');
+  `;
+  }).join('');
+}
+
+function chapterRow(pubId, c, idx) {
+  const safeIdx = idx !== undefined ? idx : 0;
+  return `<div class="toc-entry" id="ch-${pubId}-${safeIdx}">
+    <div class="toc-entry-title">${c.title}</div>
+    <div class="toc-entry-date">${c.date || ''}</div>
+  </div>`;
 }
 
 function openPub(id) {
   const p = PUBS.find(x => x.id === id);
   const el = document.getElementById('pub-detail');
+  const chCount = p.parts.reduce((sum, part) => sum + part.chapters.length, 0) + (p.intro ? 1 : 0);
+  let chapIdx = 0;
+  const partsHtml = p.parts.map(part => `
+    ${part.partTitle ? `<div class="section-title" style="margin-top:2rem;">${part.partTitle}</div>` : ''}
+    ${part.partIntro ? `<p style="font-size:13px; color:var(--text-tertiary); font-style:italic; margin-bottom:1rem; max-width:560px; line-height:1.7;">${part.partIntro}</p>` : ''}
+    <div class="works-list">
+      ${part.chapters.map(c => chapterRow(p.id, c, chapIdx++)).join('')}
+    </div>
+  `).join('');
+
   el.innerHTML = `
     <div class="section" style="border-top:1px solid var(--border-subtle); padding-top:2.5rem;">
       <a class="link-arrow" onclick="closePub()">← 返回出版物列表</a>
       <h2 class="detail-title" style="margin-top:1.5rem;">${p.name}</h2>
       <p class="detail-body">${p.description}</p>
 
-      ${p.chapters.length ? `
-        <div class="section-title" style="margin-top:2rem;">章节列表</div>
-        <div class="works-list">
-          ${p.chapters.map(c => `
-            <div class="work-row" id="ch-${p.id}-${c.number}">
-              <span class="work-name">第${c.number}章 · ${c.title}</span>
-              <span class="work-meta">${c.date}</span>
-            </div>
-          `).join('')}
-        </div>
+      ${chCount ? `
+        ${p.intro ? `<div class="section-title" style="margin-top:2rem;">导论</div><div class="works-list">${chapterRow(p.id, p.intro, 'intro')}</div>` : ''}
+        ${partsHtml}
       ` : `
         <div class="notice" style="margin-top:1.5rem;">该作品尚未开始连载，目前处于规划阶段。</div>
       `}
 
       <div class="detail-cta" style="padding-top:2rem;">
-        ${p.chapters.length ? `<a class="btn btn-primary" onclick="jumpToLatestChapter('${p.id}')">查看最新章节</a>` : ''}
+        ${p.trackingUrl
+          ? `<a class="btn btn-primary" href="${p.trackingUrl}" target="_blank" rel="noopener">前往豆瓣阅读最新章节</a>`
+          : (chCount ? `<a class="btn btn-primary" onclick="jumpToLatestChapter('${p.id}')">查看最新章节</a>` : '')}
         <a class="btn btn-secondary" onclick="showPage('join'); selectIntent('cobuild');">讨论出版合作</a>
       </div>
     </div>
@@ -184,9 +226,14 @@ function closePub() {
 }
 function jumpToLatestChapter(pubId) {
   const p = PUBS.find(x => x.id === pubId);
-  if (!p || !p.chapters.length) return;
-  const latest = p.chapters.reduce((a, b) => (a.date > b.date ? a : b));
-  const row = document.getElementById(`ch-${pubId}-${latest.number}`);
+  if (!p) return;
+  const flat = [];
+  if (p.intro) flat.push({ ...p.intro, domIdx: 'intro' });
+  let idx = 0;
+  p.parts.forEach(part => part.chapters.forEach(c => flat.push({ ...c, domIdx: idx++ })));
+  if (!flat.length) return;
+  const latest = flat.reduce((a, b) => ((a.date || '') > (b.date || '') ? a : b));
+  const row = document.getElementById(`ch-${pubId}-${latest.domIdx}`);
   if (!row) return;
   row.scrollIntoView({ behavior: 'smooth', block: 'center' });
   row.style.background = 'var(--primary-50)';
