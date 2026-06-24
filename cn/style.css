@@ -97,6 +97,10 @@
   .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
   .case-card { background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.4rem; transition: border-color 0.2s; cursor: pointer; }
   .case-card:hover { border-color: var(--border-default); }
+  .cluster-card { min-height: 230px; }
+  .cluster-hint { font-family: var(--mono); font-size: 11px; color: var(--primary-600); margin-bottom: 0.75rem; line-height: 1.6; }
+  .cluster-signal { font-family: var(--sans); font-size: 12.8px; color: var(--text-secondary); line-height: 1.7; }
+  .cluster-list { max-width: 620px; padding-left: 1.25rem; font-size: 13.5px; color: var(--text-secondary); line-height: 2; }
   .case-id { font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); margin-bottom: 0.7rem; }
   .case-tags { display: flex; gap: 6px; margin-bottom: 0.85rem; flex-wrap: wrap; }
   .case-summary { font-family: var(--serif); font-size: 14.5px; color: var(--text-primary); line-height: 1.7; margin-bottom: 1rem; }
@@ -185,6 +189,10 @@
   .status-dot::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--text-tertiary); }
   .status-dot.active::before { background: var(--primary-600); }
   .status-dot.completed::before { background: var(--secondary-600); }
+  .status-dot.stable::before { background: var(--primary-600); }
+  .status-dot.observing::before { background: var(--primary-300); }
+  .status-dot.needs-data::before { background: var(--secondary-600); }
+  .status-dot.early::before { background: var(--text-tertiary); }
   .empty-state { padding: 3rem 0; text-align: center; color: var(--text-tertiary); font-size: 13.5px; }
   #cl-detail-view { display: none; }
   .back-link { font-family: var(--mono); font-size: 12px; color: var(--text-secondary); text-decoration: none; display: inline-block; margin-bottom: 2rem; cursor: pointer; }
@@ -307,10 +315,6 @@
   .work-row:last-child { border-bottom: none; }
   .work-name { font-family: var(--sans); font-size: 14px; color: var(--text-primary); }
   .work-meta { font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); }
-  .toc-entry { padding: 0.85rem 0; border-bottom: 1px solid var(--border-subtle); }
-  .toc-entry:last-child { border-bottom: none; }
-  .toc-entry-title { font-family: var(--sans); font-size: 14px; color: var(--text-primary); line-height: 1.6; margin-bottom: 0.3rem; }
-  .toc-entry-date { font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); }
 
   /* GLOSSARY PAGE */
   .gloss-group { margin-bottom: 0.5rem; }
