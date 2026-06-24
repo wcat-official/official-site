@@ -1,420 +1,499 @@
-:root {
-    --bg-primary: #FAFAF8; --bg-secondary: #F4F2EE; --bg-tertiary: #ECE9E2;
-    --border-subtle: #E3DFD6; --border-default: #D2CCBF;
-    --text-primary: #1F2937; --text-secondary: #5B6573; --text-tertiary: #8C94A0;
-    --text-on-brand: #FAFAF8;
-    --primary-50: #E8F1F6; --primary-100: #C9DFEA; --primary-300: #6FA8C4;
-    --primary-600: #0E5A82; --primary-700: #0A4566; --primary-900: #07304A;
-    --secondary-50: #F8F1E2; --secondary-300: #D9BC85; --secondary-600: #C8A96B; --secondary-900: #6B5631;
-    --serif: 'Source Serif 4', 'Noto Serif TC', Georgia, serif;
-    --sans: 'Inter', 'Noto Sans TC', -apple-system, sans-serif;
-    --mono: 'IBM Plex Mono', ui-monospace, monospace;
-    --radius-sm: 4px; --radius-md: 8px;
+/* ===== WHITE PAPERS DATA + LOGIC ===== */
+const PAPERS = [
+  {
+    id: "wcat",
+    name: "WCAT 白皮书",
+    fullName: "意志回路激活理论：结构状态框架",
+    versions: [
+      { v: "1.2", status: "current", date: "2026-05-10", changelog: "新增 R3 区细分定义（R3.1 文化单解耦态 / R3.2 边界倾向）；修正 S_exe 计算方式。" },
+      { v: "1.1", status: "superseded", date: "2025-11-02", changelog: "新增 E1–E8 结构事件画像体系。" },
+      { v: "1.0", status: "superseded", date: "2025-08-15", changelog: "首个公开版本。" }
+    ],
+    abstract: "本文提出意志回路激活理论（WCAT），尝试把'意志'从模糊的人格特质重新描述为一种可观察、可测量的结构状态。框架核心包括语义系统与行动系统的耦合度（S_sem / S_exe）、个体对自身吸引子模式的觉察能力，以及脱离旧有路径后重建新结构所承受的压力（重建风险）。本白皮书定义了完整的结构状态分区（R-zone）与八项结构事件指标（E1–E8），并提供初步案例验证。"
+  },
+  {
+    id: "cmc",
+    name: "CMC 白皮书",
+    fullName: "意识—意义—文明映射框架",
+    versions: [
+      { v: "1.0", status: "current", date: "2025-12-20", changelog: "首个公开版本，从个体意志框架（WCAT）延伸至更广义的生成—耦合—回馈结构。" }
+    ],
+    abstract: "CMC 框架延伸 WCAT 的个体结构观察，尝试描述生成层（Generation）、耦合层（Coupling）与回馈层（Feedback）三者之间的动态关系，为理解意义系统的形成、崩塌与重建提供更广义的映射工具。目前仍处早期阶段，案例验证有限。"
   }
-  html.dark {
-    --bg-primary: #16181C; --bg-secondary: #1E2127; --bg-tertiary: #262A31;
-    --border-subtle: rgba(255,255,255,0.08); --border-default: rgba(255,255,255,0.16);
-    --text-primary: #E8E6E0; --text-secondary: #9CA3AF; --text-tertiary: #6B7280;
-    --text-on-brand: #16181C;
-    --primary-50: #152630; --primary-100: #1B3240; --primary-300: #3D7A9C;
-    --primary-600: #4FA0C9; --primary-700: #6BB4D9; --primary-900: #D6EEF8;
-    --secondary-50: #2A2419; --secondary-300: #8C754A; --secondary-600: #D9BC85; --secondary-900: #F3E7CC;
+];
+
+function renderPapersIndex() {
+  document.getElementById('papers-index').innerHTML = PAPERS.map(p => {
+    const current = p.versions.find(v => v.status === 'current');
+    return `
+    <div class="wp-row" style="cursor:pointer;" onclick="openPaper('${p.id}')">
+      <div>
+        <span class="wp-name">${p.name}</span>
+        <span class="wp-ver">v${current.v} · current</span>
+      </div>
+      <a class="link-arrow">查看详情与版本历史 →</a>
+    </div>`;
+  }).join('');
+}
+
+function openPaper(id) {
+  const p = PAPERS.find(x => x.id === id);
+  const el = document.getElementById('paper-detail');
+  el.innerHTML = `
+    <div class="section" style="border-top:1px solid var(--border-subtle); padding-top:2.5rem;">
+      <a class="link-arrow" onclick="closePaper()">← 返回白皮书列表</a>
+      <h2 class="detail-title" style="margin-top:1.5rem;">${p.fullName}</h2>
+      <p class="detail-body">${p.abstract}</p>
+
+      <div class="section-title" style="margin-top:2rem;">版本历史</div>
+      ${p.versions.map(v => `
+        <div class="hypo-card" style="border-left-color: ${v.status === 'current' ? 'var(--primary-300)' : 'var(--border-default)'};">
+          <div class="hypo-top">
+            <span class="hypo-id">v${v.v} · ${v.date}</span>
+            <span class="hypo-status ${v.status === 'current' ? 'validating' : ''}" style="${v.status !== 'current' ? 'background:var(--bg-tertiary); color:var(--text-tertiary);' : ''}">${v.status === 'current' ? 'CURRENT' : 'SUPERSEDED'}</span>
+          </div>
+          <div class="hypo-text" style="font-family:var(--sans); font-size:13.5px;">${v.changelog}</div>
+        </div>
+      `).join('')}
+
+      <div class="detail-cta" style="padding-top:2rem;">
+        <a class="btn btn-primary" href="#">下载 PDF（v${p.versions[0].v}）</a>
+        <a class="btn btn-secondary" onclick="showPage('join'); selectIntent('cobuild');">提交学术合作申请</a>
+      </div>
+    </div>
+  `;
+  document.getElementById('papers-index').parentElement.style.display = 'none';
+  el.style.display = 'block';
+  window.scrollTo(0,0);
+}
+function closePaper() {
+  document.getElementById('paper-detail').style.display = 'none';
+  document.getElementById('papers-index').parentElement.style.display = 'block';
+}
+
+/* ===== PUBLICATIONS DATA + LOGIC ===== */
+const PUBS = [
+  {
+    id: "will-history",
+    name: "《意志简史》",
+    status: "serializing",
+    statusLabel: "连载中",
+    description: "面向大众的叙事性入口。从历史脉络出发，追溯人类如何理解'意志'这个概念——不需要任何背景知识即可阅读。",
+    chapters: [
+      { number: 1, title: "意志是什么", date: "2025-08-01" },
+      { number: 2, title: "古典时代的意志观", date: "2025-08-15" },
+      { number: 3, title: "意志的消失：行为主义的冲击", date: "2025-09-02" },
+      { number: 4, title: "重新发现结构", date: "2025-10-10" },
+      { number: 5, title: "知道却做不到", date: "2025-11-20" },
+      { number: 6, title: "吸引子与命名", date: "2026-01-15" },
+      { number: 7, title: "命名与失效", date: "2026-06-10" }
+    ]
+  },
+  {
+    id: "consciousness-history",
+    name: "《意识简史》",
+    status: "serializing",
+    statusLabel: "连载中",
+    description: "《意志简史》的延伸阅读，探讨意识与意志之间更深的结构关系，为 CMC 框架提供叙事性背景。",
+    chapters: [
+      { number: 1, title: "意识问题的回归", date: "2026-02-01" },
+      { number: 2, title: "反身性是如何形成的", date: "2026-04-18" }
+    ]
+  },
+  {
+    id: "2080",
+    name: "《2080》",
+    status: "planned",
+    statusLabel: "规划中",
+    description: "面向未来的长篇虚构 / 推测性作品，探讨个体结构理论在更长时间尺度上的应用。尚未开始连载。",
+    chapters: []
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg-primary); color: var(--text-primary); font-family: var(--sans); font-size: 15px; line-height: 1.7; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 2rem; }
-  .page { display: none; }
-  .page.active { display: block; }
+];
 
-  .mode-toggle {
-    position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 100;
-    background: var(--bg-secondary); border: 1px solid var(--border-default);
-    border-radius: var(--radius-sm); padding: 8px 14px;
-    font-family: var(--sans); font-size: 12px; color: var(--text-secondary); cursor: pointer;
+function renderPubsIndex() {
+  document.getElementById('pubs-index').innerHTML = PUBS.map(p => `
+    <div class="wp-row" style="cursor:pointer;" onclick="openPub('${p.id}')">
+      <div>
+        <span class="wp-name">${p.name}</span>
+        <span class="wp-ver">${p.statusLabel}${p.chapters.length ? ' · ' + p.chapters.length + ' 章' : ''}</span>
+      </div>
+      <a class="link-arrow">${p.chapters.length ? '查看章节 →' : '了解详情 →'}</a>
+    </div>
+  `).join('');
+}
+
+function openPub(id) {
+  const p = PUBS.find(x => x.id === id);
+  const el = document.getElementById('pub-detail');
+  el.innerHTML = `
+    <div class="section" style="border-top:1px solid var(--border-subtle); padding-top:2.5rem;">
+      <a class="link-arrow" onclick="closePub()">← 返回出版物列表</a>
+      <h2 class="detail-title" style="margin-top:1.5rem;">${p.name}</h2>
+      <p class="detail-body">${p.description}</p>
+
+      ${p.chapters.length ? `
+        <div class="section-title" style="margin-top:2rem;">章节列表</div>
+        <div class="works-list">
+          ${p.chapters.map(c => `
+            <div class="work-row" id="ch-${p.id}-${c.number}">
+              <span class="work-name">第${c.number}章 · ${c.title}</span>
+              <span class="work-meta">${c.date}</span>
+            </div>
+          `).join('')}
+        </div>
+      ` : `
+        <div class="notice" style="margin-top:1.5rem;">该作品尚未开始连载，目前处于规划阶段。</div>
+      `}
+
+      <div class="detail-cta" style="padding-top:2rem;">
+        ${p.chapters.length ? `<a class="btn btn-primary" onclick="jumpToLatestChapter('${p.id}')">查看最新章节</a>` : ''}
+        <a class="btn btn-secondary" onclick="showPage('join'); selectIntent('cobuild');">讨论出版合作</a>
+      </div>
+    </div>
+  `;
+  document.getElementById('pubs-index').parentElement.style.display = 'none';
+  el.style.display = 'block';
+  window.scrollTo(0,0);
+}
+function closePub() {
+  document.getElementById('pub-detail').style.display = 'none';
+  document.getElementById('pubs-index').parentElement.style.display = 'block';
+}
+function jumpToLatestChapter(pubId) {
+  const p = PUBS.find(x => x.id === pubId);
+  if (!p || !p.chapters.length) return;
+  const latest = p.chapters.reduce((a, b) => (a.date > b.date ? a : b));
+  const row = document.getElementById(`ch-${pubId}-${latest.number}`);
+  if (!row) return;
+  row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  row.style.background = 'var(--primary-50)';
+  row.style.transition = 'background 0.6s';
+  setTimeout(() => { row.style.background = 'transparent'; }, 1400);
+}
+
+/* ===== RESEARCH LOG DATA + LOGIC ===== */
+const LOG_ENTRIES = [
+  { date:"2026-06-15", type:"案例增长", text:"案例库新增第三个长期追踪样本，进入纵向观察阶段。" },
+  { date:"2026-05-20", type:"量表更新", text:"25题专业量表完成第二次修订，新增结构状态判定逻辑。" },
+  { date:"2026-05-10", type:"理论修订", text:"WCAT 白皮书更新至 v1.2，新增 R3 区细分定义。" },
+  { date:"2026-04-02", type:"理论修订", text:"WCAT-H3 假说措辞调整，明确\"长期拖延\"与\"意志薄弱\"的区分边界。" },
+  { date:"2026-03-20", type:"案例增长", text:"CASE-004 完成追踪周期，结构状态进入稳定区间，转入归档。" },
+  { date:"2025-12-20", type:"合作进展", text:"CMC 白皮书 v1.0 发布。" },
+  { date:"2025-11-02", type:"量表更新", text:"WCAT 白皮书更新至 v1.1，新增 E1–E8 结构事件画像体系。" },
+  { date:"2025-08-15", type:"理论修订", text:"WCAT 白皮书 v1.0 首次公开发布。" }
+];
+
+let activeLogType = null;
+function logTypes() { return Array.from(new Set(LOG_ENTRIES.map(e => e.type))); }
+
+function renderLogFilters() {
+  const box = document.getElementById('log-filters');
+  const types = [{ key: null, label: "全部" }, ...logTypes().map(t => ({ key: t, label: t }))];
+  box.innerHTML = types.map(t =>
+    `<span class="chip ${activeLogType === t.key ? 'active' : ''}" onclick="setLogType(${t.key ? `'${t.key}'` : 'null'})">${t.label}</span>`
+  ).join('');
+}
+function setLogType(t) { activeLogType = t; renderLogFilters(); renderLogList(); }
+
+function renderLogList() {
+  const list = LOG_ENTRIES.filter(e => !activeLogType || e.type === activeLogType);
+  document.getElementById('log-list').innerHTML = list.map(e => `
+    <div class="log-row">
+      <div class="log-date">${e.date.replace(/-/g,'.')}</div>
+      <div class="log-type">${e.type}</div>
+      <div class="log-text">${e.text}</div>
+    </div>
+  `).join('');
+}
+
+renderPapersIndex();
+/* ===== GLOSSARY DATA + LOGIC ===== */
+const GLOSSARY = [
+  { group: "核心变量", code: "S_sem", name: "语义成熟度", def: "个体结构思维与自我观察能力的发展程度。S_sem 较低提示尚处于早期阶段：有初步观察力但意义系统未稳定；较高则提示已形成稳定的自我作者化能力。" },
+  { group: "核心变量", code: "S_exe", name: "存在整合度", def: "理解与行动之间的同步程度。S_exe 较低提示存在明显的认知—行动脱耦，即'知道却做不到'；较高则提示行动系统运转正常，无明显执行崩塌。" },
+  { group: "核心变量", code: "ΔP", name: "理论-现实领先关系", def: "衡量个体的理论理解速度与现实承载能力是否同步。ΔP > 0 表示理论领先现实（容易出现'建构偷跑'）；ΔP < 0 表示现实领先理论；ΔP = 0（balanced）表示二者大体同步，是相对健康的结构状态。" },
+
+  { group: "结构状态分区 R-zone", code: "R1", name: "前解耦区", def: "个体尚未开始脱离既有文化叙事路径，仍主要依赖外部权威与既定路径做出判断。" },
+  { group: "结构状态分区 R-zone", code: "R2", name: "吸引子识别区", def: "已能识别自身的重复行为模式（吸引子），但尚未获得脱离该模式所需的结构资源。" },
+  { group: "结构状态分区 R-zone", code: "R3.1", name: "文化单解耦态", def: "已开始脱离既有文化叙事，具备初步结构观察能力与反身性，但尚未进入稳定建构阶段。文化解耦已发生，生物解耦未完全稳定。" },
+  { group: "结构状态分区 R-zone", code: "R3.2", name: "边界倾向", def: "对情绪、身体状态与行为反应已具备一定观察能力，但尚未达到稳定的生物解耦，处于 R3 内部的过渡边界。" },
+
+  { group: "结构事件画像 E1–E8", code: "E1", name: "吸引子捕获", def: "个体当前受身份、习惯或路径吸引子影响的程度。数值越高，说明行为受既定模式牵引越强。" },
+  { group: "结构事件画像 E1–E8", code: "E2", name: "吸引子过载", def: "是否出现价值崩塌、系统失控或强烈意义危机等过载表现。" },
+  { group: "结构事件画像 E1–E8", code: "E3", name: "情绪主导", def: "情绪是否已成为当前行为与决策的主要驱动力，而非理性评估。" },
+  { group: "结构事件画像 E1–E8", code: "E4", name: "命名失败", def: "个体是否已意识到旧有解释系统不足、开始寻找新的结构语言。这通常是 R2→R3 转折的重要信号——命名是结构锁定机制，命名失败往往意味着旧结构开始失效。" },
+  { group: "结构事件画像 E1–E8", code: "E5", name: "文化解耦", def: "个体不再自动相信主流路径、不再完全依赖外部评价，开始自主判断的程度。" },
+  { group: "结构事件画像 E1–E8", code: "E6", name: "生物解耦", def: "个体能否观察自身情绪与身体状态，并将其与决定本身区分开——即对生理驱动的反身性意识程度。" },
+  { group: "结构事件画像 E1–E8", code: "E7", name: "重建风险", def: "个体离开旧结构、但新结构尚未稳定时所承受的身份重组、价值重组与路径重组压力。数值高并不代表结构退化，通常是结构重组过程中的正常现象。" },
+  { group: "结构事件画像 E1–E8", code: "E8", name: "防御锁定", def: "系统是否处于自我封闭、理论防御或身份固化状态。数值为 0 表示系统开放，无明显防御性锁定。" },
+
+  { group: "IR 指标", code: "IR-1", name: "旧意义系统残留", def: "衡量个体尚未完成与旧意义系统脱离的程度——文化解耦尚未彻底稳定时，该指标通常较高。" },
+  { group: "IR 指标", code: "IR-3", name: "意义自生信号", def: "探测个体是否已开始尝试自我决定、自我解释与自我路径设计，但尚未形成稳定的生成机制。数值较高提示早期意义自生信号已出现，但尚不稳定。" },
+
+  { group: "CMC 映射", code: "Generation", name: "生成层", def: "个体生成新路径、新解释、新行动方案的能力强弱。" },
+  { group: "CMC 映射", code: "Coupling", name: "耦合层", def: "新生成的路径与现实条件、既有关系结构之间的连接强度。" },
+  { group: "CMC 映射", code: "Feedback", name: "回馈层", def: "新路径在实践后能否获得稳定、可观察的正向回馈，从而形成自我强化的闭环。" }
+];
+
+function groupedGlossary(filterText) {
+  const f = (filterText || '').trim().toLowerCase();
+  const filtered = !f ? GLOSSARY : GLOSSARY.filter(g =>
+    g.code.toLowerCase().includes(f) || g.name.toLowerCase().includes(f) || g.def.toLowerCase().includes(f)
+  );
+  const groups = {};
+  filtered.forEach(g => { (groups[g.group] = groups[g.group] || []).push(g); });
+  return groups;
+}
+
+function renderGlossary(filterText) {
+  const groups = groupedGlossary(filterText);
+  const keys = Object.keys(groups);
+  const list = document.getElementById('glossary-list');
+  if (keys.length === 0) {
+    list.innerHTML = `<div class="empty-state">没有找到匹配的术语</div>`;
+    return;
   }
+  list.innerHTML = keys.map(k => `
+    <div class="gloss-group">
+      <div class="gloss-group-title">${k}</div>
+      ${groups[k].map(g => `
+        <div class="gloss-entry">
+          <div class="gloss-entry-code">${g.code}</div>
+          <div>
+            <div class="gloss-entry-name">${g.name}</div>
+            <div class="gloss-entry-def">${g.def}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+function filterGlossary(text) { renderGlossary(text); }
 
-  nav {
-    position: sticky; top: 0; z-index: 50; background: var(--bg-primary);
-    border-bottom: 1px solid var(--border-subtle); height: 64px;
-    display: flex; align-items: center; padding: 0 2rem;
-    max-width: 1040px; margin: 0 auto;
-  }
-  .nav-logo { font-weight: 600; font-size: 15px; color: var(--text-primary); text-decoration: none; cursor: pointer; display: flex; align-items: center; gap: 9px; }
-  .nav-logo-icon { height: 26px; width: auto; display: block; }
-  .nav-links { display: flex; gap: 1.75rem; margin-left: 3rem; list-style: none; }
-  .nav-links a { font-size: 14px; color: var(--text-secondary); text-decoration: none; cursor: pointer; }
-  .nav-links a:hover { color: var(--text-primary); }
-  .nav-links a.active { color: var(--primary-600); }
-  .nav-cta { margin-left: auto; font-size: 13px; font-weight: 500; border: 1px solid var(--border-default); color: var(--text-primary); padding: 8px 16px; border-radius: var(--radius-sm); text-decoration: none; cursor: pointer; flex-shrink:0; }
-  .nav-cta:hover { background: var(--bg-tertiary); }
-  .hamburger { display:none; background:none; border:none; font-size:20px; color:var(--text-primary); margin-left:auto; cursor:pointer; }
+renderPubsIndex();
+renderLogFilters();
+renderLogList();
+renderGlossary();
 
-  /* shared atoms */
-  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; color: var(--text-tertiary); margin-bottom: 1rem; }
-  .btn { font-family: var(--sans); font-size: 14px; font-weight: 500; padding: 10px 20px; border-radius: var(--radius-sm); text-decoration: none; display: inline-block; border: none; cursor: pointer; }
-  .btn-primary { background: var(--primary-600); color: var(--text-on-brand); }
-  .btn-primary:hover { background: var(--primary-700); }
-  .btn-secondary { background: transparent; border: 1px solid var(--border-default); color: var(--text-primary); }
-  .btn-secondary:hover { background: var(--bg-tertiary); }
-  .section-title { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 1.5rem; }
-  .section-foot { margin-top: 1.5rem; }
-  .link-arrow { font-family: var(--sans); font-size: 13px; color: var(--primary-600); text-decoration: none; cursor: pointer; }
-  .link-arrow:hover { text-decoration: underline; }
-  .tag { font-size: 11px; background: var(--bg-tertiary); color: var(--text-secondary); padding: 3px 10px; border-radius: 20px; }
+/* ===== NAV / PAGE ROUTING ===== */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  const link = document.querySelector('[data-page="' + id + '"]');
+  if (link) link.classList.add('active');
+  window.scrollTo(0,0);
+  document.getElementById('navLinks').classList.remove('open');
+}
+function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+function toggleMode() {
+  const html = document.documentElement;
+  const btn = document.querySelector('.mode-toggle');
+  html.classList.toggle('dark');
+  btn.textContent = html.classList.contains('dark') ? '亮色模式' : '暗色模式';
+}
 
-  footer { max-width: 1040px; margin: 0 auto; padding: 2.5rem 2rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); }
-  footer a { color: var(--text-tertiary); text-decoration: none; margin-left: 1.25rem; cursor: pointer; }
-  footer a:hover { color: var(--text-secondary); }
+/* ===== CASE LIBRARY DATA + LOGIC ===== */
+const CASES = [
+  { id:"CLUSTER-A", status:"active", statusLabel:"特征已较稳定", tags:["创造性停滞","主体结构变化"],
+    label:"高功能停滞模式",
+    stateRange:"R1.4 – R2.3",
+    primaryGloss:"外部功能多表现正常，行动系统持续受阻；理解与自我观察能力通常不受影响。",
+    coreVars:{sSem:3,sExe:2,deltaP:1,deltaPLabel:"理论略领先现实（典型范围）"},
+    profile:{e1:4,e2:1,e3:2,e4:5,e5:3,e6:4,e7:4,e8:4},
+    cmc:{stage:"生成层通常活跃，回馈层易出现停滞",generation:"中-高",coupling:"低-中",feedback:"低"},
+    summary:"这类样本通常具备清晰的自我观察与语言表达能力，能准确描述自己的停滞状态，但这种清晰度未必转化为行动。结构压力多来自长期的'即将开始'状态，防御锁定程度因样本而异，部分样本中的停滞可能具有一定的保护性功能。",
+    pattern:"在持续观察的样本中，这类特征常见的演变路径为：识别停滞 → 尝试小规模重启 → 反复受阻 → 部分样本在命名方式调整后出现行动力回升。具体节奏因人差异较大，尚不构成统一结论。" },
+  { id:"CLUSTER-B", status:"active", statusLabel:"特征已较稳定", tags:["解耦过程","意义危机"],
+    label:"文化解耦后的意义空窗",
+    stateRange:"R2.3 – R3.2",
+    primaryGloss:"已开始脱离既有文化叙事，具备初步结构观察能力，但尚未进入稳定建构阶段。",
+    coreVars:{sSem:2,sExe:2,deltaP:0,deltaPLabel:"大体平衡（典型范围）"},
+    profile:{e1:5,e2:1,e3:1,e4:5,e5:4,e6:5,e7:6,e8:1},
+    cmc:{stage:"反身性闭环早期形成期",generation:"中",coupling:"低-中",feedback:"低"},
+    summary:"这类样本通常已意识到旧解释系统不足，开始寻找新的结构语言，这往往是 R2→R3 转折的重要信号。核心冲突多不是'我是谁'，而是旧解释已经不够用，但新解释还没有长出来。重建风险常处于较高位，但这是结构重组过程中较常见的现象，而非结构退化。",
+    pattern:"在持续观察的样本中，这类特征常伴随职业、关系或信仰路径上的探索性尝试，新方向的出现往往早于稳定感的建立，过渡期长度因样本差异较大。" },
+  { id:"CLUSTER-C", status:"active", statusLabel:"特征已较稳定", tags:["情绪循环","主体结构变化"],
+    label:"重复关系/情绪模式",
+    stateRange:"R1.3 – R2.1",
+    primaryGloss:"已能识别自身重复出现的模式，但尚未获得脱离该模式所需的结构资源。",
+    coreVars:{sSem:3,sExe:2,deltaP:1,deltaPLabel:"轻度领先（典型范围）"},
+    profile:{e1:6,e2:3,e3:4,e4:3,e5:1,e6:3,e7:3,e8:5},
+    cmc:{stage:"生成层尚未稳定激活",generation:"低-中",coupling:"低",feedback:"中"},
+    summary:"这类样本常呈现出跨情境（关系、职业、家庭）高度一致的结构模式：相似的吸引子捕获路径、相似的冲突触发点。多数样本在意识到循环之后仍难以跳出，提示问题核心往往不在认知层面，而在吸引子本身的强度与防御锁定程度。",
+    pattern:"在持续观察的样本中，主动中断循环的尝试通常先于行动力的稳定提升出现，二者之间常有一段滞后期，长度因样本差异较大。" },
+  { id:"CLUSTER-D", status:"emerging", statusLabel:"样本积累中", tags:["意义危机","梦境结构"],
+    label:"意义崩塌与梦境结构变化",
+    stateRange:"R2.2 – R3.2",
+    primaryGloss:"重大变动后原有意义系统迅速失效，部分样本伴随梦境结构的可观察变化。",
+    coreVars:{sSem:2,sExe:1,deltaP:1,deltaPLabel:"轻度领先（典型范围，样本较少）"},
+    profile:{e1:4,e2:4,e3:5,e4:4,e5:4,e6:4,e7:6,e8:2},
+    cmc:{stage:"回馈层崩塌后重建中",generation:"中",coupling:"低",feedback:"低"},
+    summary:"这一聚类目前样本数量相对较少，初步观察显示重大职业或关系变动后，原有意义系统快速失效，部分样本同时报告梦境内容或结构出现变化。这类关联是否具有普遍性，目前证据有限，仍需更多样本验证。",
+    pattern:"由于样本积累尚不充分，目前暂不归纳统一的演变路径，仅作为初步观察记录保留。" },
+  { id:"CLUSTER-E", status:"active", statusLabel:"特征已较稳定", tags:["解耦过程","创造性停滞"],
+    label:"路径模糊型停滞",
+    stateRange:"R1.1 – R1.4",
+    primaryGloss:"已具备基本行动能力，但已脱离原有路径、尚未建立明确的新方向性结构支撑。",
+    coreVars:{sSem:2,sExe:3,deltaP:0,deltaPLabel:"大体平衡（典型范围）"},
+    profile:{e1:2,e2:1,e3:3,e4:2,e5:2,e6:2,e7:3,e8:3},
+    cmc:{stage:"尚未进入稳定的反身性闭环",generation:"低-中",coupling:"中",feedback:"中"},
+    summary:"这类样本通常具备基本的行动能力（并非完全停滞），但缺乏明确的方向性结构支撑，容易表现为持续的“还在考虑”状态。与高功能停滞型不同，这类样本的核心困难更多在路径选择本身，而不是行动系统的受阻。",
+    pattern:"在持续观察的样本中，外部结构性事件（如关系变化、机会出现）常是触发路径重新明确化的常见诱因。" },
+  { id:"CLUSTER-F", status:"emerging", statusLabel:"样本积累中", tags:["AI耦合","主体结构变化"],
+    label:"人机协同中的结构变化",
+    stateRange:"样本范围尚未稳定",
+    primaryGloss:"探索不同主体结构与 AI 协同过程中可能出现的结构性变化，目前处于实验积累阶段。",
+    coreVars:{sSem:3,sExe:3,deltaP:0,deltaPLabel:"暂不归纳（样本不足）"},
+    profile:{e1:3,e2:1,e3:2,e4:3,e5:2,e6:3,e7:3,e8:2},
+    cmc:{stage:"探索阶段，尚未形成稳定映射",generation:"待观察",coupling:"待观察",feedback:"待观察"},
+    summary:"这一方向目前仍处于早期实验阶段，样本数量与观察周期均有限。初步观察提示，与 AI 的持续协同过程可能伴随主体结构层面的可观察变化，但具体机制、方向与普遍性都尚不明确。",
+    pattern:"实验仍在设计与积累阶段，暂不归纳演变路径，相关进展将在研究日志中持续更新。" }
+];
+const PROFILE_NAMES = { e1:"吸引子捕获",e2:"吸引子过载",e3:"情绪主导",e4:"命名失败",e5:"文化解耦",e6:"生物解耦",e7:"重建风险",e8:"防御锁定" };
+const CASE_CATEGORIES = ["情绪循环","意义危机","解耦过程","梦境结构","AI耦合","创造性停滞","主体结构变化"];
+let activeTags = new Set();
+let activeStatus = null;
 
-  /* ===== HOME ===== */
-  .hero { padding: 5rem 0 3rem; max-width: 640px; }
-  .hero-title { font-family: var(--serif); font-size: 2.5rem; font-weight: 500; line-height: 1.35; color: var(--text-primary); margin-bottom: 1.25rem; }
-  .hero-title .hl { color: var(--primary-600); }
-  .hero-questions { margin-bottom: 1.75rem; max-width: 600px; }
-  .hero-q-main { font-family: var(--serif); font-size: 2.3rem; font-weight: 500; line-height: 1.4; color: var(--text-primary); margin-bottom: 0.9rem; }
-  .hero-q-main .hl { color: var(--primary-600); }
-  .hero-q-sub { font-family: var(--serif); font-size: 1.05rem; font-weight: 400; line-height: 1.6; color: var(--text-primary); margin-bottom: 0.35rem; padding-left: 0.9rem; border-left: 2px solid var(--primary-300); transition: color 0.2s, border-left-color 0.2s; opacity: 0; animation: hero-q-fadein 0.55s ease forwards; }
-  .hero-q-sub:hover { color: var(--primary-600); border-left-color: var(--primary-600); }
-  .hero-q-sub:nth-child(1) { animation-delay: 0.08s; }
-  .hero-q-sub:nth-child(2) { animation-delay: 0.22s; }
-  .hero-q-sub:nth-child(3) { animation-delay: 0.38s; }
-  @keyframes hero-q-fadein { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
-  .hero-sub { font-family: var(--sans); font-size: 15px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 2rem; max-width: 540px; }
-  .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-  .hero-status { margin-top: 1.75rem; font-family: var(--mono); font-size: 12px; color: var(--text-tertiary); }
-  .stat-status { font-family: var(--sans); font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
-  section.block { padding: 3.5rem 0; border-bottom: 1px solid var(--border-subtle); }
-  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border-subtle); }
-  .stat-cell { background: var(--bg-secondary); padding: 1.5rem 1.25rem; border-right: 1px solid var(--border-subtle); }
-  .stat-cell:last-child { border-right: none; }
-  .stat-num { font-family: var(--mono); font-size: 1.6rem; color: var(--text-primary); margin-bottom: 4px; }
-  .stat-label { font-family: var(--sans); font-size: 12px; color: var(--text-tertiary); }
-  .log-row { display: flex; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--border-subtle); align-items: baseline; }
-  .log-row:last-child { border-bottom: none; }
-  .log-date { font-family: var(--mono); font-size: 12px; color: var(--text-tertiary); width: 90px; flex-shrink: 0; }
-  .log-type { font-family: var(--sans); font-size: 11px; background: var(--primary-50); color: var(--primary-900); padding: 2px 9px; border-radius: 20px; flex-shrink: 0; }
-  .log-text { font-family: var(--sans); font-size: 14px; color: var(--text-primary); }
-  .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-  .case-card { background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.4rem; transition: border-color 0.2s; cursor: pointer; }
-  .case-card:hover { border-color: var(--border-default); }
-  .case-id { font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); margin-bottom: 0.7rem; }
-  .case-tags { display: flex; gap: 6px; margin-bottom: 0.85rem; flex-wrap: wrap; }
-  .case-summary { font-family: var(--serif); font-size: 14.5px; color: var(--text-primary); line-height: 1.7; margin-bottom: 1rem; }
-  .bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-  .bar-label { font-family: var(--mono); font-size: 10px; color: var(--text-tertiary); width: 22px; flex-shrink: 0; }
-  .bar-track { background: var(--bg-tertiary); border-radius: 3px; height: 6px; flex: 1; }
-  .bar-fill { background: var(--primary-300); height: 6px; border-radius: 3px; }
-  .bar-val { font-family: var(--mono); font-size: 10px; color: var(--text-secondary); width: 14px; text-align: right; }
-  .wp-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--border-subtle); }
-  .wp-row:last-child { border-bottom: none; }
-  .wp-name { font-family: var(--sans); font-size: 0.95rem; color: var(--text-primary); }
-  .wp-ver { font-family: var(--mono); font-size: 12px; color: var(--text-tertiary); margin-left: 10px; }
-  .join-grid-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-subtle); border: 1px solid var(--border-subtle); }
-  .join-card-mini { background: var(--bg-primary); padding: 1.3rem; cursor: pointer; }
-  .join-card-mini:hover { background: var(--bg-secondary); }
-  .join-title-mini { font-family: var(--sans); font-size: 0.92rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.4rem; }
-  .join-desc-mini { font-family: var(--sans); font-size: 12.5px; color: var(--text-tertiary); line-height: 1.6; }
-  .sub-row { display: flex; gap: 0.5rem; max-width: 380px; }
-  .sub-row input { flex: 1; background: var(--bg-secondary); border: 1px solid var(--border-default); border-radius: var(--radius-sm); padding: 9px 12px; color: var(--text-primary); font-family: var(--sans); font-size: 13px; outline: none; }
-  .sub-row button { background: var(--primary-600); color: var(--text-on-brand); border: none; border-radius: var(--radius-sm); padding: 9px 16px; font-size: 13px; cursor: pointer; font-family: var(--sans); }
-  .sub-row button:hover { background: var(--primary-700); }
+function allTags() { return CASE_CATEGORIES; }
+function renderFilters() {
+  document.getElementById('tag-filters').innerHTML = allTags().map(t =>
+    `<span class="chip ${activeTags.has(t)?'active':''}" onclick="toggleTag('${t}')">${t}</span>`).join('');
+  const statuses = [{key:null,label:"全部"},{key:"active",label:"特征已较稳定"},{key:"emerging",label:"样本积累中"}];
+  document.getElementById('status-filters').innerHTML = statuses.map(s =>
+    `<span class="chip ${activeStatus===s.key?'active':''}" onclick="setStatus(${s.key?`'${s.key}'`:'null'})">${s.label}</span>`).join('');
+}
+function toggleTag(t){ activeTags.has(t)?activeTags.delete(t):activeTags.add(t); renderFilters(); renderList(); }
+function setStatus(s){ activeStatus=s; renderFilters(); renderList(); }
+function filteredCases(){ return CASES.filter(c => (activeTags.size===0||c.tags.some(t=>activeTags.has(t))) && (!activeStatus||c.status===activeStatus)); }
+function barWidth(v){ return Math.round((v/7)*100)+'%'; }
+function topProfileBars(c){
+  return Object.entries(c.profile).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([k,v]) =>
+    `<div class="bar-row"><span class="bar-label">${k.toUpperCase()}</span><div class="bar-track"><div class="bar-fill" style="width:${barWidth(v)};"></div></div><span class="bar-val">${v}</span></div>`).join('');
+}
+function renderList(){
+  const grid = document.getElementById('cl-case-grid');
+  const empty = document.getElementById('cl-empty-state');
+  const list = filteredCases();
+  document.getElementById('result-count').textContent = `显示 ${list.length} / ${CASES.length} 类结构特征`;
+  if (list.length===0){ grid.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  grid.innerHTML = list.map(c => `
+    <div class="case-card" onclick="openCase('${c.id}')">
+      <div class="case-top-row"><span class="case-id">${c.id}</span><span class="status-dot ${c.status}">${c.statusLabel}</span></div>
+      <div class="case-tags">${c.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="case-summary" style="font-weight:600; margin-bottom:0.4rem;">${c.label}</div>
+      <div class="case-summary">${c.summary.slice(0,58)}...</div>
+      ${topProfileBars(c)}
+    </div>`).join('');
+}
+function renderDetail(c){
+  const profileRows = Object.entries(c.profile).map(([k,v]) => `
+    <div class="profile-row"><span class="profile-code">${k.toUpperCase()}</span><span class="profile-name">${PROFILE_NAMES[k]}</span>
+      <div class="profile-track"><div class="profile-fill" style="width:${barWidth(v)};"></div></div><span class="profile-val">${v}</span></div>`).join('');
+  document.getElementById('cl-detail-view').innerHTML = `
+    <a class="back-link" onclick="closeCase()">← 返回案例库</a>
+    <div class="detail-head">
+      <div class="detail-id-row"><span class="detail-id">${c.id}</span><span class="status-dot ${c.status}">${c.statusLabel}</span>
+        <div class="case-tags">${c.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>
+      <h1 class="detail-title">${c.label}</h1>
+      <div class="state-block"><div class="state-code">${c.stateRange}</div><div class="state-gloss">${c.primaryGloss}</div></div>
+    </div>
+    <div class="notice" style="margin-top:1.5rem;"><strong>说明</strong>：以下内容是对该类特征的概括描述，反映的是多个样本的共性，并非某一位具体参与者的记录。人口学等背景信息仍在持续补充中。</div>
+    <div class="detail-section"><div class="detail-section-title">典型核心变量</div>
+      <div class="var-grid">
+        <div class="var-cell"><div class="var-num">${c.coreVars.sSem}</div><div class="var-label">S_sem 语义成熟度</div></div>
+        <div class="var-cell"><div class="var-num">${c.coreVars.sExe}</div><div class="var-label">S_exe 存在整合度</div></div>
+        <div class="var-cell"><div class="var-num">${c.coreVars.deltaP>=0?'+':''}${c.coreVars.deltaP}</div><div class="var-label">ΔP · ${c.coreVars.deltaPLabel}</div></div>
+      </div></div>
+    <div class="detail-section"><div class="detail-section-title">典型结构事件画像 E1–E8</div>${profileRows}</div>
+    <div class="detail-section"><div class="detail-section-title">CMC 映射（典型范围）</div>
+      <div class="cmc-stage">${c.cmc.stage}</div>
+      <div class="cmc-grid">
+        <div class="cmc-cell"><div class="cmc-label">Generation 生成</div><div class="cmc-val">${c.cmc.generation}</div></div>
+        <div class="cmc-cell"><div class="cmc-label">Coupling 耦合</div><div class="cmc-val">${c.cmc.coupling}</div></div>
+        <div class="cmc-cell"><div class="cmc-label">Feedback 回馈</div><div class="cmc-val">${c.cmc.feedback}</div></div>
+      </div></div>
+    <div class="detail-section"><div class="detail-section-title">特征描述</div><p class="summary-text">${c.summary}</p></div>
+    <div class="detail-section"><div class="detail-section-title">典型演变模式</div><p class="summary-text">${c.pattern}</p></div>
+    <div class="detail-cta">
+      <a class="btn btn-primary" onclick="showPage('join'); selectIntent('longterm');">申请成为案例参与者</a>
+      <a class="btn btn-secondary" onclick="closeCase()">返回案例库</a>
+    </div>`;
+}
+function openCase(id){
+  const c = CASES.find(x=>x.id===id);
+  renderDetail(c);
+  document.getElementById('cl-list-view').style.display='none';
+  document.getElementById('cl-detail-view').style.display='block';
+  window.scrollTo(0,0);
+}
+function closeCase(){
+  document.getElementById('cl-detail-view').style.display='none';
+  document.getElementById('cl-list-view').style.display='block';
+  window.scrollTo(0,0);
+}
 
-  /* ===== RESEARCH ===== */
-  .page-header { padding: 3rem 0 2.5rem; max-width: 680px; }
-  .page-title { font-family: var(--serif); font-size: 2.1rem; font-weight: 500; line-height: 1.4; margin-bottom: 1rem; }
-  .page-sub { color: var(--text-secondary); font-size: 14.5px; line-height: 1.8; }
-  .section { padding: 3rem 0; border-bottom: 1px solid var(--border-subtle); }
-  .section:last-of-type { border-bottom: none; }
-  .section-intro { font-family: var(--serif); font-size: 16px; color: var(--text-primary); line-height: 1.85; max-width: 620px; margin-bottom: 2rem; }
-  .intro-prose { font-family: var(--serif); font-size: 16px; line-height: 1.9; color: var(--text-primary); max-width: 620px; }
-  .intro-prose p { margin-bottom: 1.25rem; }
-  .rq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border-subtle); border: 1px solid var(--border-subtle); }
-  .rq-card { background: var(--bg-primary); padding: 1.5rem; }
-  .tmap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border-subtle); border: 1px solid var(--border-subtle); }
-  .tmap-card { background: var(--bg-primary); padding: 1.75rem; }
-  .tmap-code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--primary-600); margin-bottom: 0.5rem; }
-  .tmap-name { font-family: var(--sans); font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem; }
-  .tmap-sub { font-size: 12.5px; color: var(--text-tertiary); margin-bottom: 1.1rem; }
-  .tmap-list { list-style: none; padding: 0; margin-bottom: 1.25rem; }
-  .tmap-list li { font-size: 13px; color: var(--text-secondary); padding: 4px 0; }
-  .tmap-list li::before { content: '· '; color: var(--text-tertiary); }
-  .tmap-corr { font-size: 12px; color: var(--text-tertiary); padding-top: 0.85rem; border-top: 1px solid var(--border-subtle); }
-  .tmap-corr a { color: var(--primary-600); text-decoration: none; }
-  .tmap-corr a:hover { text-decoration: underline; }
-  .rq-id { font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); margin-bottom: 0.6rem; }
-  .rq-title { font-family: var(--sans); font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; }
-  .rq-q { font-family: var(--serif); font-size: 14px; color: var(--primary-600); font-style: italic; margin-bottom: 0.85rem; line-height: 1.6; }
-  .rq-status { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); }
-  .rq-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--primary-600); }
-  .hypo-card { border-left: 2px solid var(--primary-300); background: var(--bg-secondary); padding: 1.1rem 1.4rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-bottom: 0.85rem; }
-  .hypo-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }
-  .hypo-id { font-family: var(--mono); font-size: 11px; color: var(--primary-900); letter-spacing: 0.04em; }
-  .hypo-status { font-family: var(--mono); font-size: 10.5px; padding: 2px 9px; border-radius: 20px; }
-  .hypo-status.validating { background: var(--primary-50); color: var(--primary-900); }
-  .hypo-status.revised { background: var(--secondary-50); color: var(--secondary-900); }
-  .hypo-text { font-family: var(--serif); font-size: 15px; color: var(--text-primary); line-height: 1.7; }
-  .hypo-note { font-size: 12px; color: var(--text-tertiary); margin-top: 0.4rem; }
-  .notice { background: var(--secondary-50); border: 1px solid var(--secondary-300); border-radius: var(--radius-sm); padding: 0.85rem 1.1rem; font-size: 13px; color: var(--text-secondary); margin-bottom: 1.75rem; max-width: 620px; }
-  .notice strong { color: var(--secondary-900); }
-  .boundary-item { padding: 1.1rem 0; border-bottom: 1px solid var(--border-subtle); }
-  .boundary-item:last-child { border-bottom: none; }
-  .boundary-title { font-family: var(--sans); font-size: 14.5px; font-weight: 600; color: var(--text-primary); margin-bottom: 0.4rem; }
-  .boundary-text { font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; }
-  .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-subtle); border: 1px solid var(--border-subtle); }
-  .method-item { background: var(--bg-primary); padding: 1.3rem; }
-  .method-name { font-family: var(--sans); font-size: 0.92rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.4rem; }
-  .method-desc { font-size: 12.5px; color: var(--text-tertiary); line-height: 1.65; }
-  .glossary-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .gloss-term { background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 0.6rem 1rem; min-width: 140px; }
-  .gloss-code { font-family: var(--mono); font-size: 12px; color: var(--primary-600); margin-bottom: 2px; }
-  .gloss-def { font-size: 12px; color: var(--text-tertiary); line-height: 1.5; }
-  .cta-block { background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 2.5rem 2rem; text-align: center; margin: 3rem 0; }
-  .cta-block h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; margin-bottom: 0.6rem; }
-  .cta-block p { color: var(--text-secondary); font-size: 14px; margin-bottom: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
-
-  /* ===== CASE LIBRARY ===== */
-  .filter-block { padding-bottom: 2.5rem; border-bottom: 1px solid var(--border-subtle); margin-bottom: 2.5rem; }
-  .filter-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 0.75rem; }
-  .chip-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-  .chip { font-family: var(--sans); font-size: 12.5px; color: var(--text-secondary); background: var(--bg-secondary); border: 1px solid var(--border-subtle); padding: 5px 13px; border-radius: 20px; cursor: pointer; user-select: none; }
-  .chip:hover { border-color: var(--border-default); }
-  .chip.active { background: var(--primary-50); color: var(--primary-900); border-color: var(--primary-100); }
-  .result-count { font-family: var(--mono); font-size: 12px; color: var(--text-tertiary); }
-  .case-top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.7rem; }
-  .status-dot { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 10px; color: var(--text-tertiary); }
-  .status-dot::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--text-tertiary); }
-  .status-dot.active::before { background: var(--primary-600); }
-  .status-dot.completed::before { background: var(--secondary-600); }
-  .empty-state { padding: 3rem 0; text-align: center; color: var(--text-tertiary); font-size: 13.5px; }
-  #cl-detail-view { display: none; }
-  .back-link { font-family: var(--mono); font-size: 12px; color: var(--text-secondary); text-decoration: none; display: inline-block; margin-bottom: 2rem; cursor: pointer; }
-  .back-link:hover { color: var(--primary-600); }
-  .detail-head { padding-bottom: 2rem; border-bottom: 1px solid var(--border-subtle); margin-bottom: 2.5rem; }
-  .detail-id-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
-  .detail-id { font-family: var(--mono); font-size: 13px; color: var(--text-tertiary); }
-  .detail-title { font-family: var(--serif); font-size: 1.6rem; font-weight: 500; margin-bottom: 1rem; }
-  .detail-section { padding: 2.25rem 0; border-bottom: 1px solid var(--border-subtle); }
-  .detail-section:last-of-type { border-bottom: none; }
-  .detail-section-title { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 1.25rem; }
-  .state-block { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
-  .state-code { font-family: var(--mono); font-size: 13px; color: var(--primary-900); background: var(--primary-50); padding: 2px 9px; border-radius: 4px; display: inline-block; margin-bottom: 0.6rem; }
-  .state-gloss { font-size: 13.5px; color: var(--text-secondary); line-height: 1.7; }
-  .var-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border-subtle); margin-bottom: 0.5rem; }
-  .var-cell { background: var(--bg-secondary); padding: 1.25rem; border-right: 1px solid var(--border-subtle); text-align: center; }
-  .var-cell:last-child { border-right: none; }
-  .var-num { font-family: var(--mono); font-size: 1.5rem; color: var(--text-primary); margin-bottom: 4px; }
-  .var-label { font-size: 11.5px; color: var(--text-tertiary); }
-  .profile-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-  .profile-code { font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); width: 28px; flex-shrink: 0; }
-  .profile-name { font-size: 13px; color: var(--text-secondary); width: 150px; flex-shrink: 0; }
-  .profile-track { background: var(--bg-tertiary); border-radius: 3px; height: 7px; flex: 1; }
-  .profile-fill { background: var(--primary-300); height: 7px; border-radius: 3px; }
-  .profile-val { font-family: var(--mono); font-size: 11px; color: var(--text-secondary); width: 16px; text-align: right; }
-  .cmc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  .cmc-cell { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 1rem 1.25rem; }
-  .cmc-label { font-size: 11.5px; color: var(--text-tertiary); margin-bottom: 4px; }
-  .cmc-val { font-size: 14px; color: var(--text-primary); font-weight: 500; }
-  .cmc-stage { font-size: 13.5px; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7; }
-  .summary-text { font-family: var(--serif); font-size: 16px; color: var(--text-primary); line-height: 1.85; max-width: 600px; }
-  .timeline { position: relative; padding-left: 1.5rem; }
-  .timeline::before { content: ''; position: absolute; left: 4px; top: 6px; bottom: 6px; width: 1px; background: var(--border-default); }
-  .tl-entry { position: relative; margin-bottom: 1.75rem; }
-  .tl-entry::before { content: ''; position: absolute; left: -1.5rem; top: 4px; width: 9px; height: 9px; border-radius: 50%; background: var(--primary-600); border: 2px solid var(--bg-primary); }
-  .tl-date { font-family: var(--mono); font-size: 12px; color: var(--text-tertiary); margin-bottom: 0.4rem; }
-  .tl-metrics { font-family: var(--mono); font-size: 12px; color: var(--text-secondary); margin-bottom: 0.5rem; }
-  .tl-event { font-size: 13.5px; color: var(--text-primary); margin-bottom: 0.25rem; }
-  .tl-note { font-size: 12.5px; color: var(--text-tertiary); }
-  .detail-cta { padding: 2.5rem 0 4rem; display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
-
-  /* ===== JOIN ===== */
-  .intent-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem; padding: 0 0 2.5rem; }
-  .intent-card { background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.4rem; cursor: pointer; transition: border-color 0.15s; }
-  .intent-card:hover { border-color: var(--border-default); }
-  .intent-card.selected { border-color: var(--primary-300); background: var(--primary-50); }
-  .intent-title-en { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; color: var(--text-tertiary); margin-bottom: 0.4rem; text-transform: uppercase; }
-  .intent-title { font-family: var(--sans); font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; }
-  .intent-desc { font-size: 12.5px; color: var(--text-tertiary); line-height: 1.6; margin-bottom: 0.85rem; }
-  .intent-meta { font-family: var(--mono); font-size: 10.5px; color: var(--primary-600); }
-  .intent-group-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); margin: 2rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); }
-  .intent-group-label:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
-  .join-principle { font-family: var(--serif); font-size: 1rem; color: var(--text-primary); line-height: 1.85; max-width: 580px; margin-bottom: 2rem; }
-  .join-principle strong { color: var(--primary-600); font-weight: 600; }
-  .honest-note { font-size: 13px; color: var(--text-tertiary); padding: 1.5rem 0; border-bottom: 1px solid var(--border-subtle); max-width: 620px; }
-  #join-detail-panel { display: none; padding: 3rem 0; border-bottom: 1px solid var(--border-subtle); }
-  .detail-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-tertiary); margin-bottom: 0.75rem; text-transform: uppercase; }
-  .detail-body { font-size: 14px; color: var(--text-secondary); line-height: 1.85; max-width: 600px; margin-bottom: 1.75rem; }
-  .detail-body strong { color: var(--text-primary); font-weight: 600; }
-  .wechat-contact { display: inline-flex; align-items: center; gap: 1rem; background: var(--bg-secondary); border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: 0.85rem 1.5rem; }
-  .wechat-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary); }
-  .wechat-id { font-family: var(--mono); font-size: 1rem; font-weight: 600; color: var(--primary-600); }
-  .form-row { margin-bottom: 1.1rem; max-width: 480px; }
-  .form-label { font-size: 12.5px; color: var(--text-secondary); margin-bottom: 0.4rem; display: block; }
-  .form-input, .form-textarea { width: 100%; background: var(--bg-secondary); border: 1px solid var(--border-default); border-radius: var(--radius-sm); padding: 9px 12px; color: var(--text-primary); font-family: var(--sans); font-size: 13.5px; outline: none; }
-  .form-textarea { resize: vertical; min-height: 80px; font-family: var(--sans); }
-  .response-note { font-family: var(--mono); font-size: 11.5px; color: var(--text-tertiary); margin-top: 1rem; }
-  .faq-item { border-bottom: 1px solid var(--border-subtle); }
-  .faq-q { width: 100%; text-align: left; padding: 1.1rem 0; background: none; border: none; color: var(--text-primary); font-family: var(--sans); font-size: 14.5px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-  .faq-q:hover { color: var(--primary-600); }
-  .faq-toggle { flex-shrink: 0; color: var(--text-tertiary); font-size: 1.2rem; transition: transform 0.2s; }
-  .faq-a { padding: 0 0 1.1rem; font-size: 13.5px; color: var(--text-secondary); line-height: 1.8; display: none; max-width: 600px; }
-  .faq-item.open .faq-a { display: block; }
-  .faq-item.open .faq-toggle { transform: rotate(45deg); color: var(--primary-600); }
-
-  /* ABOUT PAGE */
-  .origin-quote {
-    border-left: 2px solid var(--primary-300);
-    background: linear-gradient(90deg, var(--primary-50), transparent 72%);
-    padding: 0.95rem 1.5rem;
-    margin: 1.5rem 0;
-    font-family: var(--serif);
-    font-size: 1.18rem;
-    font-style: italic;
-    color: var(--text-primary);
-    line-height: 1.7;
-    max-width: 620px;
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  }
-  .proj-timeline { position: relative; padding-left: 1.75rem; max-width: 600px; }
-  .proj-timeline::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--border-default); }
-  .proj-tl-item { position: relative; margin-bottom: 1.75rem; }
-  .proj-tl-dot { position: absolute; left: -1.75rem; top: 4px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg-primary); border: 2px solid var(--border-default); box-shadow: 0 0 0 3px var(--bg-primary); }
-  .proj-tl-dot.active { background: var(--primary-600); border-color: var(--primary-600); }
-  .proj-tl-year { font-family: var(--mono); font-size: 12px; color: var(--primary-600); margin-bottom: 0.3rem; }
-  .proj-tl-content { font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; }
-  .proj-tl-content strong { color: var(--text-primary); font-weight: 600; }
-
-  .roadmap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border-subtle); border: 1px solid var(--border-subtle); }
-  .roadmap-card { background: var(--bg-primary); padding: 1.4rem; transition: background 0.2s, border-color 0.2s; }
-  .roadmap-card:nth-child(1) { background: var(--primary-50); }
-  .roadmap-card:nth-child(2) { background: var(--bg-primary); }
-  .roadmap-card:nth-child(3) { background: var(--bg-secondary); }
-  .roadmap-card:nth-child(4) { background: var(--secondary-50); }
-  .roadmap-card:hover { background: var(--bg-tertiary); }
-  .roadmap-phase { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary-600); margin-bottom: 0.5rem; }
-  .roadmap-period { font-family: var(--sans); font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.85rem; }
-  .roadmap-items { list-style: none; }
-  .roadmap-items li { font-size: 12.5px; color: var(--text-secondary); padding: 5px 0; border-bottom: 1px solid var(--border-subtle); }
-  .roadmap-items li:last-child { border-bottom: none; }
-  .roadmap-items li::before { content: '— '; color: var(--text-tertiary); }
-
-  .founder-block { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 1.5rem 1.75rem; max-width: 540px; }
-  .founder-name { font-family: var(--sans); font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.2rem; }
-  .founder-role { font-size: 12.5px; color: var(--primary-600); margin-bottom: 0.85rem; }
-  .founder-bio { font-size: 13px; color: var(--text-secondary); line-height: 1.75; }
-
-  .works-list { display: flex; flex-direction: column; gap: 0; max-width: 560px; }
-  .work-row { display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 0; border-bottom: 1px solid var(--border-subtle); }
-  .work-row:last-child { border-bottom: none; }
-  .work-name { font-family: var(--sans); font-size: 14px; color: var(--text-primary); }
-  .work-meta { font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); }
-
-  /* GLOSSARY PAGE */
-  .gloss-group { margin-bottom: 0.5rem; }
-  .gloss-group-title {
-    font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--text-secondary);
-    margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-subtle);
-  }
-  .gloss-entry { display: grid; grid-template-columns: 130px 1fr; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--border-subtle); }
-  .gloss-entry:last-child { border-bottom: none; }
-  .gloss-entry-code { font-family: var(--mono); font-size: 13px; color: var(--primary-600); padding-top: 1px; }
-  .gloss-entry-name { font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 0.35rem; }
-  .gloss-entry-def { font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; max-width: 520px; }
-  .gloss-search {
-    width: 100%; max-width: 360px; background: var(--bg-secondary); border: 1px solid var(--border-default);
-    border-radius: var(--radius-sm); padding: 9px 14px; color: var(--text-primary);
-    font-family: var(--sans); font-size: 13.5px; outline: none; margin-bottom: 2.5rem;
-  }
-
-  /* CONTACT PAGE */
-  .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-  .contact-card { background: var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem; }
-  .contact-title { font-family: var(--sans); font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; }
-  .contact-desc { font-size: 13px; color: var(--text-tertiary); line-height: 1.7; margin-bottom: 1rem; }
-  .contact-email { font-family: var(--mono); font-size: 13px; color: var(--primary-600); text-decoration: none; }
-  .contact-email:hover { text-decoration: underline; }
-  .not-forum-note {
-    font-size: 13px; color: var(--text-tertiary); padding: 1.25rem 0;
-    border-top: 1px solid var(--border-subtle); margin-top: 2rem; max-width: 620px;
-  }
-
-  /* PRIVACY & ETHICS PAGE */
-  .principle-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem; }
-  .principle-tag {
-    font-family: var(--sans); font-size: 13px; color: var(--text-secondary);
-    border: 1px solid var(--border-default); padding: 6px 14px; border-radius: 20px;
-  }
-  .right-item { display: flex; gap: 0.85rem; padding: 0.9rem 0; border-bottom: 1px solid var(--border-subtle); }
-  .right-item:last-child { border-bottom: none; }
-  .right-mark { font-family: var(--mono); font-size: 12px; color: var(--primary-600); flex-shrink: 0; padding-top: 2px; }
-  .right-text { font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; }
-  .right-text strong { color: var(--text-primary); font-weight: 600; }
-  .layer-diagram { display: flex; flex-direction: column; gap: 0; max-width: 480px; }
-  .layer-box { padding: 1rem 1.25rem; border-radius: var(--radius-sm); font-size: 13px; }
-  .layer-private { background: var(--bg-tertiary); color: var(--text-secondary); border: 1px solid var(--border-default); }
-  .layer-process { background: var(--bg-secondary); color: var(--text-tertiary); border: 1px dashed var(--border-default); font-family: var(--mono); font-size: 12px; }
-  .layer-arrow { text-align: center; font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); padding: 0.5rem 0; }
-  .layer-public { background: var(--primary-50); color: var(--primary-900); border: 1px solid var(--primary-100); }
-  .commit-list { display: flex; flex-direction: column; gap: 0; max-width: 600px; margin-bottom: 0.5rem; }
-  .commit-item { display: flex; gap: 0.85rem; padding: 0.8rem 0; border-bottom: 1px solid var(--border-subtle); font-size: 13.5px; color: var(--text-secondary); line-height: 1.7; }
-  .commit-item:last-child { border-bottom: none; }
-  .commit-mark { color: var(--primary-600); flex-shrink: 0; }
-  .coming-soon {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em;
-    color: var(--text-tertiary); background: var(--bg-tertiary);
-    border: 1px dashed var(--border-default); padding: 4px 11px; border-radius: 20px;
-  }
-
-  /* PUBLICATIONS */
-  .pub-card { border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1.25rem; cursor: pointer; transition: border-color 0.15s; }
-  .pub-card:hover { border-color: var(--border-default); }
-  .pub-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.5rem; }
-  .pub-name { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; color: var(--text-primary); }
-  .pub-status { font-family: var(--mono); font-size: 10.5px; padding: 3px 10px; border-radius: 20px; flex-shrink: 0; }
-  .pub-status.serializing { background: var(--primary-50); color: var(--primary-900); }
-  .pub-status.announced { background: var(--bg-tertiary); color: var(--text-tertiary); }
-  .pub-desc { font-size: 13.5px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.5rem; }
-  .pub-count { font-family: var(--mono); font-size: 11.5px; color: var(--text-tertiary); }
-
-  .chapter-row { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border-subtle); align-items: baseline; }
-  .chapter-row:last-child { border-bottom: none; }
-  .chapter-num { font-family: var(--mono); font-size: 12px; color: var(--text-tertiary); width: 50px; flex-shrink: 0; }
-  .chapter-info { flex: 1; }
-  .chapter-title { font-family: var(--sans); font-size: 14.5px; font-weight: 500; color: var(--text-primary); }
-  .chapter-date { font-family: var(--mono); font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
-  .excerpt-box { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 1.5rem 1.75rem; margin: 1.5rem 0; }
-  .excerpt-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 0.85rem; }
-  .excerpt-text { font-family: var(--serif); font-size: 15.5px; color: var(--text-primary); line-height: 1.9; }
-  .empty-future { font-size: 13px; color: var(--text-tertiary); padding: 1rem 0; }
-
-  @media (max-width: 760px) {
-    .nav-links { display: none; }
-    .nav-links.open {
-      display: flex; flex-direction: column;
-      position: fixed; top: 64px; left: 0; right: 0;
-      background: var(--bg-primary);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 0.5rem 0;
-      margin-left: 0;
-      z-index: 60;
+/* ===== JOIN DATA + LOGIC ===== */
+const INTENTS = [
+  { key:"read", titleEn:"READ", title:"阅读", desc:"免费公开资料，无需申请，直接浏览即可", meta:"无需联系" },
+  { key:"open_obs", titleEn:"OPEN OBSERVATION", title:"开放观察", desc:"适合：职业困扰 / 关系问题 / 情绪波动 / 梦境记录 / 意义感危机", meta:"基础参与免费",
+    type:"wechat",
+    detailTitle:"开放观察",
+    detailBody:"内容包括：一次性结构观察、梦境记录与整理、基础访谈、状态追踪、匿名案例研究。<br><br>所有资料默认匿名处理。参与不代表认同理论。<strong>基础参与免费。</strong>" },
+  { key:"longterm", titleEn:"LONG-TERM CASE", title:"长期案例", desc:"持续记录变化过程，共同参与研究积累", meta:"长期观察",
+    type:"wechat",
+    detailTitle:"长期随访与案例共建",
+    detailBody:"内容包括：定期随访、梦境追踪、人生阶段记录、相位差变化观察、结构变化档案、工具反馈与共同完善。<br><br>通常在完成基础观察后逐步进入。重点并非咨询，而是共同完成一个长期案例。" },
+  { key:"research", titleEn:"RESEARCH & PUBLICATION", title:"研究与出版合作", desc:"适合：研究人员 / 博士生 / AI研究者 / 翻译者 / 出版机构 / 媒体", meta:"学术合作",
+    type:"contact",
+    detailTitle:"学术、出版与研究合作",
+    detailBody:"合作方向包括：理论讨论、实验设计、数据分析、翻译项目、出版合作、AI工具开发、案例数据库建设。" },
+  { key:"cobuild", titleEn:"CO-BUILD", title:"共建计划", desc:"适合：长期关注项目 / 希望贡献能力", meta:"志愿协作",
+    type:"wechat",
+    detailTitle:"志愿协作与项目共建",
+    detailBody:"可能参与：网站维护、AI工具开发、翻译工作、播客与视频制作、数据整理、国际传播。<br><br>项目目前仍由个人维护，未来会逐渐形成开放协作网络。" }
+];
+let selectedKey = null;
+function renderGrid(){
+  document.getElementById('intent-grid-a').innerHTML = INTENTS.map(i => {
+    if (i.key === 'read') {
+      return `<div class="intent-card" onclick="showPage('pubs')">
+        <div class="intent-title-en">${i.titleEn}</div>
+        <div class="intent-title">${i.title}</div><div class="intent-desc">${i.desc}</div><div class="intent-meta">${i.meta}</div>
+      </div>`;
     }
-    .nav-links.open a { padding: 0.85rem 1.25rem; border-bottom: 1px solid var(--border-subtle); }
-    .nav-links.open li:last-child a { border-bottom: none; }
-    .hamburger { display: block; }
-    .hero-title { font-size: 1.8rem; }
-    .hero-q-main { font-size: 1.6rem; }
-    .hero-q-sub { font-size: 0.95rem; }
-    .stat-grid { grid-template-columns: repeat(2, 1fr); }
-    .stat-cell:nth-child(2) { border-right: none; }
-    .stat-cell { border-bottom: 1px solid var(--border-subtle); }
-    .case-grid, .join-grid-mini, .rq-grid, .method-grid, .intent-grid, .var-grid, .cmc-grid, .roadmap-grid, .tmap-grid { grid-template-columns: 1fr; }
-    .gloss-entry { grid-template-columns: 1fr; gap: 0.3rem; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .var-cell { border-right: none; border-bottom: 1px solid var(--border-subtle); }
-    .var-cell:last-child { border-bottom: none; }
-    .profile-name { width: 110px; font-size: 12px; }
-    .wrap { padding: 0 1.25rem; }
-    nav { padding: 0 1.25rem; }
-    section.block, .section { padding: 2.5rem 0; }
-    .hero { padding: 3rem 0 2rem; }
+    return `<div class="intent-card ${selectedKey===i.key?'selected':''}" onclick="selectIntent('${i.key}')">
+      <div class="intent-title-en">${i.titleEn}</div>
+      <div class="intent-title">${i.title}</div><div class="intent-desc">${i.desc}</div><div class="intent-meta">${i.meta}</div>
+    </div>`;
+  }).join('');
+}
+function selectIntent(key){
+  const item = INTENTS.find(i=>i.key===key);
+  if (item && item.type === 'contact') {
+    showPage('contact');
+    return;
   }
+  selectedKey = key;
+  renderGrid();
+  const panel = document.getElementById('join-detail-panel');
+  panel.innerHTML = `
+    <div class="detail-eyebrow">${item.titleEn}</div>
+    <h2 class="detail-title">${item.detailTitle}</h2>
+    <p class="detail-body">${item.detailBody}</p>
+    <div class="wechat-contact">
+      <div class="wechat-label">微信</div>
+      <div class="wechat-id">meta-jiawei</div>
+    </div>
+    <button class="btn btn-secondary" type="button" onclick="closeJoinPanel()" style="margin-top:1.5rem;">关闭</button>`;
+  panel.style.display='block';
+  panel.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function closeJoinPanel(){ selectedKey=null; renderGrid(); document.getElementById('join-detail-panel').style.display='none'; }
+function toggleFaq(btn){ btn.closest('.faq-item').classList.toggle('open'); }
+
+/* ===== INIT ===== */
+renderFilters();
+renderList();
+renderGrid();
