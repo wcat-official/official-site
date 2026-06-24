@@ -2,38 +2,50 @@
 const PAPERS = [
   {
     id: "wcat",
-    name: "WCAT 白皮书",
-    fullName: "意志回路激活理论：结构状态框架",
-    versions: [
-      { v: "1.2", status: "current", date: "2026-05-10", changelog: "新增 R3 区细分定义（R3.1 文化单解耦态 / R3.2 边界倾向）；修正 S_exe 计算方式。" },
-      { v: "1.1", status: "superseded", date: "2025-11-02", changelog: "新增 E1–E8 结构事件画像体系。" },
-      { v: "1.0", status: "superseded", date: "2025-08-15", changelog: "首个公开版本。" }
-    ],
-    abstract: "本文提出意志回路激活理论（WCAT），尝试把'意志'从模糊的人格特质重新描述为一种可观察、可测量的结构状态。框架核心包括语义系统与行动系统的耦合度（S_sem / S_exe）、个体对自身吸引子模式的觉察能力，以及脱离旧有路径后重建新结构所承受的压力（重建风险）。本白皮书定义了完整的结构状态分区（R-zone）与八项结构事件指标（E1–E8），并提供初步案例验证。"
+    name: "《意志回路激活理论（W-CAT）显影系统与结构模型》",
+    shortName: "W-CAT 显影系统与结构模型",
+    version: "简体中文白皮书 V1.0",
+    date: "2026-04-15",
+    doi: "https://doi.org/10.17605/OSF.IO/KB6SY",
+    citation: "嘉炜（Jiawei）. (2026).《意志回路激活理论（W-CAT）显影系统与结构模型 简中白皮书 · 第一版》. OSF. https://doi.org/10.17605/OSF.IO/KB6SY",
+    abstract: "该白皮书集中呈现 W-CAT 的显影系统、结构模型与应用接口，是当前更接近工具化阶段的理论文本。正文、附件与版本记录以 OSF 页面为准。"
+  },
+  {
+    id: "wcat-basic",
+    name: "《意志回路激活理论（W-CAT）》",
+    shortName: "W-CAT 简中白皮书",
+    version: "简体中文白皮书 v1.0.1",
+    date: "2026-01-12",
+    doi: "https://doi.org/10.17605/OSF.IO/86KN7",
+    citation: "嘉炜（Jiawei）. (2026).《意志回路激活理论（W-CAT）简中白皮书 · 第一版》. OSF. https://doi.org/10.17605/OSF.IO/86KN7",
+    abstract: "该白皮书发布 W-CAT 的基础理论结构，以结构性自由意志为核心，作为可被检验、反驳与扩展的工作假说。"
   },
   {
     id: "cmc",
-    name: "CMC 白皮书",
-    fullName: "意识—意义—文明映射框架",
-    versions: [
-      { v: "1.0", status: "current", date: "2025-12-20", changelog: "首个公开版本，从个体意志框架（WCAT）延伸至更广义的生成—耦合—回馈结构。" }
-    ],
-    abstract: "CMC 框架延伸 WCAT 的个体结构观察，尝试描述生成层（Generation）、耦合层（Coupling）与回馈层（Feedback）三者之间的动态关系，为理解意义系统的形成、崩塌与重建提供更广义的映射工具。目前仍处早期阶段，案例验证有限。"
+    name: "《意識映射宇宙論（CMC）》",
+    shortName: "CMC 繁中白皮书",
+    version: "繁體中文白皮書 · 第一版",
+    date: "2025",
+    doi: "https://doi.org/10.17605/OSF.IO/ZSHGK",
+    citation: "嘉炜（Jiawei）. (2025).《意識映射宇宙論（CMC）繁體中文白皮書 · 第一版》. OSF. https://doi.org/10.17605/OSF.IO/ZSHGK",
+    abstract: "CMC 是与 W-CAT 相关的意识与经验世界框架，作为后续理解经验世界、主体结构与结构性自由的背景文本。"
   }
 ];
 
 function renderPapersIndex() {
-  document.getElementById('papers-index').innerHTML = PAPERS.map(p => {
-    const current = p.versions.find(v => v.status === 'current');
-    return `
+  document.getElementById('papers-index').innerHTML = `
+    ${PAPERS.map(p => `
     <div class="wp-row" style="cursor:pointer;" onclick="openPaper('${p.id}')">
       <div>
         <span class="wp-name">${p.name}</span>
-        <span class="wp-ver">v${current.v} · current</span>
+        <span class="wp-ver">${p.version} · ${p.date}</span>
       </div>
-      <a class="link-arrow">查看详情与版本历史 →</a>
-    </div>`;
-  }).join('');
+      <a class="link-arrow">查看授权与引用方式 →</a>
+    </div>`).join('')}
+    <div class="notice" style="margin-top:1.75rem;">
+      <strong>说明：</strong>官网不再维护完整白皮书正文与复杂版本历史。白皮书正文、下载文件与版本记录以 OSF 页面为准。
+    </div>
+  `;
 }
 
 function openPaper(id) {
@@ -42,22 +54,33 @@ function openPaper(id) {
   el.innerHTML = `
     <div class="section" style="border-top:1px solid var(--border-subtle); padding-top:2.5rem;">
       <a class="link-arrow" onclick="closePaper()">← 返回白皮书列表</a>
-      <h2 class="detail-title" style="margin-top:1.5rem;">${p.fullName}</h2>
+      <h2 class="detail-title" style="margin-top:1.5rem;">${p.shortName}</h2>
       <p class="detail-body">${p.abstract}</p>
 
-      <div class="section-title" style="margin-top:2rem;">版本历史</div>
-      ${p.versions.map(v => `
-        <div class="hypo-card" style="border-left-color: ${v.status === 'current' ? 'var(--primary-300)' : 'var(--border-default)'};">
-          <div class="hypo-top">
-            <span class="hypo-id">v${v.v} · ${v.date}</span>
-            <span class="hypo-status ${v.status === 'current' ? 'validating' : ''}" style="${v.status !== 'current' ? 'background:var(--bg-tertiary); color:var(--text-tertiary);' : ''}">${v.status === 'current' ? 'CURRENT' : 'SUPERSEDED'}</span>
-          </div>
-          <div class="hypo-text" style="font-family:var(--sans); font-size:13.5px;">${v.changelog}</div>
-        </div>
-      `).join('')}
+      <div class="section-title" style="margin-top:2rem;">授权与使用声明</div>
+      <div class="intro-prose" style="font-size:14.5px;">
+        <p>《意志回路激活理论（Will-Circuit Activation Theory, W-CAT）》是一个以结构性自由意志为核心的理论模型体系，由独立研究人嘉炜（Jiawei）以工作假说形式发布，旨在提供可被检验、反驳与扩展的结构视角。</p>
+        <p>作者鼓励在明确署名与溯源的前提下，对本理论进行非商业性的阅读、分享、引用、翻译、教学与学术讨论。</p>
+        <p>随着 W-CAT 理论结构的逐步冻结及其进入应用接口与工具化阶段，自 RELEASE v1.0.1（Logic Frozen Edition）起，文本使用权与应用使用权明确区分。</p>
+      </div>
+
+      <div class="section-title" style="margin-top:2rem;">需要书面授权的使用</div>
+      <div class="commit-list">
+        <div class="commit-item"><span class="commit-mark">—</span><div>将 W-CAT 的理论结构、核心模型、术语体系或推导逻辑用于商业目的。</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>基于 W-CAT 开发或提供付费课程、咨询服务、产品、平台或组织解决方案。</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>将 W-CAT 理论结构直接或间接用于人工智能模型训练、系统设计或决策代理。</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>以可能造成理论误导、结构性偏离或降维滥用的方式，对 W-CAT 进行再诠释或传播。</div></div>
+      </div>
+
+      <div class="notice" style="margin-top:1.5rem;">
+        <strong>伦理与语境提示：</strong>W-CAT 提供的是结构可见性工具，而非价值判断或行为规范。使用者需对其具体语境中的应用承担反身性责任。
+      </div>
+
+      <div class="section-title" style="margin-top:2rem;">引用方式</div>
+      <p class="detail-body" style="font-family:var(--mono); font-size:12.5px; line-height:1.8;">${p.citation}</p>
 
       <div class="detail-cta" style="padding-top:2rem;">
-        <a class="btn btn-primary" href="#">下载 PDF（v${p.versions[0].v}）</a>
+        <a class="btn btn-primary" href="${p.doi}" target="_blank" rel="noopener">在 OSF 查看 / 下载</a>
         <a class="btn btn-secondary" onclick="showPage('join'); selectIntent('cobuild');">提交学术合作申请</a>
       </div>
     </div>
@@ -79,51 +102,26 @@ const PUBS = [
     status: "serializing",
     statusLabel: "连载中",
     description: "面向大众的叙事性入口。从历史脉络出发，追溯人类如何理解'意志'这个概念——不需要任何背景知识即可阅读。",
-    trackingUrl: "https://read.douban.com/column/72467157/?dcs=search",
-    intro: { title: "导论：为什么必须重写一部意志史？", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484065&idx=1&sn=616390aa9d366e1ba8c393228a7fc4c7&scene=21#wechat_redirect" },
-    parts: [
-      {
-        partTitle: "第一编｜系统0：意志尚未诞生的世界",
-        partIntro: "我们从最底层的'意志'来源出发，从一种想当然的属性，还原为一个在演化中艰难生成的结构。",
-        chapters: [
-          { title: "系统0：在没有'我'的世界里：云雾态意识", date: "2026-01-28", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484074&idx=1&sn=1e5d61806f9aee8ea8abeb980ca9d5ed&scene=21#wechat_redirect" },
-          { title: "回路0.5：前意志结构：生命如何被无形牵引", date: "2026-01-30", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484079&idx=1&sn=ecc20e808d3292ac69e207454939b82d&scene=21#wechat_redirect" }
-        ]
-      },
-      {
-        partTitle: "第二编｜个人意志的生成：W-CAT四回路模型",
-        partIntro: "我们从个体意志的角度，慢慢描绘出一张个体如何以结构拓扑的形式，拉扯与跃迁的地图，它并不特别，每个人都有可能握住它，选择自己的结构入口。",
-        chapters: [
-          { title: "回路1.0：本能驱动的牢笼", date: "2026-01-31", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484085&idx=1&sn=d2d69485620edf2e5edbcacbb0b31c6f&scene=21#wechat_redirect" },
-          { title: "回路1.5：基因与模因的战争：关于\"青春期叛逆\"与\"中年危机\"的结构性解读", date: "2026-02-03", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484092&idx=1&sn=83d0922b5fbc84fab34c1f899c38b7b4&scene=21#wechat_redirect" },
-          { title: "回路2.0：我们都在一艘巨大的意识航母之上，自动航行", date: "2026-02-05", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484099&idx=1&sn=70c027b554c4420e087ec42edfa63491&scene=21#wechat_redirect" },
-          { title: "回路2.5：高功能陷阱：为什么越聪明的人，越容易陷入危险的自由", date: "2026-02-11", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484246&idx=1&sn=d0ed3c482cfbb72d8db6a777715f8a18&scene=21#wechat_redirect" },
-          { title: "回路3.0：当认知的重力消失之后", date: "2026-02-12", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484110&idx=1&sn=c91c587faf4f7a2a8a63775ce5f3aff5&scene=21#wechat_redirect" },
-          { title: "回路3.5：当认知的重力消失之后，系统只有两个选择，那是回退，还是重组？", date: "2026-02-20", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484124&idx=1&sn=ff09b2e5f110f7db86e06dc242d29bfa&scene=21#wechat_redirect" },
-          { title: "回路4.0：自主生成吸引子与创造性语义耦合——从《红楼梦》、皮娜·鲍什 到《芬尼根的守灵夜》", date: "2026-03-10", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484155&idx=1&sn=dbfae5db417b346149544d1e305bd66d&scene=21#wechat_redirect" }
-        ]
-      },
-      {
-        partTitle: "第三编｜文明意志的沉积：谁在替人类做选择？",
-        partIntro: "个体意志与集体意志缠绕而生，拓扑同构地形成文明史，这也揭示了我们所面临时代的结构性困境。",
-        chapters: [
-          { title: "从个体到文明：意志结构如何被世界继承", date: "2026-05-17", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484252&idx=1&sn=5d6a4fc1be6adc44e3c657799ebf32a4&scene=21#wechat_redirect" },
-          { title: "文明结构 0.5：当意志开始被文明记住——巫性文明与集体结构的第一次沉积", date: "2026-05-17", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484297&idx=1&sn=bf432493403a624214caf8d797486413&scene=21#wechat_redirect" },
-          { title: "文明结构 1.0：当人类开始命名世界——生理吸引子如何冻结为文明现实", date: "2026-05-23", url: "https://mp.weixin.qq.com/s?__biz=Mzk0NTY1MjAzMQ==&mid=2247484321&idx=1&sn=44bb23e4557608050e7be8e9ee99c153&scene=21#wechat_redirect" },
-          { title: "文明结构 1.5：当人类开始思考自身——抽象意义如何塑造文明", date: "2026-06-16", url: null },
-          { title: "文明结构 2.0：当思想开始统治世界——规训系统如何塑造文明现实", date: "2026-06-16", url: null }
-        ]
-      }
+    chapters: [
+      { number: 1, title: "意志是什么", date: "2025-08-01" },
+      { number: 2, title: "古典时代的意志观", date: "2025-08-15" },
+      { number: 3, title: "意志的消失：行为主义的冲击", date: "2025-09-02" },
+      { number: 4, title: "重新发现结构", date: "2025-10-10" },
+      { number: 5, title: "知道却做不到", date: "2025-11-20" },
+      { number: 6, title: "吸引子与命名", date: "2026-01-15" },
+      { number: 7, title: "命名与失效", date: "2026-06-10" }
     ]
   },
   {
     id: "consciousness-history",
     name: "《意识简史》",
-    status: "planned",
-    statusLabel: "规划中",
-    description: "《意志简史》的延伸阅读，探讨意识与意志之间更深的结构关系，为 CMC 框架提供叙事性背景。尚未开始连载。",
-    intro: null,
-    parts: []
+    status: "serializing",
+    statusLabel: "连载中",
+    description: "《意志简史》的延伸阅读，探讨意识与意志之间更深的结构关系，为 CMC 框架提供叙事性背景。",
+    chapters: [
+      { number: 1, title: "意识问题的回归", date: "2026-02-01" },
+      { number: 2, title: "反身性是如何形成的", date: "2026-04-18" }
+    ]
   },
   {
     id: "2080",
@@ -131,64 +129,47 @@ const PUBS = [
     status: "planned",
     statusLabel: "规划中",
     description: "面向未来的长篇虚构 / 推测性作品，探讨个体结构理论在更长时间尺度上的应用。尚未开始连载。",
-    intro: null,
-    parts: []
+    chapters: []
   }
 ];
 
 function renderPubsIndex() {
-  document.getElementById('pubs-index').innerHTML = PUBS.map(p => {
-    const chCount = p.parts.reduce((sum, part) => sum + part.chapters.length, 0) + (p.intro ? 1 : 0);
-    return `
+  document.getElementById('pubs-index').innerHTML = PUBS.map(p => `
     <div class="wp-row" style="cursor:pointer;" onclick="openPub('${p.id}')">
       <div>
         <span class="wp-name">${p.name}</span>
-        <span class="wp-ver">${p.statusLabel}${chCount ? ' · ' + chCount + ' 篇' : ''}</span>
+        <span class="wp-ver">${p.statusLabel}${p.chapters.length ? ' · ' + p.chapters.length + ' 章' : ''}</span>
       </div>
-      <a class="link-arrow">${chCount ? '查看章节 →' : '了解详情 →'}</a>
+      <a class="link-arrow">${p.chapters.length ? '查看章节 →' : '了解详情 →'}</a>
     </div>
-  `;
-  }).join('');
-}
-
-function chapterRow(pubId, c, idx) {
-  const safeIdx = idx !== undefined ? idx : 0;
-  return `<div class="toc-entry" id="ch-${pubId}-${safeIdx}">
-    <div class="toc-entry-title">${c.title}</div>
-    <div class="toc-entry-date">${c.date || ''}</div>
-  </div>`;
+  `).join('');
 }
 
 function openPub(id) {
   const p = PUBS.find(x => x.id === id);
   const el = document.getElementById('pub-detail');
-  const chCount = p.parts.reduce((sum, part) => sum + part.chapters.length, 0) + (p.intro ? 1 : 0);
-  let chapIdx = 0;
-  const partsHtml = p.parts.map(part => `
-    ${part.partTitle ? `<div class="section-title" style="margin-top:2rem;">${part.partTitle}</div>` : ''}
-    ${part.partIntro ? `<p style="font-size:13px; color:var(--text-tertiary); font-style:italic; margin-bottom:1rem; max-width:560px; line-height:1.7;">${part.partIntro}</p>` : ''}
-    <div class="works-list">
-      ${part.chapters.map(c => chapterRow(p.id, c, chapIdx++)).join('')}
-    </div>
-  `).join('');
-
   el.innerHTML = `
     <div class="section" style="border-top:1px solid var(--border-subtle); padding-top:2.5rem;">
       <a class="link-arrow" onclick="closePub()">← 返回出版物列表</a>
       <h2 class="detail-title" style="margin-top:1.5rem;">${p.name}</h2>
       <p class="detail-body">${p.description}</p>
 
-      ${chCount ? `
-        ${p.intro ? `<div class="section-title" style="margin-top:2rem;">导论</div><div class="works-list">${chapterRow(p.id, p.intro, 'intro')}</div>` : ''}
-        ${partsHtml}
+      ${p.chapters.length ? `
+        <div class="section-title" style="margin-top:2rem;">章节列表</div>
+        <div class="works-list">
+          ${p.chapters.map(c => `
+            <div class="work-row" id="ch-${p.id}-${c.number}">
+              <span class="work-name">第${c.number}章 · ${c.title}</span>
+              <span class="work-meta">${c.date}</span>
+            </div>
+          `).join('')}
+        </div>
       ` : `
         <div class="notice" style="margin-top:1.5rem;">该作品尚未开始连载，目前处于规划阶段。</div>
       `}
 
       <div class="detail-cta" style="padding-top:2rem;">
-        ${p.trackingUrl
-          ? `<a class="btn btn-primary" href="${p.trackingUrl}" target="_blank" rel="noopener">前往豆瓣阅读最新章节</a>`
-          : (chCount ? `<a class="btn btn-primary" onclick="jumpToLatestChapter('${p.id}')">查看最新章节</a>` : '')}
+        ${p.chapters.length ? `<a class="btn btn-primary" onclick="jumpToLatestChapter('${p.id}')">查看最新章节</a>` : ''}
         <a class="btn btn-secondary" onclick="showPage('join'); selectIntent('cobuild');">讨论出版合作</a>
       </div>
     </div>
@@ -203,14 +184,9 @@ function closePub() {
 }
 function jumpToLatestChapter(pubId) {
   const p = PUBS.find(x => x.id === pubId);
-  if (!p) return;
-  const flat = [];
-  if (p.intro) flat.push({ ...p.intro, domIdx: 'intro' });
-  let idx = 0;
-  p.parts.forEach(part => part.chapters.forEach(c => flat.push({ ...c, domIdx: idx++ })));
-  if (!flat.length) return;
-  const latest = flat.reduce((a, b) => ((a.date || '') > (b.date || '') ? a : b));
-  const row = document.getElementById(`ch-${pubId}-${latest.domIdx}`);
+  if (!p || !p.chapters.length) return;
+  const latest = p.chapters.reduce((a, b) => (a.date > b.date ? a : b));
+  const row = document.getElementById(`ch-${pubId}-${latest.number}`);
   if (!row) return;
   row.scrollIntoView({ behavior: 'smooth', block: 'center' });
   row.style.background = 'var(--primary-50)';
@@ -220,14 +196,14 @@ function jumpToLatestChapter(pubId) {
 
 /* ===== RESEARCH LOG DATA + LOGIC ===== */
 const LOG_ENTRIES = [
-  { date:"2026-06-15", type:"案例增长", text:"案例库新增第三个长期追踪样本，进入纵向观察阶段。" },
+  { date:"2026-06-15", type:"案例增长", text:"案例库已形成十余个长期观察与数十个短期观察，开始改用样本聚类方式呈现阶段性特征。" },
   { date:"2026-05-20", type:"量表更新", text:"25题专业量表完成第二次修订，新增结构状态判定逻辑。" },
-  { date:"2026-05-10", type:"理论修订", text:"WCAT 白皮书更新至 v1.2，新增 R3 区细分定义。" },
+  { date:"2026-05-10", type:"理论修订", text:"W-CAT 白皮书与版本记录迁移至 OSF，官网仅保留索引、授权说明与引用方式。" },
   { date:"2026-04-02", type:"理论修订", text:"WCAT-H3 假说措辞调整，明确\"长期拖延\"与\"意志薄弱\"的区分边界。" },
   { date:"2026-03-20", type:"案例增长", text:"CASE-004 完成追踪周期，结构状态进入稳定区间，转入归档。" },
-  { date:"2025-12-20", type:"合作进展", text:"CMC 白皮书 v1.0 发布。" },
-  { date:"2025-11-02", type:"量表更新", text:"WCAT 白皮书更新至 v1.1，新增 E1–E8 结构事件画像体系。" },
-  { date:"2025-08-15", type:"理论修订", text:"WCAT 白皮书 v1.0 首次公开发布。" }
+  { date:"2025-12-20", type:"合作进展", text:"CMC 白皮书在 OSF 发布并建立确权记录。" },
+  { date:"2025-11-02", type:"量表更新", text:"W-CAT 结构事件画像体系进入白皮书修订。" },
+  { date:"2025-08-15", type:"理论修订", text:"W-CAT 早期白皮书版本完成公开发布。" }
 ];
 
 let activeLogType = null;
@@ -340,136 +316,147 @@ function toggleMode() {
   btn.textContent = html.classList.contains('dark') ? '亮色模式' : '暗色模式';
 }
 
-/* ===== CASE LIBRARY DATA + LOGIC ===== */
-const CASES = [
-  { id:"CLUSTER-A", status:"active", statusLabel:"特征已较稳定", tags:["创造性停滞","主体结构变化"],
-    label:"高功能停滞模式",
-    stateRange:"R1.4 – R2.3",
-    primaryGloss:"外部功能多表现正常，行动系统持续受阻；理解与自我观察能力通常不受影响。",
-    coreVars:{sSem:3,sExe:2,deltaP:1,deltaPLabel:"理论略领先现实（典型范围）"},
-    profile:{e1:4,e2:1,e3:2,e4:5,e5:3,e6:4,e7:4,e8:4},
-    cmc:{stage:"生成层通常活跃，回馈层易出现停滞",generation:"中-高",coupling:"低-中",feedback:"低"},
-    summary:"这类样本通常具备清晰的自我观察与语言表达能力，能准确描述自己的停滞状态，但这种清晰度未必转化为行动。结构压力多来自长期的'即将开始'状态，防御锁定程度因样本而异，部分样本中的停滞可能具有一定的保护性功能。",
-    pattern:"在持续观察的样本中，这类特征常见的演变路径为：识别停滞 → 尝试小规模重启 → 反复受阻 → 部分样本在命名方式调整后出现行动力回升。具体节奏因人差异较大，尚不构成统一结论。" },
-  { id:"CLUSTER-B", status:"active", statusLabel:"特征已较稳定", tags:["解耦过程","意义危机"],
-    label:"文化解耦后的意义空窗",
-    stateRange:"R2.3 – R3.2",
-    primaryGloss:"已开始脱离既有文化叙事，具备初步结构观察能力，但尚未进入稳定建构阶段。",
-    coreVars:{sSem:2,sExe:2,deltaP:0,deltaPLabel:"大体平衡（典型范围）"},
-    profile:{e1:5,e2:1,e3:1,e4:5,e5:4,e6:5,e7:6,e8:1},
-    cmc:{stage:"反身性闭环早期形成期",generation:"中",coupling:"低-中",feedback:"低"},
-    summary:"这类样本通常已意识到旧解释系统不足，开始寻找新的结构语言，这往往是 R2→R3 转折的重要信号。核心冲突多不是'我是谁'，而是旧解释已经不够用，但新解释还没有长出来。重建风险常处于较高位，但这是结构重组过程中较常见的现象，而非结构退化。",
-    pattern:"在持续观察的样本中，这类特征常伴随职业、关系或信仰路径上的探索性尝试，新方向的出现往往早于稳定感的建立，过渡期长度因样本差异较大。" },
-  { id:"CLUSTER-C", status:"active", statusLabel:"特征已较稳定", tags:["情绪循环","主体结构变化"],
-    label:"重复关系/情绪模式",
-    stateRange:"R1.3 – R2.1",
-    primaryGloss:"已能识别自身重复出现的模式，但尚未获得脱离该模式所需的结构资源。",
-    coreVars:{sSem:3,sExe:2,deltaP:1,deltaPLabel:"轻度领先（典型范围）"},
-    profile:{e1:6,e2:3,e3:4,e4:3,e5:1,e6:3,e7:3,e8:5},
-    cmc:{stage:"生成层尚未稳定激活",generation:"低-中",coupling:"低",feedback:"中"},
-    summary:"这类样本常呈现出跨情境（关系、职业、家庭）高度一致的结构模式：相似的吸引子捕获路径、相似的冲突触发点。多数样本在意识到循环之后仍难以跳出，提示问题核心往往不在认知层面，而在吸引子本身的强度与防御锁定程度。",
-    pattern:"在持续观察的样本中，主动中断循环的尝试通常先于行动力的稳定提升出现，二者之间常有一段滞后期，长度因样本差异较大。" },
-  { id:"CLUSTER-D", status:"emerging", statusLabel:"样本积累中", tags:["意义危机","梦境结构"],
-    label:"意义崩塌与梦境结构变化",
-    stateRange:"R2.2 – R3.2",
-    primaryGloss:"重大变动后原有意义系统迅速失效，部分样本伴随梦境结构的可观察变化。",
-    coreVars:{sSem:2,sExe:1,deltaP:1,deltaPLabel:"轻度领先（典型范围，样本较少）"},
-    profile:{e1:4,e2:4,e3:5,e4:4,e5:4,e6:4,e7:6,e8:2},
-    cmc:{stage:"回馈层崩塌后重建中",generation:"中",coupling:"低",feedback:"低"},
-    summary:"这一聚类目前样本数量相对较少，初步观察显示重大职业或关系变动后，原有意义系统快速失效，部分样本同时报告梦境内容或结构出现变化。这类关联是否具有普遍性，目前证据有限，仍需更多样本验证。",
-    pattern:"由于样本积累尚不充分，目前暂不归纳统一的演变路径，仅作为初步观察记录保留。" },
-  { id:"CLUSTER-E", status:"active", statusLabel:"特征已较稳定", tags:["解耦过程","创造性停滞"],
-    label:"路径模糊型停滞",
-    stateRange:"R1.1 – R1.4",
-    primaryGloss:"已具备基本行动能力，但已脱离原有路径、尚未建立明确的新方向性结构支撑。",
-    coreVars:{sSem:2,sExe:3,deltaP:0,deltaPLabel:"大体平衡（典型范围）"},
-    profile:{e1:2,e2:1,e3:3,e4:2,e5:2,e6:2,e7:3,e8:3},
-    cmc:{stage:"尚未进入稳定的反身性闭环",generation:"低-中",coupling:"中",feedback:"中"},
-    summary:"这类样本通常具备基本的行动能力（并非完全停滞），但缺乏明确的方向性结构支撑，容易表现为持续的“还在考虑”状态。与高功能停滞型不同，这类样本的核心困难更多在路径选择本身，而不是行动系统的受阻。",
-    pattern:"在持续观察的样本中，外部结构性事件（如关系变化、机会出现）常是触发路径重新明确化的常见诱因。" },
-  { id:"CLUSTER-F", status:"emerging", statusLabel:"样本积累中", tags:["AI耦合","主体结构变化"],
-    label:"人机协同中的结构变化",
-    stateRange:"样本范围尚未稳定",
-    primaryGloss:"探索不同主体结构与 AI 协同过程中可能出现的结构性变化，目前处于实验积累阶段。",
-    coreVars:{sSem:3,sExe:3,deltaP:0,deltaPLabel:"暂不归纳（样本不足）"},
-    profile:{e1:3,e2:1,e3:2,e4:3,e5:2,e6:3,e7:3,e8:2},
-    cmc:{stage:"探索阶段，尚未形成稳定映射",generation:"待观察",coupling:"待观察",feedback:"待观察"},
-    summary:"这一方向目前仍处于早期实验阶段，样本数量与观察周期均有限。初步观察提示，与 AI 的持续协同过程可能伴随主体结构层面的可观察变化，但具体机制、方向与普遍性都尚不明确。",
-    pattern:"实验仍在设计与积累阶段，暂不归纳演变路径，相关进展将在研究日志中持续更新。" }
+/* ===== SAMPLE CLUSTER DATA + LOGIC ===== */
+const CASE_CLUSTERS = [
+  {
+    id:"CLUSTER-01",
+    status:"stable",
+    statusLabel:"初步稳定",
+    title:"理解充分，但行动系统难以启动",
+    tags:["知道却做不到","执行脱耦","创造性停滞"],
+    sampleHint:"长期追踪与短期观察中均反复出现",
+    summary:"参与者通常具备较强自我观察与表达能力，能够清楚描述问题、目标与后果，但行动系统长期无法稳定启动。当前更适合被视为语义系统与执行系统之间的脱耦，而不是简单的懒惰或意志薄弱。",
+    signals:["理解能力高于行动整合度","反复进入“即将开始”的准备状态","行动失败后自责，但结构未改变"],
+    variables:{sSem:"中-高",sExe:"低",risk:"中"},
+    note:"该聚类是目前最核心的观察方向之一，后续需要补充年龄、职业阶段与持续时间信息。"
+  },
+  {
+    id:"CLUSTER-02",
+    status:"stable",
+    statusLabel:"初步稳定",
+    title:"意义系统失效与目标完成后的空心化",
+    tags:["意义危机","身份转变","回馈层下降"],
+    sampleHint:"长期案例中较常见，短期案例中也有明显信号",
+    summary:"部分参与者并非没有取得外部成果，而是在完成目标、职业转向或身份变化之后，原有意义系统突然失去支撑。问题常表现为方向感下降、价值感变弱，以及对既有路径的持续怀疑。",
+    signals:["外部功能仍可维持，但内在回馈下降","旧目标完成后没有生成新的意义结构","职业、关系或身份变化后出现空心化"],
+    variables:{sSem:"中",sExe:"低-中",risk:"中-高"},
+    note:"该聚类需要继续区分短期情绪波动、职业倦怠与深层意义结构失效。"
+  },
+  {
+    id:"CLUSTER-03",
+    status:"observing",
+    statusLabel:"持续观察",
+    title:"重复关系模式与吸引子循环",
+    tags:["情绪循环","关系模式","吸引子锁定"],
+    sampleHint:"短期观察中出现频率较高，长期样本仍在补充",
+    summary:"不同个体在亲密关系、合作关系或家庭互动中，反复进入相似的冲突结构。参与者往往已经意识到模式重复，但仍难以在关键节点采取不同反应。",
+    signals:["不同对象中出现相似冲突路径","知道模式存在，但触发时仍自动进入旧反应","关系结束后问题并未真正消失"],
+    variables:{sSem:"中",sExe:"低-中",risk:"中"},
+    note:"该聚类后续需要更谨慎地区分关系互动因素与个体内部结构因素。"
+  },
+  {
+    id:"CLUSTER-04",
+    status:"observing",
+    statusLabel:"持续观察",
+    title:"高认知停滞与解释系统过载",
+    tags:["高认知停滞","理论领先现实","防御锁定"],
+    sampleHint:"长期案例中已有若干清晰样本",
+    summary:"部分参与者有较强理解、阅读、反思和建构能力，但现实行动、关系推进或作品完成反而长期停滞。解释系统可能暂时领先于现实承载能力，甚至成为延迟行动的保护性结构。",
+    signals:["理论理解持续增长，现实进展有限","频繁重构解释，但关键行动不发生","越能解释自己，越难完成转变"],
+    variables:{sSem:"高",sExe:"低",risk:"中-高"},
+    note:"该聚类对 WCAT 的 ΔP 与防御锁定假说很重要，但目前仍需更多外部验证。"
+  },
+  {
+    id:"CLUSTER-05",
+    status:"needs-data",
+    statusLabel:"人口学待补",
+    title:"身份过渡期与旧叙事失效",
+    tags:["身份转变","文化解耦","重建风险"],
+    sampleHint:"样本数量在增加，但背景信息仍不完整",
+    summary:"参与者开始脱离原有家庭、教育、职业或文化叙事，但新的自我解释尚未稳定形成。此阶段不一定是退化，也可能是结构重组过程中的正常不稳定。",
+    signals:["旧路径不再可信，但新路径还没有长出来","对外部评价的依赖下降，同时方向感短暂下降","自我解释系统处于重组期"],
+    variables:{sSem:"中",sExe:"中",risk:"高"},
+    note:"该聚类特别需要补充年龄、职业阶段、文化背景与转折事件。"
+  },
+  {
+    id:"CLUSTER-06",
+    status:"early",
+    statusLabel:"探索阶段",
+    title:"梦境张力与潜在结构映射",
+    tags:["梦境结构","重复张力","象征对象"],
+    sampleHint:"目前作为辅助材料，不单独作为理论证据",
+    summary:"部分梦境记录中反复出现追逐、封闭空间、无法抵达、关系修复等主题。它们不被直接解释为真相，但可能作为观察主体张力、应对方式与路径锁死的辅助材料。",
+    signals:["梦境主题与现实压力存在弱对应","重复出现同类空间、人物或失败动作","醒后情绪延续，影响现实解释"],
+    variables:{sSem:"不定",sExe:"不定",risk:"待观察"},
+    note:"梦境观察目前只作为辅助线索，不能单独构成案例判断。"
+  }
 ];
-const PROFILE_NAMES = { e1:"吸引子捕获",e2:"吸引子过载",e3:"情绪主导",e4:"命名失败",e5:"文化解耦",e6:"生物解耦",e7:"重建风险",e8:"防御锁定" };
-const CASE_CATEGORIES = ["情绪循环","意义危机","解耦过程","梦境结构","AI耦合","创造性停滞","主体结构变化"];
 let activeTags = new Set();
 let activeStatus = null;
 
-function allTags() { return CASE_CATEGORIES; }
+function allTags() { return Array.from(new Set(CASE_CLUSTERS.flatMap(c => c.tags))); }
 function renderFilters() {
   document.getElementById('tag-filters').innerHTML = allTags().map(t =>
     `<span class="chip ${activeTags.has(t)?'active':''}" onclick="toggleTag('${t}')">${t}</span>`).join('');
-  const statuses = [{key:null,label:"全部"},{key:"active",label:"特征已较稳定"},{key:"emerging",label:"样本积累中"}];
+  const statuses = [
+    {key:null,label:"全部"},
+    {key:"stable",label:"初步稳定"},
+    {key:"observing",label:"持续观察"},
+    {key:"needs-data",label:"人口学待补"},
+    {key:"early",label:"探索阶段"}
+  ];
   document.getElementById('status-filters').innerHTML = statuses.map(s =>
     `<span class="chip ${activeStatus===s.key?'active':''}" onclick="setStatus(${s.key?`'${s.key}'`:'null'})">${s.label}</span>`).join('');
 }
 function toggleTag(t){ activeTags.has(t)?activeTags.delete(t):activeTags.add(t); renderFilters(); renderList(); }
 function setStatus(s){ activeStatus=s; renderFilters(); renderList(); }
-function filteredCases(){ return CASES.filter(c => (activeTags.size===0||c.tags.some(t=>activeTags.has(t))) && (!activeStatus||c.status===activeStatus)); }
-function barWidth(v){ return Math.round((v/7)*100)+'%'; }
-function topProfileBars(c){
-  return Object.entries(c.profile).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([k,v]) =>
-    `<div class="bar-row"><span class="bar-label">${k.toUpperCase()}</span><div class="bar-track"><div class="bar-fill" style="width:${barWidth(v)};"></div></div><span class="bar-val">${v}</span></div>`).join('');
-}
+function filteredCases(){ return CASE_CLUSTERS.filter(c => (activeTags.size===0||c.tags.some(t=>activeTags.has(t))) && (!activeStatus||c.status===activeStatus)); }
 function renderList(){
   const grid = document.getElementById('cl-case-grid');
   const empty = document.getElementById('cl-empty-state');
   const list = filteredCases();
-  document.getElementById('result-count').textContent = `显示 ${list.length} / ${CASES.length} 类结构特征`;
+  document.getElementById('result-count').textContent = `显示 ${list.length} / ${CASE_CLUSTERS.length} 个聚类特征 · 基于十余个长期案例与数十个短期观察初步整理，非案例数量`;
   if (list.length===0){ grid.innerHTML=''; empty.style.display='block'; return; }
   empty.style.display='none';
   grid.innerHTML = list.map(c => `
-    <div class="case-card" onclick="openCase('${c.id}')">
+    <div class="case-card cluster-card" onclick="openCase('${c.id}')">
       <div class="case-top-row"><span class="case-id">${c.id}</span><span class="status-dot ${c.status}">${c.statusLabel}</span></div>
-      <div class="case-tags">${c.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-      <div class="case-summary" style="font-weight:600; margin-bottom:0.4rem;">${c.label}</div>
-      <div class="case-summary">${c.summary.slice(0,58)}...</div>
-      ${topProfileBars(c)}
+      <div class="case-tags">${c.tags.slice(0,3).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="case-summary" style="font-weight:600; margin-bottom:0.55rem;">${c.title}</div>
+      <div class="cluster-hint">${c.sampleHint}</div>
+      <div class="cluster-signal">${c.summary.slice(0,72)}...</div>
     </div>`).join('');
 }
 function renderDetail(c){
-  const profileRows = Object.entries(c.profile).map(([k,v]) => `
-    <div class="profile-row"><span class="profile-code">${k.toUpperCase()}</span><span class="profile-name">${PROFILE_NAMES[k]}</span>
-      <div class="profile-track"><div class="profile-fill" style="width:${barWidth(v)};"></div></div><span class="profile-val">${v}</span></div>`).join('');
+  const signalsHtml = c.signals.map(s => `<li>${s}</li>`).join('');
   document.getElementById('cl-detail-view').innerHTML = `
-    <a class="back-link" onclick="closeCase()">← 返回案例库</a>
+    <a class="back-link" onclick="closeCase()">← 返回聚类观察</a>
     <div class="detail-head">
       <div class="detail-id-row"><span class="detail-id">${c.id}</span><span class="status-dot ${c.status}">${c.statusLabel}</span>
         <div class="case-tags">${c.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>
-      <h1 class="detail-title">${c.label}</h1>
-      <div class="state-block"><div class="state-code">${c.stateRange}</div><div class="state-gloss">${c.primaryGloss}</div></div>
+      <h1 class="detail-title">${c.title}</h1>
+      <div class="state-block"><div class="state-code">样本聚类特征</div><div class="state-gloss">${c.sampleHint}</div></div>
     </div>
-    <div class="notice" style="margin-top:1.5rem;"><strong>说明</strong>：以下内容是对该类特征的概括描述，反映的是多个样本的共性，并非某一位具体参与者的记录。人口学等背景信息仍在持续补充中。</div>
-    <div class="detail-section"><div class="detail-section-title">典型核心变量</div>
+    <div class="detail-section"><div class="detail-section-title">聚类摘要</div><p class="summary-text">${c.summary}</p></div>
+    <div class="detail-section"><div class="detail-section-title">常见信号</div><ul class="cluster-list">${signalsHtml}</ul></div>
+    <div class="detail-section"><div class="detail-section-title">初步结构变量</div>
       <div class="var-grid">
-        <div class="var-cell"><div class="var-num">${c.coreVars.sSem}</div><div class="var-label">S_sem 语义成熟度</div></div>
-        <div class="var-cell"><div class="var-num">${c.coreVars.sExe}</div><div class="var-label">S_exe 存在整合度</div></div>
-        <div class="var-cell"><div class="var-num">${c.coreVars.deltaP>=0?'+':''}${c.coreVars.deltaP}</div><div class="var-label">ΔP · ${c.coreVars.deltaPLabel}</div></div>
-      </div></div>
-    <div class="detail-section"><div class="detail-section-title">典型结构事件画像 E1–E8</div>${profileRows}</div>
-    <div class="detail-section"><div class="detail-section-title">CMC 映射（典型范围）</div>
-      <div class="cmc-stage">${c.cmc.stage}</div>
-      <div class="cmc-grid">
-        <div class="cmc-cell"><div class="cmc-label">Generation 生成</div><div class="cmc-val">${c.cmc.generation}</div></div>
-        <div class="cmc-cell"><div class="cmc-label">Coupling 耦合</div><div class="cmc-val">${c.cmc.coupling}</div></div>
-        <div class="cmc-cell"><div class="cmc-label">Feedback 回馈</div><div class="cmc-val">${c.cmc.feedback}</div></div>
-      </div></div>
-    <div class="detail-section"><div class="detail-section-title">特征描述</div><p class="summary-text">${c.summary}</p></div>
-    <div class="detail-section"><div class="detail-section-title">典型演变模式</div><p class="summary-text">${c.pattern}</p></div>
+        <div class="var-cell"><div class="var-num">${c.variables.sSem}</div><div class="var-label">S_sem 语义成熟度</div></div>
+        <div class="var-cell"><div class="var-num">${c.variables.sExe}</div><div class="var-label">S_exe 存在整合度</div></div>
+        <div class="var-cell"><div class="var-num">${c.variables.risk}</div><div class="var-label">重建风险 / 观察强度</div></div>
+      </div>
+      <p class="detail-body" style="margin-top:1rem;">${c.note}</p>
+    </div>
+    <div class="detail-section"><div class="detail-section-title">资料说明</div>
+      <p class="detail-body">该条目不是单个案例，也不对应某一位参与者。它是当前阶段从匿名长期案例、短期观察、梦境记录与访谈材料中整理出的现象聚类，后续会随着样本结构和人口学信息补足而修正。</p>
+    </div>
     <div class="detail-cta">
-      <a class="btn btn-primary" onclick="showPage('join'); selectIntent('longterm');">申请成为案例参与者</a>
-      <a class="btn btn-secondary" onclick="closeCase()">返回案例库</a>
+      <a class="btn btn-primary" onclick="showPage('join'); selectIntent('open_obs');">参与开放观察</a>
+      <a class="btn btn-secondary" onclick="closeCase()">返回聚类观察</a>
     </div>`;
 }
 function openCase(id){
-  const c = CASES.find(x=>x.id===id);
+  const c = CASE_CLUSTERS.find(x=>x.id===id);
   renderDetail(c);
   document.getElementById('cl-list-view').style.display='none';
   document.getElementById('cl-detail-view').style.display='block';
@@ -480,6 +467,7 @@ function closeCase(){
   document.getElementById('cl-list-view').style.display='block';
   window.scrollTo(0,0);
 }
+
 
 /* ===== JOIN DATA + LOGIC ===== */
 const INTENTS = [
