@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Archive | WCAT Open Research Project</title>
+<meta name="description" content="Anonymized structural observation records — emotion loops, meaning crises, decoupling processes, AI coupling, creative stasis, and subject structure changes.">
+<link rel="canonical" href="https://wcat.world/cases/">
+<meta property="og:title" content="Case Archive | WCAT Open Research Project">
+<meta property="og:description" content="Anonymized structural observation records — emotion loops, meaning crises, decoupling processes, AI coupling, creative stasis, and subject structure changes.">
+<meta property="og:url" content="https://wcat.world/cases/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://wcat.world/og-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/en/style.css">
+</head>
+<body>
+
+<button class="mode-toggle" onclick="toggleMode()">Dark Mode</button>
+
+<nav>
+  <a class="nav-logo" href="/"><img class="nav-logo-icon" src="/logo-icon.png" alt="WCAT"><span>WCAT</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/publications/">Publications</a></li>
+    <li><a href="/research/">Research</a></li>
+    <li><a href="/cases/" class="active">Case Archive</a></li>
+    <li><a href="/log/">Research Log</a></li>
+    <li><a href="/whitepapers/">White Papers</a></li>
+    <li><a href="/participate/">Participate</a></li>
+    <li><a href="/about/">About</a></li>
+  </ul>
+  <a class="nav-cta" href="/participate/">Join Research</a>
+  <span class="nav-lang" style="font-family:var(--mono); font-size:12px; color:var(--text-tertiary); margin-left:0.75rem;"><a href="/cn/index.html" style="color:var(--text-tertiary); text-decoration:none;">简体</a> · <a href="/zh-tw/index.html" style="color:var(--text-tertiary); text-decoration:none;">繁體</a> · <strong style="color:var(--text-primary);">EN</strong></span>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+</nav>
+
+<div class="page active" id="page-cases">
+  <div class="wrap">
+    <div id="cl-list-view">
+      <div class="page-header">
+        <div class="eyebrow">CASE ARCHIVE</div>
+        <h1 class="page-title">Case Archive</h1>
+        <p class="page-sub">All cases have been anonymized and appropriately revised. Case analyses do not provide diagnostic conclusions. They are used primarily to observe emotion loops, meaning crises, decoupling processes, AI coupling, creative stasis, and subject structure changes.</p>
+      </div>
+      <div class="notice"><strong>Note</strong>: Case analyses serve as structural observation tools only and do not constitute medical, psychological, or other professional advice.</div>
+      <div class="filter-block">
+        <div class="filter-label">Phenomenon Tags</div>
+        <div class="chip-row" id="tag-filters"></div>
+        <div class="filter-label">Tracking Status</div>
+        <div class="chip-row" id="status-filters"></div>
+        <div class="result-count" id="result-count"></div>
+      </div>
+      <div class="case-grid" id="cl-case-grid"></div>
+      <div class="empty-state" id="cl-empty-state" style="display:none;">No cases match current filters</div>
+
+      <div class="section" style="margin-top:1rem;">
+        <div class="section-title">Dream Observations</div>
+        <p style="font-family:var(--serif); font-size:15px; color:var(--text-primary); line-height:1.85; max-width:580px; margin-bottom:1rem;">Dreams do not necessarily reveal truth. But the tensions, coping patterns, and recurring motifs that appear in dreams may resonate with structural patterns in waking life.</p>
+        <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.8; max-width:580px; margin-bottom:1.5rem;">Anonymized dream records are collected here to observe: recurring tension, risk perception, relational patterns, path lock-in, and meaning generation.</p>
+        <div class="case-grid">
+          <div class="case-card" style="cursor:default;">
+            <div class="case-id">Dream Record</div>
+            <div class="case-tags"><span class="tag">Recurring Tension</span></div>
+            <div class="case-summary">A recurring pursuit scenario — always waking just before reaching the goal.</div>
+          </div>
+          <div class="case-card" style="cursor:default;">
+            <div class="case-id">Dream Record</div>
+            <div class="case-tags"><span class="tag">Path Lock-in</span></div>
+            <div class="case-summary">Repeatedly returning to the same room in a dream; the door shifts direction each time, yet escape remains impossible.</div>
+          </div>
+          <div class="case-card" style="cursor:default;">
+            <div class="case-id">Dream Record</div>
+            <div class="case-tags"><span class="tag">Relational Pattern</span></div>
+            <div class="case-summary">Repeatedly reconciling with estranged figures in dreams; the emotional residue lingers for hours after waking.</div>
+          </div>
+        </div>
+        <p style="font-size:12.5px; color:var(--text-tertiary); margin-top:1.5rem; max-width:560px; line-height:1.8;">Dream analyses serve as auxiliary observation tools only and do not represent definitive interpretations.</p>
+      </div>
+    </div>
+    <div id="cl-detail-view"></div>
+  </div>
+</div>
+
+<!-- ══════════ JOIN ══════════ -->
+
+<footer>
+  <div>© 2026 WCAT OPEN RESEARCH PROJECT</div>
+  <div><a href="/contact/">Contact</a><a href="/glossary/">Glossary</a><a href="/methods/">Methods &amp; Ethics</a><a href="/support/">Support</a></div>
+</footer>
+
+<script>
+['papers-index','pubs-index','log-filters','log-list','glossary-list','tag-filters','status-filters','result-count','cl-case-grid','cl-empty-state','cl-list-view','cl-detail-view','pub-detail','paper-detail','intent-grid-a','join-detail-panel','gloss-search'].forEach(function(id){
+  if(!document.getElementById(id)){
+    var d=document.createElement('div');d.id=id;d.hidden=true;document.body.appendChild(d);
+  }
+});
+</script>
+<script src="/en/script.js"></script>
+<script>
+window.showPage=function(id){
+  var r={
+    home:'/',
+    research:'/research/',
+    cases:'/cases/',
+    join:'/participate/',
+    papers:'/whitepapers/',
+    log:'/log/',
+    about:'/about/',
+    pubs:'/publications/',
+    glossary:'/glossary/',
+    contact:'/contact/',
+    privacy:'/methods/',
+    support:'/support/'
+  };
+  if(r[id])window.location.href=r[id];
+};
+</script>
+
+</body>
+</html>
