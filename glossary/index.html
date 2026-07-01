@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glossary | WCAT Open Research Project</title>
+<meta name="description" content="Authoritative definitions of coded terms used in the Case Archive, research plans, and white papers — S_sem, S_exe, ΔP, R-zone, E1–E8, and more.">
+<link rel="canonical" href="https://wcat.world/glossary/">
+<meta property="og:title" content="Glossary | WCAT Open Research Project">
+<meta property="og:description" content="Authoritative definitions of coded terms used in the Case Archive, research plans, and white papers — S_sem, S_exe, ΔP, R-zone, E1–E8, and more.">
+<meta property="og:url" content="https://wcat.world/glossary/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://wcat.world/og-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/en/style.css">
+</head>
+<body>
+
+<button class="mode-toggle" onclick="toggleMode()">Dark Mode</button>
+
+<nav>
+  <a class="nav-logo" href="/"><img class="nav-logo-icon" src="/logo-icon.png" alt="WCAT"><span>WCAT</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/publications/">Publications</a></li>
+    <li><a href="/research/">Research</a></li>
+    <li><a href="/cases/">Case Archive</a></li>
+    <li><a href="/log/">Research Log</a></li>
+    <li><a href="/whitepapers/">White Papers</a></li>
+    <li><a href="/participate/">Participate</a></li>
+    <li><a href="/about/">About</a></li>
+  </ul>
+  <a class="nav-cta" href="/participate/">Join Research</a>
+  <span class="nav-lang" style="font-family:var(--mono); font-size:12px; color:var(--text-tertiary); margin-left:0.75rem;"><a href="/cn/index.html" style="color:var(--text-tertiary); text-decoration:none;">简体</a> · <a href="/zh-tw/index.html" style="color:var(--text-tertiary); text-decoration:none;">繁體</a> · <strong style="color:var(--text-primary);">EN</strong></span>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+</nav>
+
+<div class="page active" id="page-glossary">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">GLOSSARY</div>
+      <h1 class="page-title">Glossary</h1>
+      <p class="page-sub">The coded terms appearing throughout the Case Archive, research plans, and white papers have authoritative definitions here. All pages referencing these terms should maintain consistent usage.</p>
+    </div>
+
+    <div class="section">
+      <input class="gloss-search" id="gloss-search" type="text" placeholder="Search terms, e.g. E7, cultural decoupling, ΔP..." oninput="filterGlossary(this.value)">
+      <div id="glossary-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ CONTACT ══════════ -->
+
+<footer>
+  <div>© 2026 WCAT OPEN RESEARCH PROJECT</div>
+  <div><a href="/contact/">Contact</a><a href="/glossary/">Glossary</a><a href="/methods/">Methods &amp; Ethics</a><a href="/support/">Support</a></div>
+</footer>
+
+<script>
+['papers-index','pubs-index','log-filters','log-list','glossary-list','tag-filters','status-filters','result-count','cl-case-grid','cl-empty-state','cl-list-view','cl-detail-view','pub-detail','paper-detail','intent-grid-a','join-detail-panel','gloss-search'].forEach(function(id){
+  if(!document.getElementById(id)){
+    var d=document.createElement('div');d.id=id;d.hidden=true;document.body.appendChild(d);
+  }
+});
+</script>
+<script src="/en/script.js"></script>
+<script>
+window.showPage=function(id){
+  var r={
+    home:'/',
+    research:'/research/',
+    cases:'/cases/',
+    join:'/participate/',
+    papers:'/whitepapers/',
+    log:'/log/',
+    about:'/about/',
+    pubs:'/publications/',
+    glossary:'/glossary/',
+    contact:'/contact/',
+    privacy:'/methods/',
+    support:'/support/'
+  };
+  if(r[id])window.location.href=r[id];
+};
+</script>
+
+</body>
+</html>

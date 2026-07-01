@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Methods & Ethics | WCAT Open Research Project</title>
+<meta name="description" content="Research nature, data sources, anonymization methods, core commitments, and ethics principles for the WCAT Open Research Project.">
+<link rel="canonical" href="https://wcat.world/methods/">
+<meta property="og:title" content="Methods & Ethics | WCAT Open Research Project">
+<meta property="og:description" content="Research nature, data sources, anonymization methods, core commitments, and ethics principles for the WCAT Open Research Project.">
+<meta property="og:url" content="https://wcat.world/methods/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://wcat.world/og-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/en/style.css">
+</head>
+<body>
+
+<button class="mode-toggle" onclick="toggleMode()">Dark Mode</button>
+
+<nav>
+  <a class="nav-logo" href="/"><img class="nav-logo-icon" src="/logo-icon.png" alt="WCAT"><span>WCAT</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/publications/">Publications</a></li>
+    <li><a href="/research/">Research</a></li>
+    <li><a href="/cases/">Case Archive</a></li>
+    <li><a href="/log/">Research Log</a></li>
+    <li><a href="/whitepapers/">White Papers</a></li>
+    <li><a href="/participate/">Participate</a></li>
+    <li><a href="/about/">About</a></li>
+  </ul>
+  <a class="nav-cta" href="/participate/">Join Research</a>
+  <span class="nav-lang" style="font-family:var(--mono); font-size:12px; color:var(--text-tertiary); margin-left:0.75rem;"><a href="/cn/index.html" style="color:var(--text-tertiary); text-decoration:none;">简体</a> · <a href="/zh-tw/index.html" style="color:var(--text-tertiary); text-decoration:none;">繁體</a> · <strong style="color:var(--text-primary);">EN</strong></span>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+</nav>
+
+<div class="page active" id="page-privacy">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">METHODS, DATA &amp; ETHICS</div>
+      <h1 class="page-title">Methods, Data & Ethics</h1>
+      <p class="page-sub">This is not a legal disclaimer, but a statement of the principles actually followed in case observation and data handling. If you are considering whether to participate in cases or long-term follow-up, this is the page to read first.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Research Nature and Scope</div>
+      <div class="notice">
+        <strong>Important:</strong> WCAT and CMC are currently open theoretical frameworks and working hypotheses. They do not constitute medical, psychological diagnostic, or therapeutic advice.
+      </div>
+      <div class="intro-prose">
+        <p>The WCAT Open Research Project focuses on experiential structures, action patterns, meaning generation, and subject change — not on pathologizing individuals.</p>
+        <p>All cases, scales, interviews, and dream records are used to observe the processes of change in volition, meaning, subject structure, and experiential worlds. Any interpretation should be regarded as a provisional observation, not a final conclusion.</p>
+      </div>
+      <div class="commit-list" style="margin-top:1.5rem;">
+        <div class="commit-item"><span class="commit-mark">—</span><div>Does not provide psychological diagnoses, and does not substitute for psychological counseling, psychiatric services, or medical advice.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>Does not promise any individual change outcomes, and does not treat case participation as an intervention.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>Does not use a single case as theoretical proof; all case interpretations are provisional observations.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>Does not reduce participants' experiences to fixed labels.</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Data Sources</div>
+      <p class="section-intro">Current data come primarily from the following sources. Different sources vary in reliability, completeness, and interpretive force, and are not treated as equivalent.</p>
+      <div class="method-grid">
+        <div class="method-item">
+          <div class="method-name">Anonymous Case Submissions</div>
+          <div class="method-desc">Experiences, difficulties, change processes, and self-observations submitted voluntarily by participants.</div>
+        </div>
+        <div class="method-item">
+          <div class="method-name">Scale Completion</div>
+          <div class="method-desc">Used for preliminary observation of structural variables, action resistance, meaning stability, and change phases.</div>
+        </div>
+        <div class="method-item">
+          <div class="method-name">Long-term Follow-up Records</div>
+          <div class="method-desc">Periodic recording of action, relationships, dreams, emotional states, and identity changes.</div>
+        </div>
+        <div class="method-item">
+          <div class="method-name">Interviews and Written Records</div>
+          <div class="method-desc">Open-ended interviews or written questions supplementing the timeline and structural context of cases.</div>
+        </div>
+        <div class="method-item">
+          <div class="method-name">Dream Observations</div>
+          <div class="method-desc">Recording of tension, coping patterns, symbolic objects, and structural change signals in dreams.</div>
+        </div>
+        <div class="method-item">
+          <div class="method-name">AI Collaboration Experiment Records</div>
+          <div class="method-desc">Observing structural changes in different subject structures during AI dialogue, writing, or decision support.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Data Processing Pipeline</div>
+      <p class="section-intro">Cases are not treated as direct theoretical proof. Complete raw records are stored only on the researcher's local machine or private database. What is publicly displayed is only derived information that has been anonymized, restructured, and appropriately modified.</p>
+      <div class="layer-diagram">
+        <div class="layer-box layer-private">Raw Layer — Participant narratives, open-ended responses, scales, interviews, dreams, or phase records</div>
+        <div class="layer-arrow">↓</div>
+        <div class="layer-box layer-process">Anonymization — Removing identifying information, replacing with codes, age ranges, and general descriptions</div>
+        <div class="layer-arrow">↓</div>
+        <div class="layer-box layer-process">Structural Coding — Annotating action resistance, meaning state, emotion objectification, attractor lock-in, and related elements</div>
+        <div class="layer-arrow">↓</div>
+        <div class="layer-box layer-process">Interpretation & Comparison — Restructuring narratives and comparing across cases</div>
+        <div class="layer-arrow">↓</div>
+        <div class="layer-box layer-public">Public Layer — Anonymized summaries, structural encodings, and revisable working hypotheses</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Core Commitments</div>
+      <div class="commit-list">
+        <div class="commit-item"><span class="commit-mark">—</span><div>Raw data <strong style="color:var(--text-primary);">will not be made public</strong>, nor will it enter any public website or code repository.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>Public content may be <strong style="color:var(--text-primary);">anonymized, restructured, and appropriately modified</strong> — it is not verbatim.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>Cases are used primarily for <strong style="color:var(--text-primary);">structural observation</strong> and do not constitute diagnoses.</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>All content is <strong style="color:var(--text-primary);">not for commercial sale</strong>.</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Anonymization Methods</div>
+      <ul style="max-width:580px; padding-left:1.25rem; font-size:13.5px; color:var(--text-secondary); line-height:2;">
+        <li>No real names or nicknames that could be linked to real identities; only codes are used</li>
+        <li>Exact birth years replaced with age ranges; specific cities replaced with broad regions</li>
+        <li>Verbatim records are not published; what is made public is a researcher-rewritten summary</li>
+        <li>Structural encoding values (e.g., E1–E8) carry no narrative content and cannot be used to identify individuals</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Your Rights</div>
+      <div class="right-item"><span class="right-mark">01</span><div class="right-text"><strong>Withdraw at any time</strong>: All participation is voluntary. You may withdraw at any time and for any reason.</div></div>
+      <div class="right-item"><span class="right-mark">02</span><div class="right-text"><strong>Request deletion</strong>: You may request deletion of your data at any time, including already anonymized derived information.</div></div>
+      <div class="right-item"><span class="right-mark">03</span><div class="right-text"><strong>Know how your data is used</strong>: You have the right to know how your data will be used and whether it will be publicly displayed.</div></div>
+      <div class="right-item"><span class="right-mark">04</span><div class="right-text"><strong>No agreement required</strong>: Participation does not imply agreement with any claim made by WCAT. Skeptics and critics are equally protected by these rights.</div></div>
+    </div>
+
+    <div class="section" style="border-bottom:none;">
+      <div class="section-title">Research Ethics Principles</div>
+      <div class="principle-row">
+        <span class="principle-tag">Openness</span>
+        <span class="principle-tag">Challengeability</span>
+        <span class="principle-tag">Revisability</span>
+        <span class="principle-tag">Falsifiability</span>
+      </div>
+      <p style="font-size:13.5px; color:var(--text-tertiary); margin-top:1rem; max-width:560px; line-height:1.8;">If you have any questions about data handling, feel free to ask directly via the <a class="link-arrow" href="/contact/" style="display:inline;">Contact page</a>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SUPPORT ══════════ -->
+
+<footer>
+  <div>© 2026 WCAT OPEN RESEARCH PROJECT</div>
+  <div><a href="/contact/">Contact</a><a href="/glossary/">Glossary</a><a href="/methods/">Methods &amp; Ethics</a><a href="/support/">Support</a></div>
+</footer>
+
+<script>
+['papers-index','pubs-index','log-filters','log-list','glossary-list','tag-filters','status-filters','result-count','cl-case-grid','cl-empty-state','cl-list-view','cl-detail-view','pub-detail','paper-detail','intent-grid-a','join-detail-panel','gloss-search'].forEach(function(id){
+  if(!document.getElementById(id)){
+    var d=document.createElement('div');d.id=id;d.hidden=true;document.body.appendChild(d);
+  }
+});
+</script>
+<script src="/en/script.js"></script>
+<script>
+window.showPage=function(id){
+  var r={
+    home:'/',
+    research:'/research/',
+    cases:'/cases/',
+    join:'/participate/',
+    papers:'/whitepapers/',
+    log:'/log/',
+    about:'/about/',
+    pubs:'/publications/',
+    glossary:'/glossary/',
+    contact:'/contact/',
+    privacy:'/methods/',
+    support:'/support/'
+  };
+  if(r[id])window.location.href=r[id];
+};
+</script>
+
+</body>
+</html>
