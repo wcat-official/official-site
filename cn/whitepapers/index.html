@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>白皮书 | WCAT Open Research Project</title>
+<meta name="description" content="WCAT 与 CMC 白皮书索引、OSF 确权记录、引用方式与授权说明。">
+<link rel="canonical" href="https://wcat.world/cn/whitepapers/">
+<meta property="og:title" content="白皮书 | WCAT Open Research Project">
+<meta property="og:description" content="WCAT 与 CMC 白皮书索引、OSF 确权记录、引用方式与授权说明。">
+<meta property="og:url" content="https://wcat.world/cn/whitepapers/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://wcat.world/og-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="008f6b96-4818-4608-8901-dc31742c99c9"></script>
+<link rel="stylesheet" href="/cn/style.css">
+</head>
+<body>
+
+<button class="mode-toggle" onclick="toggleMode()">暗色模式</button>
+
+<nav>
+  <a class="nav-logo" href="/cn/"><img class="nav-logo-icon" src="/logo-icon.png" alt="WCAT"><span>WCAT</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/cn/">首页</a></li>
+    <li><a href="/cn/publications/">出版物</a></li>
+    <li><a href="/cn/research/">研究计划</a></li>
+    <li><a href="/cn/cases/">案例库</a></li>
+    <li><a href="/cn/log/">研究日志</a></li>
+    <li><a href="/cn/whitepapers/" class="active">白皮书</a></li>
+    <li><a href="/cn/participate/">参与</a></li>
+    <li><a href="/cn/about/">关于</a></li>
+  </ul>
+  <a class="nav-cta" href="/cn/participate/">参与研究</a>
+  <span class="nav-lang" style="font-family:var(--mono); font-size:12px; color:var(--text-tertiary); margin-left:0.75rem;"><strong style="color:var(--text-primary);">简体</strong> · <a href="/zh-tw/index.html" style="color:var(--text-tertiary); text-decoration:none;">繁體</a> · <a href="/whitepapers/" style="color:var(--text-tertiary); text-decoration:none;">EN</a></span>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="菜单">☰</button>
+</nav>
+
+<div class="page active" id="page-papers">
+  <div class="wrap">
+    <div class="page-header">
+      <div class="eyebrow">WHITE PAPERS</div>
+      <h1 class="page-title">白皮书与 OSF 确权记录</h1>
+      <p class="page-sub">白皮书正文、版本记录与下载入口统一保存在 OSF。官网仅保留白皮书索引、授权边界、引用方式与伦理提示，以降低版本维护负担。</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">OSF 白皮书索引</div>
+      <div id="papers-index"></div>
+    </div>
+
+    <div id="paper-detail" style="display:none;"></div>
+  </div>
+</div>
+
+<footer>
+  <div>© 2025-2026 Jiawei · WCAT OPEN RESEARCH PROJECT</div>
+  <div><a href="/cn/contact/">联系方式</a><a href="/cn/glossary/">术语表</a><a href="/cn/methods/">方法与伦理</a><a href="/cn/support/">支持</a></div>
+</footer>
+
+<script>
+['papers-index','pubs-index','log-filters','log-list','glossary-list','tag-filters','status-filters','result-count','cl-case-grid','cl-empty-state','cl-list-view','cl-detail-view','pub-detail','paper-detail','intent-grid-a','join-detail-panel','gloss-search'].forEach(function(id){
+  if(!document.getElementById(id)){
+    var d=document.createElement('div');d.id=id;d.hidden=true;document.body.appendChild(d);
+  }
+});
+</script>
+<script src="/cn/script.js"></script>
+<script>
+window.showPage=function(id){
+  var r={
+    home:'/cn/',
+    research:'/cn/research/',
+    cases:'/cn/cases/',
+    join:'/cn/participate/',
+    papers:'/cn/whitepapers/',
+    log:'/cn/log/',
+    about:'/cn/about/',
+    pubs:'/cn/publications/',
+    glossary:'/cn/glossary/',
+    contact:'/cn/contact/',
+    privacy:'/cn/methods/',
+    support:'/cn/support/'
+  };
+  if(r[id])window.location.href=r[id];
+};
+</script>
+
+</body>
+</html>
