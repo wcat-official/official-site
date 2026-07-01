@@ -65,12 +65,12 @@
     <section class="block">
       <div class="section-title">当前进行中</div>
       <div class="case-grid">
-        <div class="case-card" href="/cn/publications/">
+        <div class="case-card" onclick="showPage('pubs')">
           <div class="case-id">持续更新中</div>
           <div class="case-summary" style="font-weight:600; margin-bottom:0.4rem;">《意志简史》</div>
           <div class="case-summary">以 WCAT 为框架，观察主体结构、情绪对象化与意义生成。</div>
         </div>
-        <div class="case-card" href="/cn/publications/">
+        <div class="case-card" onclick="showPage('pubs')">
           <div class="case-id">规划中</div>
           <div class="case-summary" style="font-weight:600; margin-bottom:0.4rem;">《意识简史》</div>
           <div class="case-summary">作为《意志简史》的延伸阅读，后续将从认知科学和复杂系统视角展开。</div>
@@ -96,9 +96,9 @@
     <section class="block">
       <div class="section-title">参与</div>
       <div class="join-grid-mini">
-        <div class="join-card-mini" href="/cn/participate/"><div class="join-title-mini">开放观察</div><div class="join-desc-mini">无需透露身份，所有资料匿名处理</div></div>
-        <div class="join-card-mini" href="/cn/participate/"><div class="join-title-mini">长期案例计划</div><div class="join-desc-mini">邀请制，持续记录梦境与变化过程</div></div>
-        <div class="join-card-mini" href="/cn/participate/"><div class="join-title-mini">共建计划</div><div class="join-desc-mini">研究 / 翻译 / AI实验 / 工具开发</div></div>
+        <div class="join-card-mini" onclick="showPage('join'); selectIntent('open_obs');"><div class="join-title-mini">开放观察</div><div class="join-desc-mini">无需透露身份，所有资料匿名处理</div></div>
+        <div class="join-card-mini" onclick="showPage('join'); selectIntent('longterm');"><div class="join-title-mini">长期案例计划</div><div class="join-desc-mini">邀请制，持续记录梦境与变化过程</div></div>
+        <div class="join-card-mini" onclick="showPage('join'); selectIntent('cobuild');"><div class="join-title-mini">共建计划</div><div class="join-desc-mini">研究 / 翻译 / AI实验 / 工具开发</div></div>
       </div>
       <div class="section-foot"><a class="link-arrow" href="/cn/participate/">查看全部参与方式 →</a></div>
     </section>
