@@ -1,6 +1,16 @@
 /* ===== WHITE PAPERS DATA + LOGIC ===== */
 const PAPERS = [
   {
+    id: "seh",
+    name: "《选择编码假说（SEH）——一个关于主体性与反身性涌现的工作研究框架 Version 0.1》",
+    shortName: "SEH 工作研究框架",
+    version: "简体中文版 Version 0.1",
+    date: "2026-07-01",
+    doi: "https://doi.org/10.17605/OSF.IO/5BUZ4",
+    citation: "嘉炜（Jiawei）. (2026).《SEH研究框架：选择编码假说——主体与反身性涌现的工作研究框架（Version 0.1）》. OSF. https://doi.org/10.17605/OSF.IO/5BUZ4",
+    abstract: "SEH 将研究对象下探到主体形成机制本身，尝试解释环境信息如何经过选择、编码、压缩、失效与重新编码，逐步形成具有反身性的主体结构。SEH 的提出不是为了替代 W-CAT，而是在长期案例积累过程中浮现的核心问题：主体究竟是如何形成的？SEH、WCAT、CMC 共同构成三层理论架构：SEH 研究主体如何形成；W-CAT 研究主体形成之后为何出现不同的意志结构；CMC 研究多个主体如何进一步形成文明尺度上的协同结构。"
+  },
+  {
     id: "wcat",
     name: "《意志回路激活理论（W-CAT）显影系统与结构模型》",
     shortName: "W-CAT 显影系统与结构模型",
@@ -61,19 +71,25 @@ function openPaper(id) {
       <div class="intro-prose" style="font-size:14.5px;">
         <p>《意志回路激活理论（Will-Circuit Activation Theory, W-CAT）》是一个以结构性自由意志为核心的理论模型体系，由独立研究人嘉炜（Jiawei）以工作假说形式发布，旨在提供可被检验、反驳与扩展的结构视角。</p>
         <p>作者鼓励在明确署名与溯源的前提下，对本理论进行非商业性的阅读、分享、引用、翻译、教学与学术讨论。</p>
-        <p>随着 W-CAT 理论结构的逐步冻结及其进入应用接口与工具化阶段，自 RELEASE v1.0.1（Logic Frozen Edition）起，文本使用权与应用使用权明确区分。</p>
+        <p>随着 SEH、WCAT、CMC 理论结构的逐步冻结及其进入应用接口与工具化阶段，自 RELEASE v1.0.1（Logic Frozen Edition）起，文本使用权与应用使用权明确区分。</p>
       </div>
 
       <div class="section-title" style="margin-top:2rem;">需要书面授权的使用</div>
       <div class="commit-list">
-        <div class="commit-item"><span class="commit-mark">—</span><div>将 W-CAT 的理论结构、核心模型、术语体系或推导逻辑用于商业目的。</div></div>
-        <div class="commit-item"><span class="commit-mark">—</span><div>基于 W-CAT 开发或提供付费课程、咨询服务、产品、平台或组织解决方案。</div></div>
-        <div class="commit-item"><span class="commit-mark">—</span><div>将 W-CAT 理论结构直接或间接用于人工智能模型训练、系统设计或决策代理。</div></div>
-        <div class="commit-item"><span class="commit-mark">—</span><div>以可能造成理论误导、结构性偏离或降维滥用的方式，对 W-CAT 进行再诠释或传播。</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>将 SEH、WCAT、CMC 的理论结构、核心模型、术语体系或推导逻辑用于商业目的。</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>基于 SEH、WCAT、CMC 开发或提供付费课程、咨询服务、产品、平台或组织解决方案。</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>将 SEH、WCAT、CMC 理论结构直接或间接用于人工智能模型训练、系统设计或决策代理。</div></div>
+        <div class="commit-item"><span class="commit-mark">—</span><div>以可能造成理论误导、结构性偏离或降维滥用的方式，对 SEH、WCAT、CMC 进行再诠释或传播。</div></div>
+      </div>
+
+      <div class="intro-prose" style="font-size:13.5px; margin-top:1.25rem; color:var(--text-secondary);">
+        <p>本授权不构成对理论原创性、署名权、学术确权或应用权的任何让渡。本授权亦不追溯性影响此前已发布版本的授权状态。</p>
+        <p>SEH、WCAT、CMC 的任何应用级实现，需在明确伦理边界与结构责任的前提下，通过独立授权或合作协议进行。</p>
+        <p>© 嘉炜 Jiawei. All rights reserved.</p>
       </div>
 
       <div class="notice" style="margin-top:1.5rem;">
-        <strong>伦理与语境提示：</strong>W-CAT 提供的是结构可见性工具，而非价值判断或行为规范。使用者需对其具体语境中的应用承担反身性责任。
+        <strong>⚠ 伦理与语境提示：</strong>SEH、WCAT、CMC 提供的是结构可见性工具，而非价值判断或行为规范。使用者需对其具体语境中的应用承担反身性责任。
       </div>
 
       <div class="section-title" style="margin-top:2rem;">引用方式</div>
